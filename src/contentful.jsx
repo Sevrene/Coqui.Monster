@@ -2,7 +2,7 @@ import { client } from './client';
 import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Link } from '@mui/material';
 import { BlockTitle } from './components/blockRenders';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
+import { BLOCKS } from '@contentful/rich-text-types';
 import BoltIcon from '@mui/icons-material/Bolt';
 
 export function FetchData(type) {
