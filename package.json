@@ -2,7 +2,7 @@
   "name": "coqui-monster",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://sevrene.github.io/coqui-monster",
+  "homepage": "https://sevrene.github.io/Coqui-Monster/",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.16.2",
     "@emotion/react": "^11.10.5",
