@@ -3,7 +3,7 @@ import ReactList from './components/Builder.io Components/reactList';
 import TwitchData from './components/Builder.io Components/twitchData';
 import BasicTabs from './components/Builder.io Components/basicTabs';
 
-builder.init(process.env.BUILDER_IO_ACCESS_TOKEN);
+builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
 
 Builder.registerComponent(ReactList, {
   name: 'React List',
