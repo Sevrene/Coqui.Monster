@@ -20,11 +20,13 @@ function TwitchData() {
 
   const height = Math.ceil(width * 0.5625);
 
+  const host = window.location.hostname === "localhost" ? "localhost" : "coqui-monster.netlify.app";
+
   return (
     <iframe
       ref={playerRef}
       title='livestream'
-      src="https://player.twitch.tv/?channel=coqui&parent=https://coqui-monster.netlify.app/&muted=true"
+      src={"https://player.twitch.tv/?channel=coqui&parent=" + host + "&muted=true"}
       height={height}
       width="100%"
       allowfullscreen
