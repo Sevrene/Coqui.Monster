@@ -29,8 +29,8 @@ TabPanel.propTypes = {
 };
 
 const BasicTabs = props => {
-  const [value, setValue] = React.useState(props.selectedTabIndex);
-
+  const [value, setValue] = React.useState(props.defaultTabIndex ?? 0);
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

@@ -29,7 +29,7 @@ function TwitchData() {
       src={"https://player.twitch.tv/?channel=coqui&parent=" + host + "&muted=true"}
       height={height}
       width="100%"
-      allowfullscreen
+      allowFullScreen
     />
   );
 }
