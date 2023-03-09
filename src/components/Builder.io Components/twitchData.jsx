@@ -24,7 +24,7 @@ function TwitchData() {
     <iframe
       ref={playerRef}
       title='livestream'
-      src="https://player.twitch.tv/?channel=coqui&parent=localhost&muted=true"
+      src="https://player.twitch.tv/?channel=coqui&parent=https://coqui-monster.netlify.app/&muted=true"
       height={height}
       width="100%"
       allowfullscreen
