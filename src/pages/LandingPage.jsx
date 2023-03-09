@@ -3,10 +3,10 @@ import { Box, Card, Grid } from '@mui/material';
 
 function LandingPage({ pageData }) {
   return (
-    <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-      <Box sx={{ maxWidth: '70%', width: '100%', margin: '0 auto' }}>
-        <Grid container spacing={2}>
-          <Grid item xs={true}>
+    <Box sx={{ mt: 4 }}>
+      <Box sx={{ maxWidth: '70%', margin: '0 auto' }}>
+        <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
+          <Grid item xs={true} minWidth='300px'>
             <Card sx={{ mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px'}}>
               {pageData.mainContent.map((contentBlock) => {
                 return (
@@ -15,7 +15,7 @@ function LandingPage({ pageData }) {
               })}
             </Card>
           </Grid>
-          <Grid item xs={4} minWidth='250px'>
+          <Grid item width='250px'>
             <Card sx={{ mt: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {pageData.extraContent.map((contentBlock) => {
                 return (
