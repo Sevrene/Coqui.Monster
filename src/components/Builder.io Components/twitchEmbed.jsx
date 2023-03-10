@@ -33,7 +33,7 @@ function TwitchEmbed() {
     <iframe
       ref={playerRef}
       title='livestream'
-      src={"https://player.twitch.tv/?channel=coqui&parent=coqui.monster coqui-monster.netlify.app localhost&muted=true"}
+      src={"https://player.twitch.tv/?channel=coqui&muted=true&parent=coqui.monster&parent=coqui-monster.netlify.app&parent=localhost"}
       height={height}
       width="100%"
       allowFullScreen
