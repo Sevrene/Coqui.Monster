@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Coqui-Monster
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Coqui-Monster is primarly a [React](https://mui.com/material-ui/getting-started/overview/) app with custom components utilizing the [Material Design](https://mui.com/material-ui/getting-started/overview/) framework intended for integration with [Builder.io](https://builder.io).
+All components within this app are intended for use by [Coqui](https://www.twitch.tv/coqui) for her website under the same name [Coqui-Monster](https://coqui-monster.netlify.app/)
 
-## Available Scripts
+## Contributing
 
-In the project directory, you can run:
+While the actual website design of [Coqui-Monster](https://coqui-monster.netlify.app/) is closed-sourced, 
+you are free to contribute additional components for easier and better customizability.
 
-### `npm start`
+To get started with contributing, you will need to have Node.js and npm installed on your machine.
+You can install Node.js from the official website at https://nodejs.org.
+Once you have Node.js installed, you can clone the Coqui-Monster repository to your local machine using Git: `git clone https://github.com/example/coqui-monster.git`
+or through the [GitHub repository](https://github.com/example/coqui-monster)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Next, navigate to the project directory and install the required dependencies using npm:
+```
+cd coqui-monster
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Finally, start the development server to launch the app in your web browser:
+`npm start`
 
-### `npm test`
+## Integrating with Builder.io
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Coqui-Monster integrates with [Builder.io](https://builder.io) to render almost all content and to allow Coqui full creative control of the design of the site.
+To get started with Builder.io, you will need to sign up for a free account on the website at https://builder.io.
 
-### `npm run build`
+Once you have signed up for an account, you can create a new page and customize it using the drag-and-drop editor.
+When you are ready to integrate the page with your local branch of Coqui-Monster, 
+you can simply copy the API key from your Builder.io account and paste it into your app's local env as `REACT_APP_BUILDER_IO_ACCESS_TOKEN=[key]`.
+From here you will be able to test the functionality of current components as well as incorporate your own.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Submitting Contributions
+All pull requests and issues are welcome on the [GitHub repository](https://github.com/example/coqui-monster). Please ensure that your code follows the project's coding standards and includes tests where appropriate.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+Coqui-Monster is licensed under the MIT License, which means that you are free to use, modify, and distribute the code for personal or commercial purposes.
