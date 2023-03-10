@@ -1,19 +1,10 @@
 import { AppBar, Toolbar, Typography, Button, MenuItem, Menu } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FetchData } from '../contentful';
 import { Home, Storefront, ShoppingCart, Checkroom, CardGiftcard, Share, Twitter, YouTube, Groups, Forum, AutoStories, QuestionMark, Palette, Headphones } from '@mui/icons-material';
-import logo from './logo.png';
 
 function Header() {
-  const [navBar, setNavbar] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
-
-  useEffect(() => {
-    FetchData('navigationBar').then(results => {
-      setNavbar(results);
-    });
-  }, []);
 
   const handleMenuClick = (event, menuId) => {
     setOpenMenu({ anchor: event.currentTarget, menuId });
@@ -23,15 +14,11 @@ function Header() {
     setOpenMenu(null);
   };
 
-  if (navBar === null) {
-    return <div>Loading navigation bar...</div>;
-  }
-
   return (
     <AppBar position="static" sx={{ background: '#6600cc' }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center'  }}>
-          <img src={logo} alt="Logo" style={{ borderRadius: '50%' }} />
+          <img src={''} alt="Logo" style={{ borderRadius: '50%' }} />
         </Typography>
         <Button
           component={Link}

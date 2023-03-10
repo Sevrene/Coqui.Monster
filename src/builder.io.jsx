@@ -1,11 +1,30 @@
 import { builder, Builder } from '@builder.io/react';
-import ReactList from './components/Builder.io Components/reactList';
-import TwitchData from './components/Builder.io Components/twitchData';
-import BasicTabs from './components/Builder.io Components/basicTabs';
+import BuilderComponents from './components/Builder.io Components';
 
-builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
+const apiKey = process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN;
 
-Builder.registerComponent(ReactList, {
+if (!apiKey) {
+  console.error("Builder.io API key not found. Please create a .env with a valid API key to continue.");
+}
+else {
+  builder.init(apiKey);
+}
+
+/*
+//  Builder Components
+//  arg 1: The React component to register. Must be imported from the components folder
+//  arg 2: An object with properties defining the component's behavior and inputs
+//
+//  Properties for the Component Registration Object
+//    name*: The component name, a required property that specifies the name of the component as it will appear in the Builder editor.
+//    image: An optional but highly recommended property that allows developers to set an image that will be displayed as a thumbnail for the component in the Builder editor.
+//           Utilize https://tabler-icons.io/ and copy the png download link
+//    inputs: An array of objects that defines the inputs that the component accepts. Each object in the array represents an input and can contain properties such as name, type, and defaultValue.
+//
+//  Full Documentation
+//  https://www.builder.io/c/docs/custom-components-input-types
+*/
+Builder.registerComponent(BuilderComponents.reactList, {
   name: 'React List',
   inputs: [{
     name: 'items',
@@ -28,12 +47,12 @@ Builder.registerComponent(ReactList, {
   image: 'https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png'
 });
 
-Builder.registerComponent(TwitchData, {
-  name: 'Twitch Data',
+Builder.registerComponent(BuilderComponents.twitchEmbed, {
+  name: 'Twitch Embed',
   image: 'https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png'
 });
 
-Builder.registerComponent(BasicTabs, {
+Builder.registerComponent(BuilderComponents.basicTabs, {
   name: 'BasicTabs',
   inputs: [
     {

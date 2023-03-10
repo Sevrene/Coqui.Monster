@@ -1,8 +1,19 @@
-import * as React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Tab, Tabs} from '@mui/material';
 import { BuilderBlocks } from '@builder.io/react';
 
+/**
+ * 
+ * TabPanel
+ * 
+ * A component that renders a tab panel.
+ * @param {object} props - The props for the component.
+ *  @param {node} props.children - The children to render in the tab panel.
+ *  @param {number} props.index - The index of the tab panel.
+ *  @param {number} props.value - The value of the tab panel.
+ * @returns {JSX.Element} A tab panel.
+*/
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -28,8 +39,22 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+/**
+ * 
+ * BasicTabs
+ * 
+ * A component that renders a basic tabs view.
+ * @param {object} props - The props for the component.
+ *  @param {number} [props.defaultTabIndex] - The default tab index to display. Defaults to 0.
+ *  @param {boolean} [props.centered] - Whether the tabs should be centered. Defaults to false.
+ *  @param {object[]} props.tabs - An array of objects representing the tabs, each with the following properties:
+ *    @param {string} tabs.label - The label for the tab.
+ *    @param {object[]} tabs.content - An array of Builder.io blocks to display as content for the tab.
+ *  @param {object} props.builderBlock - A Builder.io block object.
+ * @returns {JSX.Element} A tabs view with content for each tab.
+*/
 const BasicTabs = props => {
-  const [value, setValue] = React.useState(props.defaultTabIndex ?? 0);
+  const [value, setValue] = useState(props.defaultTabIndex ?? 0);
   
   const handleChange = (event, newValue) => {
     setValue(newValue);
