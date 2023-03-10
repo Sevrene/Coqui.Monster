@@ -18,7 +18,9 @@ function Header() {
     <AppBar position="static" sx={{ background: '#6600cc' }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center'  }}>
-          <img src={''} alt="Logo" style={{ borderRadius: '50%' }} />
+          <Link to="/">
+            <img src={process.env.PUBLIC_URL + '/favicon.ico'} alt="Logo" style={{ borderRadius: '50%' }} />
+          </Link>
         </Typography>
         <Button
           component={Link}

@@ -72,12 +72,12 @@ const BasicTabs = props => {
       {props.tabs.map((tab, index) => (
         <TabPanel value={value} index={index} key={index}>
           {props.tabs?.length && (
-        <BuilderBlocks
-          parentElementId={props.builderBlock.id}
-          dataPath={`component.options.tabs.${value}.content`}
-          blocks={tab.content}
-        />
-      )}
+          <BuilderBlocks
+            parentElementId={props.builderBlock.id}
+            dataPath={`component.options.tabs.${value}.content`}
+            blocks={tab.content}
+          />
+          )}
         </TabPanel>
       ))}
     </Box>
