@@ -5,6 +5,7 @@ import './builder.io';
 import { Route, Routes } from 'react-router-dom';
 // Header temporarily hard coded
 import Header from './components/header';
+import DevHandle from './components/devHandle';
 
 // Root styling temporarily hard coded
 const Root = styled.div`
@@ -23,6 +24,7 @@ function App() {
           <Route path="/preview" element={<BuilderComponent model="symbol" />} />
         </Routes>
       </BrowserRouter>
+      <DevHandle />
     </Root>
   );
 }
