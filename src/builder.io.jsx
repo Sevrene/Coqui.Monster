@@ -1,12 +1,13 @@
-import { builder, Builder } from '@builder.io/react';
-import BuilderComponents from './components/Builder.io Components';
+import { builder, Builder } from "@builder.io/react";
+import BuilderComponents from "./components/Builder.io Components";
 
 const apiKey = process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN;
 
 if (!apiKey) {
-  console.error("Builder.io API key not found. Please create a .env with a valid API key to continue.");
-}
-else {
+  console.error(
+    "Builder.io API key not found. Please create a .env with a valid API key to continue."
+  );
+} else {
   builder.init(apiKey);
 }
 
@@ -25,116 +26,246 @@ else {
   Full Documentation
   https://www.builder.io/c/docs/custom-components-input-types
 */
-Builder.registerComponent(BuilderComponents.reactList, {
-  name: 'React List',
-  inputs: [{
-    name: 'items',
-    type: 'list',
-    defaultValue: [{
-      text: 'Item 1',
-      MaterialIcon: false,
-      icon: 'iconName',
-      iconName: 'Home',
-      link: 'https://www.google.com'
-    }],
-    subFields: [
-      { name: 'text', type: 'text', required: true },
-      { name: 'MaterialIcon', type: 'boolean'},
-      { name: 'icon', type: 'file', showIf: `!options.get('MaterialIcon')` },
-      { name: 'iconName', type: 'text', showIf: `options.get('MaterialIcon')` },
-      { name: 'link', type: 'url', required: true },
-    ],
-  },],
-  image: 'https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png'
-});
-
-Builder.registerComponent(BuilderComponents.twitchEmbed, {
-  name: 'Twitch Embed',
-  image: 'https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png'
-});
-
-Builder.registerComponent(BuilderComponents.basicTabs, {
-  name: 'Basic Tabs',
+Builder.registerComponent(BuilderComponents.muiAccordion, {
+  name: "accordion",
+  image:
+    "https://tabler-icons.io/static/tabler-icons/icons-png/layout-navbar-expand.png",
   inputs: [
     {
-      name: 'defaultTabIndex',
-      type: 'number',
+      name: "defaultOpen",
+      type: "boolean",
+      helperText: "Refresh the preview to view defaults",
+      defaultValue: false,
+    },
+    {
+      name: "lockOpen",
+      type: "boolean",
+      helperText:
+        "Lock the accordion in the open state. Refresh the preview to take effect",
+      showIf: `options.get('defaultOpen')`,
+      defaultValue: false,
+    },
+    {
+      name: "variant",
+      type: "text",
+      helperText: "Rendering rules variants",
+      defaultValue: "default",
+      enum: ["default", "outlined"],
+    },
+    {
+      name: "elevation",
+      type: "number",
+      helperText:
+        "A value from 0-24 [inclusive] specifying how elevated this element should appear",
+      defaultValue: 1,
+      min: 0,
+      max: 24,
+      step: 1,
+    },
+    {
+      name: "icon",
+      type: "object",
+      helperText: "Righthand Icon used to identify an Expand More section",
+      defaultValue: {
+        showIcon: true,
+        iconType: "default",
+      },
+      subFields: [
+        {
+          name: "showIcon",
+          type: "boolean",
+          defaultValue: true,
+        },
+        {
+          name: "iconType",
+          type: "text",
+          enum: ["default", "upload"],
+          defaultValue: "default",
+          showIf: `options.get('showIcon')`,
+        },
+        {
+          name: "iconFile",
+          type: "file",
+          helperText: "SVG files are preferred, but png is also accepted",
+          showIf: `options.get('iconType') === "upload"`,
+        },
+      ],
+    },
+    {
+      name: "divider",
+      type: "object",
+      helperText: "Divider line between header and collapsed content",
+      subFields: [
+        {
+          name: "showDivider",
+          type: "boolean",
+        },
+        {
+          name: "dividerColor",
+          type: "color",
+          showIf: `options.get('showDivider')`,
+        },
+      ],
+    },
+    {
+      name: "disable",
+      type: "boolean",
+      helperText: "Disable the accordions ability to expand",
+      defaultValue: false,
+    },
+    {
+      name: "disableRipple",
+      type: "boolean",
+      helperText: "Disable the ripple effect when clicked",
+      defaultValue: true,
+    },
+    {
+      name: "summary",
+      type: "uiBlocks",
+      defaultValue: [],
+    },
+    {
+      name: "content",
+      type: "uiBlocks",
+      defaultValue: [],
+    },
+  ],
+});
+
+Builder.registerComponent(BuilderComponents.muiList, {
+  name: "list",
+  image:
+    "https://tabler-icons.io/static/tabler-icons/icons-png/list.png",
+  inputs: [
+    {
+      name: "dense",
+      type: "boolean",
+      defaultValue: true,
+    },
+    {
+      name: "maxDisplayHeight",
+      type: "number",
+      helperText: "Max height in pixels. Leave empty for no max height."
+    },
+    {
+      name: "icon",
+      type: "object",
+      defaultValue: {
+        showIcon: true,
+        iconType: "default",
+      },
+      subFields: [
+        {
+          name: "showIcon",
+          type: "boolean",
+          defaultValue: true,
+        },
+        {
+          name: "iconType",
+          type: "text",
+          enum: ["default", "upload"],
+          defaultValue: "default",
+          showIf: `options.get('showIcon')`,
+        },
+        {
+          name: "iconFile",
+          type: "file",
+          helperText: "SVG files are preferred, but png is also accepted",
+          showIf: `options.get('iconType') === "upload"`,
+        },
+      ],
+    },
+    {
+      name: "subsections",
+      type: "list",
+      defaultValue: [
+        {
+          includeSubheader: false,
+          subheader: "Subheader Title",
+          items: [],
+        },
+      ],
+      subFields: [
+        {
+          name: "includeSubheader",
+          type: "boolean",
+          helperText: "Include a subheader above this subsection",
+          defaultValue: false,
+        },
+        {
+          name: "subheader",
+          type: "text",
+          defaultValue: "Subheader Title",
+          showIf: `options.get('includeSubheader')`,
+        },
+        {
+          name: "items",
+          type: "list",
+          defaultValue: [
+            {
+              text: "List Item",
+            }
+          ],
+          subFields: [
+            {
+              name: "text",
+              type: "text",
+              defaultValue: "List Item",
+            },
+            {
+              name: "link",
+              type: "url",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
+
+Builder.registerComponent(BuilderComponents.simpleTabs, {
+  name: "tabs",
+  inputs: [
+    {
+      name: "defaultTabIndex",
+      type: "number",
       defaultValue: 0,
       required: true,
     },
     {
-      name: 'centered',
-      type: 'boolean',
+      name: "centered",
+      type: "boolean",
       defaultValue: false,
     },
     {
-      name: 'tabs',
-      type: 'list',
+      name: "tabs",
+      type: "list",
       subFields: [
         {
-          name: 'label',
-          type: 'text',
-          defaultValue: 'New tab',
+          name: "label",
+          type: "text",
+          defaultValue: "newTab",
         },
         {
-          name: 'content',
-          type: 'uiBlocks',
+          name: "content",
+          type: "uiBlocks",
           defaultValue: [],
         },
       ],
       defaultValue: [
         {
-          label: 'Tab 1',
+          label: "tab1",
           content: [],
         },
       ],
     },
   ],
+  image:
+    "https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png",
 });
 
-/*
-Builder.registerComponent(BuilderComponents.contentCard, {
-  name: 'Content Card',
-  inputs: [{
-      name: 'header',
-      type: 'boolean',
-      helperText: 'Include header section',
-      defaultValue: false,
-    },{
-      name: 'headerSettings',
-      friendlyName: 'Header Settings',
-      type: 'object',
-      showIf: `options.get('header')`,
-      subFields: [{
-        name: 'title',
-        type: 'richText',
-      },{
-        name: 'subtitle',
-        type: 'richText',
-      }],
-    },{
-      name: 'media',
-      type: 'boolean',
-      helperText: 'Include media section',
-      defaultValue: false,
-    },{
-      name: 'mediaSettings',
-      type: 'object',
-      showIf: `options.get('media')`,
-      subFields: [{
-        name: 'Type',
-        type: 'text',
-        enum: ['img', 'video', 'audio' ]
-      },{
-        name: 'source',
-        type: 'text',
-      }],
-    },{
-      name: 'raised',
-      type: 'boolean',
-      helperText: 'Render the card raised above the content behind it',
-      defaultValue: false,
-    },
-  ],
+Builder.registerComponent(BuilderComponents.twitchEmbed, {
+  name: "twitchEmbed",
+  image:
+    "https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png",
 });
-*/

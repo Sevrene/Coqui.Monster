@@ -23,9 +23,9 @@ function App() {
           <Route path="/" element={<BuilderComponent model="page" />} />
           <Route path="/preview" element={<BuilderComponent model="symbol" />} />
         </Routes>
+        <DevHandle />
       </BrowserRouter>
-      <DevHandle />
-    </Root>
+      </Root>
   );
 }
 
