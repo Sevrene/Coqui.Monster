@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react';
  * Currently hardcoded to Coqui's channel.
  * @returns {JSX.Element} An iframe embedded Twitch stream
 */
-function TwitchEmbed() {
+function TwitchEmbed(props) {
   const [width, setWidth] = useState(0);
   const playerRef = useRef(null);
 
@@ -33,7 +33,7 @@ function TwitchEmbed() {
     <iframe
       ref={playerRef}
       title='livestream'
-      src={"https://player.twitch.tv/?channel=coqui&muted=true&parent=coqui.monster&parent=coqui-monster.netlify.app&parent=localhost"}
+      src={"https://player.twitch.tv/?channel=" + props.channel + "&muted=true&parent=coqui.monster&parent=coqui-monster.netlify.app&parent=localhost"}
       height={height}
       width="100%"
       allowFullScreen
