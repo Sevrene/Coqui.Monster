@@ -225,6 +225,8 @@ Builder.registerComponent(BuilderComponents.muiList, {
 
 Builder.registerComponent(BuilderComponents.simpleTabs, {
   name: "tabs",
+  image:
+    "https://tabler-icons.io/static/tabler-icons/icons-png/browser.png",
   inputs: [
     {
       name: "defaultTabIndex",
@@ -238,6 +240,12 @@ Builder.registerComponent(BuilderComponents.simpleTabs, {
       defaultValue: false,
     },
     {
+      name: "variant",
+      type: "text",
+      defaultValue: "standard",
+      enum: ["standard", "fullWidth", "scrollable"],
+    },
+    {
       name: "tabs",
       type: "list",
       subFields: [
@@ -245,6 +253,46 @@ Builder.registerComponent(BuilderComponents.simpleTabs, {
           name: "label",
           type: "text",
           defaultValue: "newTab",
+        },
+        {
+          name: "disable",
+          type: "boolean",
+          defaultValue: false,
+        },
+        {
+          name: "icon",
+          type: "object",
+          defaultValue: {
+            iconPositon: "start",
+            iconType: "default",
+          },
+          subFields: [
+            {
+              name: "showIcon",
+              type: "boolean",
+              defaultValue: true,
+            },
+            {
+              name: "iconPositon",
+              type: "text",
+              defaultValue: "start",
+              enum: ["start", "end", "top", "bottom"],
+              showIf: `options.get('showIcon')`,
+            },
+            {
+              name: "iconType",
+              type: "text",
+              enum: ["default", "upload"],
+              defaultValue: "default",
+              showIf: `options.get('showIcon')`,
+            },
+            {
+              name: "iconFile",
+              type: "file",
+              helperText: "SVG files are preferred, but png is also accepted",
+              showIf: `options.get('iconType') === "upload"`,
+            },
+          ],
         },
         {
           name: "content",
@@ -260,12 +308,18 @@ Builder.registerComponent(BuilderComponents.simpleTabs, {
       ],
     },
   ],
-  image:
-    "https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png",
 });
 
 Builder.registerComponent(BuilderComponents.twitchEmbed, {
   name: "twitchEmbed",
   image:
-    "https://tabler-icons.io/static/tabler-icons/icons-png/3d-cube-sphere-off.png",
+    "https://tabler-icons.io/static/tabler-icons/icons-png/brand-twitch.png",
+  inputs: [
+    {
+      name: "channelName",
+      type: "text",
+      defaultValue: "coqui",
+      required: true,
+    }
+  ]
 });
