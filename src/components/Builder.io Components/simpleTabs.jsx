@@ -63,9 +63,9 @@ const BasicTabs = props => {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} centered={props.centered}>
+        <Tabs value={value} onChange={handleChange} centered={props.centered} variant={props.variant}>
           {props.tabs.map((tab, index) => (
-            <Tab label={tab.label} key={index} />
+            <Tab label={tab.label} key={index} disabled={tab.disable}/>
           ))}
         </Tabs>
       </Box>
