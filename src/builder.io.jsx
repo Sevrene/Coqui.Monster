@@ -316,7 +316,7 @@ Builder.registerComponent(BuilderComponents.twitchEmbed, {
     "https://tabler-icons.io/static/tabler-icons/icons-png/brand-twitch.png",
   inputs: [
     {
-      name: "channelName",
+      name: "channel",
       type: "text",
       defaultValue: "coqui",
       required: true,
