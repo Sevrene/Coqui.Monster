@@ -28,6 +28,7 @@ if (!apiKey) {
 */
 Builder.registerComponent(BuilderComponents.muiAccordion, {
   name: "accordion",
+  noWrap: true,
   image:
     "https://tabler-icons.io/static/tabler-icons/icons-png/layout-navbar-expand.png",
   inputs: [
@@ -132,10 +133,145 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
   ],
 });
 
+Builder.registerComponent(BuilderComponents.muiButton, {
+  name: "Button",
+  image: "https://tabler-icons.io/static/tabler-icons/icons-png/click.png",
+  inputs: [
+    {
+      name: "text",
+      type: "text",
+      defaultValue: "Button Text",
+    },
+    {
+      name: "type",
+      type: "text",
+      enum: ["Link"],
+      defaultValue: "Link",
+    },
+    {
+      name: "link",
+      type: "url",
+      showIf: `options.get('type') === "Link"`,
+    },
+    {
+      name: "newTab",
+      type: "boolean",
+      defaultValue: true,
+      friendlyName: "Open link in new tab",
+      showIf: `options.get('type') === "Link"`,
+    },
+    {
+      name: "properties",
+      type: "object",
+      defaultValue: {
+        variant: "text",
+        size: "medium",
+        ripple: "cursor",
+        disableElevation: false,
+        startIcon: {
+          showIcon: false,
+          iconType: "default",
+        },
+        endIcon: {
+          showIcon: false,
+          iconType: "default",
+        },
+      },
+      subFields: [
+        {
+          name: "variant",
+          type: "text",
+          enum: ["contained", "outlined", "text"],
+          defaultValue: "text",
+        },
+        {
+          name: "size",
+          type: "text",
+          enum: ["small", "medium", "large"],
+          defaultValue: "medium",
+        },
+        {
+          name: "ripple",
+          type: "text",
+          helperText: "Where the ripple effect plays when clicked",
+          enum: ["cursor", "center", "none"],
+          defaultValue: "cursor",
+        },
+        {
+          name: "disableElevation",
+          type: "boolean",
+          helperText: "Flatten the appearance of the button",
+          defaultValue: false,
+        },
+        {
+          name: "startIcon",
+          type: "object",
+          defaultValue: {
+            showIcon: false,
+            iconType: "default",
+          },
+          subFields: [
+            {
+              name: "showIcon",
+              type: "boolean",
+              defaultValue: false,
+            },
+            {
+              name: "iconType",
+              type: "text",
+              enum: ["default", "upload"],
+              defaultValue: "default",
+              showIf: `options.get('showIcon')`,
+            },
+            {
+              name: "iconFile",
+              type: "file",
+              helperText: "SVG files are preferred, but png is also accepted",
+              showIf: `options.get('iconType') === "upload"`,
+            },
+          ],
+        },
+        {
+          name: "endIcon",
+          type: "object",
+          defaultValue: {
+            showIcon: false,
+            iconType: "default",
+          },
+          subFields: [
+            {
+              name: "showIcon",
+              type: "boolean",
+              defaultValue: false,
+            },
+            {
+              name: "iconType",
+              type: "text",
+              enum: ["default", "upload"],
+              defaultValue: "default",
+              showIf: `options.get('showIcon')`,
+            },
+            {
+              name: "iconFile",
+              type: "file",
+              helperText: "SVG files are preferred, but png is also accepted",
+              showIf: `options.get('iconType') === "upload"`,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "disable",
+      type: "boolean",
+      defaultValue: false,
+    },
+  ],
+});
+
 Builder.registerComponent(BuilderComponents.muiList, {
   name: "list",
-  image:
-    "https://tabler-icons.io/static/tabler-icons/icons-png/list.png",
+  image: "https://tabler-icons.io/static/tabler-icons/icons-png/list.png",
   inputs: [
     {
       name: "dense",
@@ -145,7 +281,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
     {
       name: "maxDisplayHeight",
       type: "number",
-      helperText: "Max height in pixels. Leave empty for no max height."
+      helperText: "Max height in pixels. Leave empty for no max height.",
     },
     {
       name: "icon",
@@ -204,7 +340,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
           defaultValue: [
             {
               text: "List Item",
-            }
+            },
           ],
           subFields: [
             {
@@ -225,8 +361,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
 
 Builder.registerComponent(BuilderComponents.simpleTabs, {
   name: "tabs",
-  image:
-    "https://tabler-icons.io/static/tabler-icons/icons-png/browser.png",
+  image: "https://tabler-icons.io/static/tabler-icons/icons-png/browser.png",
   inputs: [
     {
       name: "defaultTabIndex",
@@ -320,6 +455,6 @@ Builder.registerComponent(BuilderComponents.twitchEmbed, {
       type: "text",
       defaultValue: "coqui",
       required: true,
-    }
-  ]
+    },
+  ],
 });
