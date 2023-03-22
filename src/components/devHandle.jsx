@@ -14,34 +14,36 @@ export default function DevHandle() {
   };
 
   return (
-    <Tooltip
-      title="Sevrene"
-      placement="left-end"
-      arrow
-      PopperProps={{
-        modifiers: [{
-          name: "offset",
-          options: {
-            offset: [-15, 0],
-          },
-        }],
-      }}
-    >
-      <SpeedDial
-        ariaLabel="Dev Handle"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
-        icon={<LogoDev />}
+    <div style={{ position: "fixed", bottom: 0, right: 0 }}>
+      <Tooltip
+        title="Sevrene"
+        placement="left-end"
+        arrow
+        PopperProps={{
+          modifiers: [{
+            name: "offset",
+            options: {
+              offset: [-15, 0],
+            },
+          }],
+        }}
       >
-        {actions.map((action) => (
-          <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-            onClick={action.name !== "Source Code - Currently Private" ? handleLinkClick(action.link) : null}
-          />
-        ))}
-      </SpeedDial>
-    </Tooltip>
+        <SpeedDial
+          ariaLabel="Dev Handle"
+          sx={{ position: 'absolute', bottom: 0, right: 0 }}
+          icon={<LogoDev />}
+        >
+          {actions.map((action) => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={action.name !== "Source Code - Currently Private" ? handleLinkClick(action.link) : null}
+            />
+          ))}
+        </SpeedDial>
+      </Tooltip>
+    </div>
   );
 }
 
