@@ -1,16 +1,28 @@
-import { SpeedDial, SpeedDialAction, Tooltip } from '@mui/material';
-import { AlternateEmail, CodeOff, LogoDev } from '@mui/icons-material';
-
-// TODO: Get a custom Developer Logo to use as a Dev Handle
+import { AlternateEmail, CodeOff, LogoDev } from "@mui/icons-material";
+import { SpeedDial, SpeedDialAction, Tooltip } from "@mui/material";
 
 const actions = [
-  { icon: <AlternateEmail />, name: "Contact", link: "https://discord.com/users/167827741360652290" },
+  {
+    icon: <AlternateEmail />,
+    name: "Contact",
+    link: "https://discord.com/users/167827741360652290",
+  },
   { icon: <CodeOff />, name: "Source Code - Currently Private", link: "#" },
 ];
 
-export default function DevHandle() {
+/**
+  DevHandle Component
+
+  A component that renders a dev handle button that opens a SpeedDial with links to the developer's contact information and source code.
+  @returns {JSX.Element} The dev handle button.
+*/
+function DevHandle() {
+  /**
+    Handles link clicks by opening the link in a new tab.
+    @param {string} link - The link to open in a new tab.
+  */
   const handleLinkClick = (link) => () => {
-    window.open(link, '_blank');
+    window.open(link, "_blank");
   };
 
   return (
@@ -20,17 +32,19 @@ export default function DevHandle() {
         placement="left-end"
         arrow
         PopperProps={{
-          modifiers: [{
-            name: "offset",
-            options: {
-              offset: [-15, 0],
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [-15, 0],
+              },
             },
-          }],
+          ],
         }}
       >
         <SpeedDial
           ariaLabel="Dev Handle"
-          sx={{ position: 'absolute', bottom: 0, right: 0 }}
+          sx={{ position: "absolute", bottom: 0, right: 0 }}
           icon={<LogoDev />}
         >
           {actions.map((action) => (
@@ -38,7 +52,11 @@ export default function DevHandle() {
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              onClick={action.name !== "Source Code - Currently Private" ? handleLinkClick(action.link) : null}
+              onClick={
+                action.name !== "Source Code - Currently Private"
+                  ? handleLinkClick(action.link)
+                  : null
+              }
             />
           ))}
         </SpeedDial>
@@ -47,3 +65,4 @@ export default function DevHandle() {
   );
 }
 
+export default DevHandle;

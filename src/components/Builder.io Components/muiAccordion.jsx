@@ -1,53 +1,65 @@
 import {
   Accordion,
-  AccordionSummary,
   AccordionDetails,
+  AccordionSummary,
   Divider,
 } from "@mui/material";
+
 import { BuilderBlocks } from "@builder.io/react";
-import { ExpandMore } from "@mui/icons-material";
 
 /**
-  MUIAccordion
+  MUIAccordion Component.
   
   A React functional component that renders an Accordion from the Material UI library.
   @param {Object} props - An object containing the props for the component.
-    @param {boolean} props.defaultOpen - A boolean indicating whether to set the Accordion to be expanded by default or not.
-    @param {boolean} props.lockOpen - A boolean indicating whether to keep the Accordion always open or not. If set to true, the Accordion will always be expanded.
-    @param {boolean} props.disable - A boolean indicating whether to disable the Accordion or not. If set to true, the Accordion will be disabled and cannot be interacted with.
-    @param {Object} props.divider - An object containing the properties for the divider of the Accordion.
-      @param {boolean} props.divider.showDivider - A boolean indicating whether to show the divider or not. If set to false, the divider will not be rendered.
-      @param {string} props.divider.dividerColor - A string indicating the color of the divider to be rendered. This value is optional and if not set, the default color will be used.
-    @param {Object} props.icon - An object containing the properties for the expand icon of the Accordion.
-      @param {boolean} props.icon.showIcon - A boolean indicating whether to show the expand icon or not. If set to false, the icon will not be rendered.
-      @param {string} props.icon.iconType - A string value indicating the type of icon to be displayed. Possible values: "default", "upload".
-      @param {string} props.icon.iconFile - The icon file to be displayed, if iconType is set to "upload".
-    @param {Object[]} props.summary - An array of BuilderBlocks representing the content to be rendered in the Accordion summary section.
-    @param {Object[]} props.content - An array of BuilderBlocks representing the content to be rendered in the Accordion collapse section.
+    @param {boolean} defaultOpen - A boolean indicating whether the Accordion should be expanded by default.
+    @param {boolean} lockOpen - A boolean indicating whether the Accordion should always remain open. If set to true, the Accordion will always be expanded.
+    @param {boolean} disable - A boolean indicating whether the Accordion should be disabled and cannot be interacted with.
+    @param {Object} properties - An object containing the properties for the Accordion.
+      @param {string} variant - A string indicating the variant of the Accordion to be displayed. Possible values: "default", "outlined".
+      @param {string} elevation - A string indicating the elevation of the Accordion. Possible values: "none", "low", "medium", "high".
+      @param {boolean} disableRipple - A boolean indicating whether the ripple effect should be disabled when clicked.
+      @param {Object} icon - An object containing the properties for the expand icon of the Accordion.
+        @param {boolean} showIcon - A boolean indicating whether to show the expand icon or not. If set to false, the icon will not be rendered.
+        @param {URL} iconURL - The icon file to be displayed, if iconType is set to "upload".
+      @param {Object} divider - An object containing the properties for the divider of the Accordion.
+        @param {boolean} showDivider - A boolean indicating whether to show the divider or not. If set to false, the divider will not be rendered.
+        @param {string} dividerColor - A string indicating the color of the divider to be rendered.
+    @param {Object[]} summary - An array of BuilderBlocks representing the content to be rendered in the Accordion summary section.
+    @param {Object[]} content - An array of BuilderBlocks representing the content to be rendered in the Accordion collapse section.
   @returns {JSX.Element} - An Accordion component that accepts children in its collapse section.
 */
 const MUIAccordion = (props) => {
   // Alter the expandIcon based on icon settings
-  const expandIcon = props.icon?.showIcon ? (
-    props.icon?.iconType === "default" ? (
-      <ExpandMore />
-    ) : (
-      <img src={props.icon?.iconFile} alt="icon" width={24} height={24} />
-    )
+  const expandIcon = props.properties?.icon?.showIcon ? (
+    <img
+      src={props.properties.icon.iconURL}
+      alt="icon"
+      width={24}
+      height={24}
+    />
   ) : undefined;
+
+  // Map elevation values to corresponding numbers
+  const elevationMap = {
+    none: 0,
+    low: 1,
+    medium: 12,
+    high: 24,
+  };
 
   return (
     <Accordion
       expanded={props.lockOpen ? true : undefined}
       defaultExpanded={props.defaultOpen}
-      elevation={props.elevation}
-      variant={props.variant}
+      elevation={elevationMap[props.properties?.elevation]}
+      variant={props.properties?.variant}
       sx={{ backgroundColor: "inherit" }}
       disabled={props.disable}
     >
       <AccordionSummary
         expandIcon={expandIcon}
-        disableRipple={props.disableRipple}
+        disableRipple={props.properties?.disableRipple}
       >
         <BuilderBlocks
           parentElementId={props.builderBlock.id}
@@ -56,9 +68,11 @@ const MUIAccordion = (props) => {
         />
       </AccordionSummary>
 
-      {props.divider?.showDivider && (
+      {props.properties?.divider?.showDivider && (
         <Divider
-          sx={{ borderColor: props.divider?.dividerColor || undefined }}
+          sx={{
+            borderColor: props.properties?.divider?.dividerColor || undefined,
+          }}
         />
       )}
       <AccordionDetails sx={{ padding: 0 }}>
