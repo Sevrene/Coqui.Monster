@@ -1,196 +1,75 @@
-import { AppBar, Toolbar, Typography, Button, MenuItem, Menu } from '@mui/material';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Home, Storefront, ShoppingCart, Checkroom, CardGiftcard, Share, Twitter, YouTube, Groups, Forum, AutoStories, QuestionMark, Palette, Headphones } from '@mui/icons-material';
+import { AppBar, Box, Toolbar } from "@mui/material";
+import { BuilderComponent, builder } from "@builder.io/react";
+import { useEffect, useState } from "react";
 
+/**
+  Header Component
+  
+  A component that renders the header of a web page using data fetched from Builder.io.
+  It uses the Material-UI AppBar and Toolbar components and the BuilderComponent to render the content of the header.
+  @returns {JSX.Element} The header of a web page.
+*/
 function Header() {
-  const [openMenu, setOpenMenu] = useState(null);
+  const [modelData, setModelData] = useState(null);
 
-  const handleMenuClick = (event, menuId) => {
-    setOpenMenu({ anchor: event.currentTarget, menuId });
+  // Fetch data from Builder.io when the component mounts
+  useEffect(() => {
+    async function fetchData() {
+      builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
+      try {
+        const data = await builder.get("header").toPromise();
+        setModelData(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  // Map elevation values to corresponding numbers
+  const elevationMap = {
+    none: 0,
+    low: 1,
+    medium: 12,
+    high: 24,
   };
 
-  const handleMenuClose = () => {
-    setOpenMenu(null);
-  };
+  let backgroundStyle = {};
+
+  // Once the model data has been fetched, determine the background styling based on any background gradient provided
+  if (modelData) {
+    const { direction, colors } = modelData.backgroundGradient;
+    // If there is only one color, use it as the background color
+    if (colors.length === 1) {
+      backgroundStyle = { backgroundColor: colors[0].color ?? "transparent" };
+    } else {
+      // If there are multiple colors, create a linear gradient using them
+      const gradientDirection = `${direction || 0}deg`;
+      const gradientColors = colors
+        .map(
+          (color) =>
+            `${color.color ? color.color : "rgba(0,0,0,0)"} ${color.colorStop}%`
+        )
+        .join(", ");
+      backgroundStyle = {
+        background: `linear-gradient(${gradientDirection}, ${gradientColors})`,
+      };
+    }
+  }
 
   return (
-    <AppBar position="static" sx={{ background: '#6600cc' }}>
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center'  }}>
-          <Link to="/">
-            <img src={process.env.PUBLIC_URL + '/favicon.ico'} alt="Logo" style={{ borderRadius: '50%' }} />
-          </Link>
-        </Typography>
-        <Button
-          component={Link}
-          to={'/'}
-          color="inherit"
-          startIcon={<Home />}
-        >
-          Home
-        </Button>
-        <Button color="inherit" onClick={(event) => handleMenuClick(event, "Store")} startIcon={<Storefront />}>Store</Button>
-        <Menu
-          anchorEl={openMenu ? openMenu.anchor : null}
-          keepMounted
-          open={openMenu ? openMenu.menuId === "Store" : false}
-          onClose={handleMenuClose}
-        >
-          <MenuItem 
-            component={Link}
-            to={'https://the-south-side.storenvy.com'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <ShoppingCart />
-            South Side Shop
-            
-          </MenuItem>
-          <MenuItem 
-            component={Link}
-            to={'https://store.streamelements.com/coqui'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <Checkroom />
-            Shirt Shop
-            
-          </MenuItem>
-          <MenuItem 
-            component={Link}
-            to={'https://throne.me/coqui/wishlist'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <CardGiftcard />
-            Throne
-            
-          </MenuItem>
-        </Menu>
-        <Button
-          disabled
-          component={Link}
-          to={'/music'}
-          color="inherit"
-          startIcon={<Headphones />}
-        >
-          Music
-        </Button>
-        
-        <Button color="inherit" onClick={(event) => handleMenuClick(event, "Socials")} startIcon={<Share />}>Socials</Button>
-        <Menu
-          anchorEl={openMenu ? openMenu.anchor : null}
-          keepMounted
-          open={openMenu ? openMenu.menuId === "Socials" : false}
-          onClose={handleMenuClose}
-        >
-          <MenuItem 
-            component={Link}
-            to={'https://twitter.com/c0qui'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <Twitter />
-            Twitter
-            
-          </MenuItem>
-          <MenuItem 
-            component={Link}
-            to={'https://www.youtube.com/rummyandcoqui'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <YouTube />
-            Youtube
-            
-          </MenuItem>
-        </Menu>
-        <Button color="inherit" onClick={(event) => handleMenuClick(event, "Community")} startIcon={<Groups />}>Community</Button>
-        <Menu
-          anchorEl={openMenu ? openMenu.anchor : null}
-          keepMounted
-          open={openMenu ? openMenu.menuId === "Community" : false}
-          onClose={handleMenuClose}
-        >
-          <MenuItem 
-            component={Link}
-            to={'https://discord.com/invite/TheSouthSide'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <Forum />
-            Discord
-            
-          </MenuItem>
-          <MenuItem 
-            component={Link}
-            to={'https://rummyandcoqui.itch.io/rummy-and-coqui-valenskinks-day'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <AutoStories />
-            Visual Novel
-            
-          </MenuItem>
-          <MenuItem 
-            component={Link}
-            to={'https://curiouscat.qa/coqui_monster'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <QuestionMark />
-            Questions
-            
-          </MenuItem>
-          <MenuItem
-            disabled
-            component={Link}
-            to={'/'}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleMenuClose}>
-            <Palette />
-            Assets
-            
-          </MenuItem>
-        </Menu>
+    <AppBar
+      position={modelData?.sticky ? "sticky" : "static"}
+      elevation={elevationMap[modelData?.elevation]}
+      sx={{ ...backgroundStyle }}
+    >
+      <Toolbar variant="dense" disableGutters={true}>
+        <Box sx={{ width: "100%" }}>
+          <BuilderComponent model="header" data={modelData} />
+        </Box>
       </Toolbar>
     </AppBar>
   );
 }
-
-/*
-return (
-  <AppBar position="static" sx={{ background: '#311b92' }}>
-    <Toolbar>
-      {
-        // Logo
-        navBar.logo
-        // Menu
-        
-        // Make Menu condense when small
-      }
-    {pages.map((page) => {
-          return (
-            <Route
-            key={page.urlSlug}
-            path={page.urlSlug}
-            element={<LandingPage pageData={page} />}
-            />
-          ) 
-        })}
-      
-      <Button color="inherit" size="large">Home</Button>
-      <Button color="inherit" size="large">Store</Button>
-      <Button color="inherit" size="large">Music</Button>
-    </Toolbar>
-  </AppBar>
-);
-}*/
-
-
-
-
 
 export default Header;
