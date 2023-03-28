@@ -1,7 +1,6 @@
-import { Button, Menu, MenuItem, SvgIcon } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 import { Link } from "react-router-dom";
-import { ReactSVG } from "react-svg";
 import SvgIconLoader from "../../../svgIconLoader";
 import { useState } from "react";
 
