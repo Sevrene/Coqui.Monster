@@ -1,4 +1,5 @@
-import { builder, Builder } from "@builder.io/react";
+import { Builder, builder } from "@builder.io/react";
+
 import BuilderComponents from "./components/Builder.io Components";
 
 const apiKey = process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN;
@@ -11,24 +12,49 @@ if (!apiKey) {
   builder.init(apiKey);
 }
 
+function iconInput(name, helperText = undefined) {
+  return {
+    name: name,
+    type: "object",
+    helperText: helperText,
+    subFields: [
+      {
+        name: "showIcon",
+        type: "boolean",
+        defaultValue: false,
+      },
+      {
+        name: "color",
+        type: "color",
+        showIf: `options.get('showIcon')`,
+      },
+      {
+        name: "iconURL",
+        friendlyName: "iconFile",
+        type: "file",
+        helperText: "SVG files are preferred, but png is also accepted",
+        showIf: `options.get('showIcon')`,
+      },
+    ],
+  };
+}
+
 /**
   Builder Components
   @param {React.Component} component - The React component to register.
   All components from Builder.io Components folder are automatically imported under BuilderComponents.
   @param {Object} options - An object with properties defining the component's behavior and inputs.
-  
-  Properties for the Component Registration Object
-  @property {string} name - The component name, a required property that specifies the name of the component as it will appear in the Builder editor.
-  @property {string} image - An optional but highly recommended property that allows developers to set an image that will be displayed as a thumbnail for the component in the Builder editor.
-  Utilize https://tabler-icons.io/ and copy the png download link
-  @property {Array<Object>} inputs - An array of objects that defines the inputs that the component accepts. Each object in the array represents an input and can contain properties such as name, type, and defaultValue.
+    @property {string} name - The component name, a required property that specifies the name of the component as it will appear in the Builder editor.
+    @property {string} image - An optional but highly recommended property that allows developers to set an image that will be displayed as a thumbnail for the component in the Builder editor.
+    Utilize https://tabler-icons.io/ and copy the png download link
+    @property {Array<Object>} inputs - An array of objects that defines the inputs that the component accepts. Each object in the array represents an input and can contain properties such as name, type, and defaultValue.
 
   Full Documentation
   https://www.builder.io/c/docs/custom-components-input-types
 */
 Builder.registerComponent(BuilderComponents.muiAccordion, {
   name: "accordion",
-  noWrap: true,
+  noWrap: true, // allow for accordion group gutters
   image:
     "https://tabler-icons.io/static/tabler-icons/icons-png/layout-navbar-expand.png",
   inputs: [
@@ -47,64 +73,51 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
       defaultValue: false,
     },
     {
-      name: "variant",
-      type: "text",
-      helperText: "Rendering rules variants",
-      defaultValue: "default",
-      enum: ["default", "outlined"],
-    },
-    {
-      name: "elevation",
-      type: "number",
-      helperText:
-        "A value from 0-24 [inclusive] specifying how elevated this element should appear",
-      defaultValue: 1,
-      min: 0,
-      max: 24,
-      step: 1,
-    },
-    {
-      name: "icon",
+      name: "properties",
       type: "object",
-      helperText: "Righthand Icon used to identify an Expand More section",
       defaultValue: {
-        showIcon: true,
-        iconType: "default",
+        variant: "text",
+        disableRipple: false,
+        elevation: "low",
       },
       subFields: [
         {
-          name: "showIcon",
+          name: "variant",
+          type: "text",
+          defaultValue: "default",
+          enum: ["default", "outlined"],
+        },
+        {
+          name: "elevation",
+          type: "text",
+          helperText: "How flat the appearance of the accordion is",
+          enum: ["none", "low", "medium", "high"],
+        },
+        {
+          name: "disableRipple",
           type: "boolean",
+          helperText: "Disable the ripple effect when clicked",
           defaultValue: true,
         },
+        iconInput(
+          "icon",
+          "Righthand expand icon. Will invert when accordion is open"
+        ),
         {
-          name: "iconType",
-          type: "text",
-          enum: ["default", "upload"],
-          defaultValue: "default",
-          showIf: `options.get('showIcon')`,
-        },
-        {
-          name: "iconFile",
-          type: "file",
-          helperText: "SVG files are preferred, but png is also accepted",
-          showIf: `options.get('iconType') === "upload"`,
-        },
-      ],
-    },
-    {
-      name: "divider",
-      type: "object",
-      helperText: "Divider line between header and collapsed content",
-      subFields: [
-        {
-          name: "showDivider",
-          type: "boolean",
-        },
-        {
-          name: "dividerColor",
-          type: "color",
-          showIf: `options.get('showDivider')`,
+          name: "divider",
+          type: "object",
+          helperText: "Divider line between header and collapsed content",
+          subFields: [
+            {
+              name: "showDivider",
+              type: "boolean",
+            },
+            {
+              name: "dividerColor",
+              type: "color",
+              showIf: `options.get('showDivider')`,
+            },
+          ],
         },
       ],
     },
@@ -113,12 +126,6 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
       type: "boolean",
       helperText: "Disable the accordions ability to expand",
       defaultValue: false,
-    },
-    {
-      name: "disableRipple",
-      type: "boolean",
-      helperText: "Disable the ripple effect when clicked",
-      defaultValue: true,
     },
     {
       name: "summary",
@@ -134,7 +141,7 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
 });
 
 Builder.registerComponent(BuilderComponents.muiButton, {
-  name: "Button",
+  name: "button",
   image: "https://tabler-icons.io/static/tabler-icons/icons-png/click.png",
   inputs: [
     {
@@ -145,20 +152,85 @@ Builder.registerComponent(BuilderComponents.muiButton, {
     {
       name: "type",
       type: "text",
-      enum: ["Link"],
-      defaultValue: "Link",
+      enum: ["link", "menu"],
+      defaultValue: "link",
     },
     {
       name: "link",
       type: "url",
-      showIf: `options.get('type') === "Link"`,
+      showIf: `options.get('type') === "link"`,
     },
     {
       name: "newTab",
       type: "boolean",
       defaultValue: true,
       friendlyName: "Open link in new tab",
-      showIf: `options.get('type') === "Link"`,
+      showIf: `options.get('type') === "link"`,
+    },
+    {
+      name: "menuItems",
+      type: "list",
+      showIf: `options.get('type') === "menu"`,
+      defaultValue: [
+        {
+          text: "Menu Item",
+        },
+      ],
+      subFields: [
+        {
+          name: "text",
+          type: "text",
+          defaultValue: "Menu Item",
+        },
+        {
+          name: "link",
+          type: "url",
+        },
+        {
+          name: "newTab",
+          type: "boolean",
+          defaultValue: true,
+          friendlyName: "Open link in new tab",
+        },
+        {
+          name: "properties",
+          type: "object",
+          defaultValue: {
+            dense: false,
+            disableGutters: false,
+            divider: false,
+            disable: false,
+          },
+          subFields: [
+            {
+              name: "dense",
+              type: "boolean",
+              helperText: "Compact vertical padding is used for smaller lists",
+              defaultValue: false,
+            },
+            {
+              name: "disableGutters",
+              type: "boolean",
+              helperText: "Remove left and right padding",
+              defaultValue: false,
+            },
+            {
+              name: "divider",
+              type: "boolean",
+              helperText:
+                "1px light border is added to the bottom of the menu item",
+              defaultValue: false,
+            },
+            iconInput("startIcon"),
+            iconInput("endIcon"),
+          ],
+        },
+        {
+          name: "disable",
+          type: "boolean",
+          defaultValue: false,
+        },
+      ],
     },
     {
       name: "properties",
@@ -168,97 +240,31 @@ Builder.registerComponent(BuilderComponents.muiButton, {
         size: "medium",
         ripple: "cursor",
         disableElevation: false,
-        startIcon: {
-          showIcon: false,
-          iconType: "default",
-        },
-        endIcon: {
-          showIcon: false,
-          iconType: "default",
-        },
       },
       subFields: [
         {
           name: "variant",
           type: "text",
           enum: ["contained", "outlined", "text"],
-          defaultValue: "text",
         },
         {
           name: "size",
           type: "text",
           enum: ["small", "medium", "large"],
-          defaultValue: "medium",
         },
         {
           name: "ripple",
           type: "text",
           helperText: "Where the ripple effect plays when clicked",
           enum: ["cursor", "center", "none"],
-          defaultValue: "cursor",
         },
         {
           name: "disableElevation",
           type: "boolean",
           helperText: "Flatten the appearance of the button",
-          defaultValue: false,
         },
-        {
-          name: "startIcon",
-          type: "object",
-          defaultValue: {
-            showIcon: false,
-            iconType: "default",
-          },
-          subFields: [
-            {
-              name: "showIcon",
-              type: "boolean",
-              defaultValue: false,
-            },
-            {
-              name: "iconType",
-              type: "text",
-              enum: ["default", "upload"],
-              defaultValue: "default",
-              showIf: `options.get('showIcon')`,
-            },
-            {
-              name: "iconFile",
-              type: "file",
-              helperText: "SVG files are preferred, but png is also accepted",
-              showIf: `options.get('iconType') === "upload"`,
-            },
-          ],
-        },
-        {
-          name: "endIcon",
-          type: "object",
-          defaultValue: {
-            showIcon: false,
-            iconType: "default",
-          },
-          subFields: [
-            {
-              name: "showIcon",
-              type: "boolean",
-              defaultValue: false,
-            },
-            {
-              name: "iconType",
-              type: "text",
-              enum: ["default", "upload"],
-              defaultValue: "default",
-              showIf: `options.get('showIcon')`,
-            },
-            {
-              name: "iconFile",
-              type: "file",
-              helperText: "SVG files are preferred, but png is also accepted",
-              showIf: `options.get('iconType') === "upload"`,
-            },
-          ],
-        },
+        iconInput("startIcon"),
+        iconInput("endIcon"),
       ],
     },
     {
@@ -274,41 +280,23 @@ Builder.registerComponent(BuilderComponents.muiList, {
   image: "https://tabler-icons.io/static/tabler-icons/icons-png/list.png",
   inputs: [
     {
-      name: "dense",
-      type: "boolean",
-      defaultValue: true,
-    },
-    {
       name: "maxDisplayHeight",
       type: "number",
       helperText: "Max height in pixels. Leave empty for no max height.",
     },
     {
-      name: "icon",
+      name: "properties",
       type: "object",
       defaultValue: {
-        showIcon: true,
-        iconType: "default",
+        dense: true,
       },
       subFields: [
         {
-          name: "showIcon",
+          name: "dense",
           type: "boolean",
           defaultValue: true,
         },
-        {
-          name: "iconType",
-          type: "text",
-          enum: ["default", "upload"],
-          defaultValue: "default",
-          showIf: `options.get('showIcon')`,
-        },
-        {
-          name: "iconFile",
-          type: "file",
-          helperText: "SVG files are preferred, but png is also accepted",
-          showIf: `options.get('iconType') === "upload"`,
-        },
+        iconInput("icon"),
       ],
     },
     {
@@ -359,7 +347,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
   ],
 });
 
-Builder.registerComponent(BuilderComponents.simpleTabs, {
+Builder.registerComponent(BuilderComponents.muiTabs, {
   name: "tabs",
   image: "https://tabler-icons.io/static/tabler-icons/icons-png/browser.png",
   inputs: [
@@ -370,15 +358,25 @@ Builder.registerComponent(BuilderComponents.simpleTabs, {
       required: true,
     },
     {
-      name: "centered",
-      type: "boolean",
-      defaultValue: false,
-    },
-    {
-      name: "variant",
-      type: "text",
-      defaultValue: "standard",
-      enum: ["standard", "fullWidth", "scrollable"],
+      name: "properties",
+      type: "object",
+      defaultValue: {
+        variant: "standard",
+        centered: false,
+      },
+      subFields: [
+        {
+          name: "variant",
+          type: "text",
+          defaultValue: "standard",
+          enum: ["standard", "fullWidth", "scrollable"],
+        },
+        {
+          name: "centered",
+          type: "boolean",
+          defaultValue: false,
+        },
+      ],
     },
     {
       name: "tabs",
@@ -393,41 +391,6 @@ Builder.registerComponent(BuilderComponents.simpleTabs, {
           name: "disable",
           type: "boolean",
           defaultValue: false,
-        },
-        {
-          name: "icon",
-          type: "object",
-          defaultValue: {
-            iconPositon: "start",
-            iconType: "default",
-          },
-          subFields: [
-            {
-              name: "showIcon",
-              type: "boolean",
-              defaultValue: true,
-            },
-            {
-              name: "iconPositon",
-              type: "text",
-              defaultValue: "start",
-              enum: ["start", "end", "top", "bottom"],
-              showIf: `options.get('showIcon')`,
-            },
-            {
-              name: "iconType",
-              type: "text",
-              enum: ["default", "upload"],
-              defaultValue: "default",
-              showIf: `options.get('showIcon')`,
-            },
-            {
-              name: "iconFile",
-              type: "file",
-              helperText: "SVG files are preferred, but png is also accepted",
-              showIf: `options.get('iconType') === "upload"`,
-            },
-          ],
         },
         {
           name: "content",
