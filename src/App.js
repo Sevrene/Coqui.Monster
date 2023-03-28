@@ -1,11 +1,12 @@
-import { BrowserRouter } from 'react-router-dom';
-import styled from '@emotion/styled';
-import { BuilderComponent } from '@builder.io/react';
-import './builder.io';
-import { Route, Routes } from 'react-router-dom';
-// Header temporarily hard coded
-import Header from './components/header';
-import DevHandle from './components/devHandle';
+import "./builder.io";
+
+import { Route, Routes } from "react-router-dom";
+
+import { BrowserRouter } from "react-router-dom";
+import { BuilderComponent } from "@builder.io/react";
+import DevHandle from "./components/devHandle";
+import Header from "./components/header";
+import styled from "@emotion/styled";
 
 // Root styling temporarily hard coded
 const Root = styled.div`
@@ -17,15 +18,20 @@ function App() {
   return (
     <Root>
       <BrowserRouter>
-        {/* Header temporarily hard coded */}
         <Header />
         <Routes>
           <Route path="/" element={<BuilderComponent model="page" />} />
-          <Route path="/preview" element={<BuilderComponent model="symbol" />} />
+          if (Builder.isPreviewing || Builder.isEditing){" "}
+          {
+            <Route
+              path="/preview"
+              element={<BuilderComponent model="symbol" />}
+            />
+          }
         </Routes>
         <DevHandle />
       </BrowserRouter>
-      </Root>
+    </Root>
   );
 }
 
