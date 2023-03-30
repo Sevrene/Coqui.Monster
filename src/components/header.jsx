@@ -95,7 +95,7 @@ function Header() {
     >
       <Toolbar variant="dense" disableGutters={true}>
         <Box sx={{ width: "100%" }}>
-          {modelData && <BuilderComponent model="header" data={modelData} />}
+          <BuilderComponent model="header" />
         </Box>
       </Toolbar>
     </StyledAppBar>
