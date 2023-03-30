@@ -92,8 +92,9 @@ function MUIButton(props) {
           open={openMenu ? openMenu.menuId === props.text : false}
           onClose={handleMenuClose}
         >
-          {props.menuItems.map((item) => (
+          {props.menuItems.map((item, index) => (
             <MenuItem
+              key={index}
               dense={item.properties?.dense}
               disableGutters={item.properties?.disableGutters}
               divider={item.properties?.divider}

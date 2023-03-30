@@ -1,22 +1,54 @@
 import "./builder.io";
 
 import { Route, Routes } from "react-router-dom";
+import builder, { BuilderComponent } from "@builder.io/react";
+import { useEffect, useState } from "react";
 
+import { Box } from "@mui/system";
 import { BrowserRouter } from "react-router-dom";
-import { BuilderComponent } from "@builder.io/react";
 import DevHandle from "./components/devHandle";
 import Header from "./components/header";
-import styled from "@emotion/styled";
-
-// Root styling temporarily hard coded
-const Root = styled.div`
-  background: linear-gradient(180deg, #6600cc 0%, #000000 100%);
-  min-height: 100vh;
-`;
 
 function App() {
+  const [modelData, setModelData] = useState(null);
+
+  // Fetch data from Builder.io when the component mounts
+  useEffect(() => {
+    async function fetchData() {
+      builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
+      try {
+        const data = await builder.get("page").toPromise();
+        setModelData(data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  const backgroundStyle = () => {
+    if (modelData?.backgroundGradient) {
+      const { direction, colors } = modelData.backgroundGradient ?? {};
+      // If there is only one color, use it as the background color
+      if (colors.length === 1) {
+        return colors[0].color ?? "transparent";
+      }
+      // If there are multiple colors, create a linear gradient using them
+      const gradientDirection = `${direction || 0}deg`;
+      const gradientColors = colors
+        .map(
+          (color) =>
+            `${color.color ? color.color : "rgba(0,0,0,0)"} ${color.colorStop}%`
+        )
+        .join(", ");
+      return `linear-gradient(${gradientDirection}, ${gradientColors})`;
+    } else {
+      return "#A9A9A9";
+    }
+  };
+
   return (
-    <Root>
+    <Box sx={{ minHeight: "100vh", background: backgroundStyle() }}>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -31,7 +63,7 @@ function App() {
         </Routes>
         <DevHandle />
       </BrowserRouter>
-    </Root>
+    </Box>
   );
 }
 
