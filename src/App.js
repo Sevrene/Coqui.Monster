@@ -26,6 +26,11 @@ function App() {
     fetchData();
   }, []);
 
+  if (modelData) {
+    const ogImage = document.querySelector('#og-image');
+    ogImage.setAttribute('content', modelData.image);
+  }
+
   const backgroundStyle = () => {
     if (modelData?.backgroundGradient) {
       const { direction, colors } = modelData.backgroundGradient ?? {};

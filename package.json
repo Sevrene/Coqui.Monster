@@ -1,6 +1,6 @@
 {
   "name": "coqui-monster",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@builder.io/react": "^2.0.15",
