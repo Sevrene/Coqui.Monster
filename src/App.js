@@ -25,16 +25,7 @@ function App() {
     }
     fetchData();
   }, []);
-
-  useEffect(() => {
-    if (modelData) {
-      const seoDesc = document.querySelector("#SEO-Desc");
-      seoDesc.setAttribute("content", modelData.description);
-      const seoImage = document.querySelector("#SEO-Image");
-      seoImage.setAttribute("content", modelData.image);
-    }
-  }, [modelData]);
-
+  
   const backgroundStyle = () => {
     if (modelData?.backgroundGradient) {
       const { direction, colors } = modelData.backgroundGradient ?? {};
