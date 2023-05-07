@@ -26,10 +26,14 @@ function App() {
     fetchData();
   }, []);
 
-  //if (modelData) {
-  //  const ogImage = document.querySelector('#og-image');
-  //  ogImage.setAttribute('content', modelData.image);
-  //}
+  useEffect(() => {
+    if (modelData) {
+      const seoDesc = document.querySelector("#SEO-Desc");
+      seoDesc.setAttribute("content", modelData.description);
+      const seoImage = document.querySelector("#SEO-Image");
+      seoImage.setAttribute("content", modelData.image);
+    }
+  }, [modelData]);
 
   const backgroundStyle = () => {
     if (modelData?.backgroundGradient) {
@@ -57,21 +61,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <BuilderComponent
-                model="page"
-                contentLoaded={(modelData) => {
-                  const seoDesc = document.querySelector('#SEO-Desc');
-                  seoDesc.setAttribute('content', modelData.description)
-                  const seoImage = document.querySelector('#SEO-Image');
-                  seoImage.setAttribute('content', modelData.image);
-
-                }}
-              />
-            }
-          />
+          <Route path="/" element={<BuilderComponent model="page" />} />
           if (Builder.isPreviewing || Builder.isEditing){" "}
           {
             <Route
