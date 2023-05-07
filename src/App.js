@@ -62,7 +62,13 @@ function App() {
             element={
               <BuilderComponent
                 model="page"
-                
+                contentLoaded={(modelData) => {
+                  const seoDesc = document.querySelector('#SEO-Desc');
+                  seoDesc.setAttribute('content', modelData.description)
+                  const seoImage = document.querySelector('#SEO-Image');
+                  seoImage.setAttribute('content', modelData.image);
+
+                }}
               />
             }
           />
