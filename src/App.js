@@ -57,7 +57,15 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<BuilderComponent model="page" />} />
+          <Route
+            path="/"
+            element={
+              <BuilderComponent
+                model="page"
+                
+              />
+            }
+          />
           if (Builder.isPreviewing || Builder.isEditing){" "}
           {
             <Route
