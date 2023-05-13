@@ -32,7 +32,7 @@ function iconInput(name, helperText = undefined) {
         name: "iconURL",
         friendlyName: "iconFile",
         type: "file",
-        allowedFileTypes: ['svg'],
+        allowedFileTypes: ['jpg', 'svg'],
         helperText: "Currently only SVG files are accepted",
         showIf: `options.get('showIcon')`,
       },
@@ -281,20 +281,31 @@ Builder.registerComponent(BuilderComponents.muiList, {
   image: "https://tabler-icons.io/static/tabler-icons/icons-png/list.png",
   inputs: [
     {
-      name: "maxDisplayHeight",
-      type: "number",
-      helperText: "Max height in pixels. Leave empty for no max height.",
-    },
-    {
       name: "properties",
       type: "object",
       defaultValue: {
+        maxDisplayHeight: "",
         dense: true,
+        disablePadding: true,
       },
       subFields: [
         {
+          name: "maxDisplayHeight",
+          type: "number",
+          advanced: true,
+          helperText: "Max height in pixels. Leave empty for no max height",
+        },
+        {
           name: "dense",
           type: "boolean",
+          advanced: true,
+          defaultValue: true,
+        },
+        {
+          name: "disablePadding",
+          type: "boolean",
+          advanced: true,
+          helperText: "Remove top and bottom padding",
           defaultValue: true,
         },
         iconInput("icon"),
@@ -305,23 +316,61 @@ Builder.registerComponent(BuilderComponents.muiList, {
       type: "list",
       defaultValue: [
         {
-          includeSubheader: false,
-          subheader: "Subheader Title",
+          properties: {
+            includeSubheader: false,
+            disableGutters: false,
+            disableSticky: false,
+            inset: false
+          },
           items: [],
+          subheaders: [{ 
+            '@type': '@builder.io/sdk:Element',
+            component: { name: 'Text', options: { text: 'Subheader Title' } },
+          }],
         },
       ],
       subFields: [
         {
-          name: "includeSubheader",
-          type: "boolean",
-          helperText: "Include a subheader above this subsection",
-          defaultValue: false,
-        },
-        {
-          name: "subheader",
-          type: "text",
-          defaultValue: "Subheader Title",
-          showIf: `options.get('includeSubheader')`,
+          name: "properties",
+          type: "object",
+          defaultValue: {
+            includeSubheader: false,
+            disableGutters: false,
+            disableSticky: false,
+            inset: false,
+          },
+          subFields: [
+            {
+              name: "includeSubheader",
+              type: "boolean",
+              helperText: "Include a subheader above this subsection. Accepts any child element",
+              defaultValue: false,
+            },
+            {
+              name: "disableGutters",
+              type: "boolean",
+              advanced: true,
+              helperText: "Remove left and right padding",
+              defaultValue: false,
+              showIf: `options.get('includeSubheader')`,
+            },
+            {
+              name: "disableSticky",
+              type: "boolean",
+              advanced: true,
+              helperText: "Disable sticky positioning for the subheader",
+              defaultValue: false,
+              showIf: `options.get('includeSubheader')`,
+            },
+            {
+              name: "inset",
+              type: "boolean",
+              advanced: true,
+              helperText: "Inset the subheader",
+              defaultValue: false,
+              showIf: `options.get('includeSubheader')`,
+            },
+          ],
         },
         {
           name: "items",
@@ -329,6 +378,13 @@ Builder.registerComponent(BuilderComponents.muiList, {
           defaultValue: [
             {
               text: "List Item",
+              subtext: "",
+              link: "",
+              properties: {
+                disableGutters: false,
+                divider: true,
+                disabled: false,
+              },
             },
           ],
           subFields: [
@@ -338,10 +394,50 @@ Builder.registerComponent(BuilderComponents.muiList, {
               defaultValue: "List Item",
             },
             {
+              name: "subtext",
+              type: "text",
+              defaultValue: "",
+            },
+            {
               name: "link",
               type: "url",
             },
+            {
+              name: "properties",
+              type: "object",
+              advanced: true,
+              defaultValue: {
+                disableGutters: false,
+                divider: true,
+                disabled: false,
+              },
+              subFields: [
+                {
+                  name: "disableGutters",
+                  type: "boolean",
+                  helperText: "Remove left and right padding",
+                  defaultValue: false,
+                },
+                {
+                  name: "divider",
+                  type: "boolean",
+                  helperText: "1px light border is added to the bottom of the menu item",
+                  defaultValue: true,
+                },
+                {
+                  name: "disabled",
+                  type: "boolean",
+                  helperText: "Disable the list item",
+                  defaultValue: false,
+                },
+              ],
+            },
           ],
+        },
+        {
+          name: "subheaders",
+          type: "uiBlocks",
+          defaultValue: [],
         },
       ],
     },

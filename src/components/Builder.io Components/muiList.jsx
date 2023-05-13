@@ -7,6 +7,9 @@ import {
   ListSubheader,
 } from "@mui/material";
 
+import { BuilderBlocks } from "@builder.io/react";
+import SvgIconLoader from "../../svgIconLoader";
+
 /**
   MUIList
   
@@ -27,47 +30,71 @@ import {
   @returns {JSX.Element} A list of links with icons.
 */
 const MUIList = (props) => {
-  // Alter the itemIcon based on icon settings
-  const itemIcon = props.properties?.icon?.showIcon ? (
-    <img
-      src={props.properties.icon.iconURL}
-      alt="icon"
-      width={24}
-      height={24}
-    />
-  ) : undefined;
-  
   return (
     <List
       dense={props.properties?.dense}
-      sx={{ overflow: "auto", maxHeight: props.maxDisplayHeight, padding: 0 }}
+      disablePadding={props.properties?.disablePadding}
+      sx={{ overflow: "auto", maxHeight: props.maxDisplayHeight }}
+      subheader={<li />}
     >
-      {props.subsections.map((section) => [
-        section.includeSubheader && (
-          <ListSubheader sx={{ backgroundColor: "inherit" }}>
-            {section.subheader}
-          </ListSubheader>
-        ),
-        section.items.map((item, index) => (
-          <ListItem key={index} disablePadding>
-            {item.link !== "" ? (
-              <ListItemButton
-                component="a"
-                href={item.link}
-                target="_blank"
-                rel="noopener"
-              >
-                {itemIcon && <ListItemIcon>{itemIcon}</ListItemIcon>}
-                <ListItemText primary={item.text} />
-              </ListItemButton>
-            ) : (
-              <>
-                {itemIcon && <ListItemIcon>{itemIcon}</ListItemIcon>}
-                <ListItemText primary={item.text} />
-              </>
-            )}
-          </ListItem>
-        )),
+      {props.subsections.map((section, index) => [
+        <li>
+          {section.properties?.includeSubheader && (
+            <ListSubheader
+              color="inherit"
+              sx={{ backgroundColor: "inherit" }}
+              disableSticky={section.properties?.disableSticky}
+              inset={section.properties?.inset}
+              disableGutters={section.properties?.disableGutters}
+            >
+              <BuilderBlocks
+                parentElementId={props.builderBlock.id}
+                dataPath={`component.options.subsections.${index}.subheaders`}
+                blocks={section.subheaders}
+              />
+            </ListSubheader>
+          )}
+          {section.items.map((item, index) => (
+            <ListItem
+              key={index}
+              disableGutters={true}
+              disablePadding={true}
+              divider={item.properties?.divider}>
+              {item.link ? (
+                <ListItemButton
+                  component="a"
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener"
+                  disableGutters={item.properties?.disableGutters}
+                  disabled={item.properties?.disabled}
+                >
+                  {props.properties?.icon?.showIcon && (
+                    <ListItemIcon>
+                      {SvgIconLoader(props.properties?.icon)}
+                    </ListItemIcon>
+                  )}
+                  <ListItemText 
+                    primary={item.text}
+                    secondary={item.subtext}
+                  />
+                </ListItemButton>
+              ) : (
+                <>
+                  {props.properties?.icon?.showIcon && (
+                    <ListItemIcon>
+                      {SvgIconLoader(props.properties?.icon)}
+                    </ListItemIcon>
+                  )}
+                  <ListItemText
+                    primary={item.text}
+                    secondary={item.subtext}
+                  />
+                </>
+              )}
+            </ListItem>
+          ))}
+        </li>
       ])}
     </List>
   );
