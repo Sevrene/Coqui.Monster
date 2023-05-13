@@ -9,61 +9,58 @@ import { BrowserRouter } from "react-router-dom";
 import DevHandle from "./components/devHandle";
 import Header from "./components/header";
 
-function App() {
-  const [modelData, setModelData] = useState(null);
+builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
 
-  // Fetch data from Builder.io when the component mounts
+function App() {
+  const [backgroundStyle, setBackgroundStyle] = useState("#A9A9A9");
+  const [isBackgroundLoaded, setIsBackgroundLoaded] = useState(false);
+
   useEffect(() => {
-    async function fetchData() {
-      builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
-      try {
-        const data = await builder.get("page").toPromise();
-        setModelData(data.data);
-      } catch (error) {
-        console.error(error);
+    builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
+    builder.get('background-style').promise().then(({ data }) => {
+      const { direction, colors } = data?.backgroundGradient ?? {};
+      if (colors && colors.length > 0) {
+        const gradientDirection = `${direction || 0}deg`;
+        const gradientColors = colors
+          .map(
+            (color) =>
+              `${color.color ? color.color : "rgba(0,0,0,0)"} ${color.colorStop}%`
+          )
+          .join(", ");
+        const backgroundGradient = `linear-gradient(${gradientDirection}, ${gradientColors})`;
+        setBackgroundStyle(backgroundGradient);
+      } else {
+        setBackgroundStyle("#A9A9A9");
       }
-    }
-    fetchData();
+    }).catch((error) => {
+      console.error(error);
+      setBackgroundStyle("#A9A9A9");
+    }).finally(() => {
+      setIsBackgroundLoaded(true);
+    });
   }, []);
-  
-  const backgroundStyle = () => {
-    if (modelData?.backgroundGradient) {
-      const { direction, colors } = modelData.backgroundGradient ?? {};
-      // If there is only one color, use it as the background color
-      if (colors.length === 1) {
-        return colors[0].color ?? "transparent";
-      }
-      // If there are multiple colors, create a linear gradient using them
-      const gradientDirection = `${direction || 0}deg`;
-      const gradientColors = colors
-        .map(
-          (color) =>
-            `${color.color ? color.color : "rgba(0,0,0,0)"} ${color.colorStop}%`
-        )
-        .join(", ");
-      return `linear-gradient(${gradientDirection}, ${gradientColors})`;
-    } else {
-      return "#A9A9A9";
-    }
-  };
 
   return (
-    <Box sx={{ minHeight: "100vh", background: backgroundStyle() }}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<BuilderComponent model="page" />} />
-          if (Builder.isPreviewing || Builder.isEditing){" "}
-          {
-            <Route
-              path="/preview"
-              element={<BuilderComponent model="symbol" />}
-            />
-          }
-        </Routes>
-        <DevHandle />
-      </BrowserRouter>
-    </Box>
+    <>
+      {isBackgroundLoaded && (
+      <Box sx={{ minHeight: "100vh", background: backgroundStyle }}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<BuilderComponent model="page" />} />
+            if (Builder.isPreviewing || Builder.isEditing){" "}
+            {
+              <Route
+                path="/preview"
+                element={<BuilderComponent model="symbol" />}
+              />
+            }
+          </Routes>
+          <DevHandle />
+        </BrowserRouter>
+      </Box>
+    )}
+  </>
   );
 }
 
