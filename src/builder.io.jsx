@@ -276,6 +276,33 @@ Builder.registerComponent(BuilderComponents.muiButton, {
   ],
 });
 
+Builder.registerComponent(BuilderComponents.carousel, {
+  name: "carousel",
+  image: "https://tabler-icons.io/static/tabler-icons/icons-png/carousel-horizontal.png",
+  inputs: [
+    {
+      name: "defaultSlideIndex",
+      type: "number",
+      defaultValue: 0,
+      helperText: "Index of the slide to show first",
+    },
+    {
+      name: "steps",
+      type: "list",
+      copyOnAdd: false,
+      defaultValue: [
+      ],
+      subFields: [
+        {
+          name: "content",
+          type: "uiBlocks",
+          defaultValue: [],
+        },
+      ],
+    },
+  ],
+});
+
 Builder.registerComponent(BuilderComponents.muiList, {
   name: "list",
   image: "https://tabler-icons.io/static/tabler-icons/icons-png/list.png",
