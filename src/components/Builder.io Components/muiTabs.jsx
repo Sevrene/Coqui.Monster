@@ -1,8 +1,9 @@
-import { Box, Tab, Tabs } from "@mui/material";
+import { Badge, Box, Tab, Tabs } from "@mui/material";
+import { useEffect, useState } from "react";
 
 import { BuilderBlocks } from "@builder.io/react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import fetchTwitchLiveStatus from "../../fetchTwitchLiveStatus";
 
 /**
   TabPanel
@@ -52,10 +53,22 @@ TabPanel.propTypes = {
 */
 const MUITabs = (props) => {
   const [value, setValue] = useState(props.defaultTabIndex ?? 0);
+  const [isLive, setIsLive] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const updateTwitchStatus = async () => {
+      // TODO: Confirm if my API key needs to be refreshed periodically.
+      // Confirm if the API key is being used correctly.
+      const liveStatus = await fetchTwitchLiveStatus('Coqui');
+      setIsLive(liveStatus);
+    };
+
+    updateTwitchStatus();
+  }, []);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -67,7 +80,33 @@ const MUITabs = (props) => {
           variant={props.properties?.variant}
         >
           {props.tabs.map((tab, index) => (
-            <Tab label={tab.label} key={index} disabled={tab.disable} />
+            <Tab
+            label={
+              tab.label === "Stream" ? (
+                <Badge
+                  anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                  color="error"
+                  badgeContent={"LIVE"}
+                  invisible={!isLive}
+                  sx={{
+                    '& .MuiBadge-badge': {
+                      width: 32,
+                      height: 16,
+                      fontSize: 10,
+                      top: -6,
+                    }
+                  }}
+                  >
+                    {tab.label}
+                </Badge>
+              ) : (
+                tab.label
+              )
+            }
+            key={index}
+            disabled={tab.disable}
+            sx={{ overflow: "visible" }}
+          />
           ))}
         </Tabs>
       </Box>
