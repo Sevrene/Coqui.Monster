@@ -69,7 +69,7 @@ TabPanel.propTypes = {
  * @exports MUITabs
  */
 const MUITabs = (props) => {
-  const [value, setValue] = useState(props.defaultTabIndex ?? 0);
+  const [value, setValue] = useState(props.defaultTabIndex - 1 ?? 1);
   const [isLive, setIsLive] = useState(false);
 
   const handleChange = (event, newValue) => {
