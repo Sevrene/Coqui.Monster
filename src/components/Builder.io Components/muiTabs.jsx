@@ -5,15 +5,22 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 /**
-  TabPanel
-
-  A component that renders a tab panel.
-  @param {object} props - The props for the component.
-    @param {node} children - The children to render in the tab panel.
-    @param {number} index - The index of the tab panel.
-    @param {number} value - The value of the tab panel.
-  @returns {JSX.Element} A tab panel.
-*/
+ * Defines the TabPanel component.
+ *
+ * A helper function that renders a TabPanel component from the Material UI library.
+ * Utilized in the MUITabs component.
+ *
+ * @see {@link https://material-ui.com/components/tabs/}
+ * @see {@link https://material-ui.com/api/tabs/}
+ *
+ * @param {object} props - The props for the component.
+ * @param {object} props.children - The children of the component.
+ * @param {object} props.value - The value of the component.
+ * @param {object} props.index - The index of the component.
+ * @param {object} props.other - The other props of the component.
+ *
+ * @returns {JSX.Element} - The TabPanel component.
+ */
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -36,22 +43,32 @@ TabPanel.propTypes = {
 };
 
 /**
-  BasicTabs
-
-  A component that renders a basic tabs view.
-  @param {object} props - The props for the component.
-    @param {number} defaultTabIndex - The default tab index to display.
-    @param {object} properties - An object with the following properties:
-      @param {string} variant - The variant of the tabs view. One of "standard", "fullWidth", or "scrollable".
-      @param {boolean} centered - Whether the tabs should be centered.
-    @param {object[]} tabs - An array of objects representing the tabs, each with the following properties:
-      @param {string} label - The label for the tab.
-      @param {boolean} disable - Whether the tab is disabled.
-      @param {object[]} content - An array of Builder.io blocks to display as content for the tab.
-  @returns {JSX.Element} A tabs view with content for each tab.
-*/
+ * @file Defines the MUITabs component.
+ *
+ * A React functional component that renders a Tabs component from the Material UI library.
+ * This component accepts children in its TabPanel section.
+ *
+ * @see {@link https://material-ui.com/components/tabs/}
+ * @see {@link https://material-ui.com/api/tabs/}
+ *
+ * @param {object} props - The props for the component.
+ * @param {object} props.defaultTabIndex - The default tab index.
+ * @param {object} props.properties - The properties of the component.
+ * @param {object} props.properties.variant - The variant of the component.
+ * @param {object} props.properties.centered - Whether the component is centered.
+ * @param {object} props.tabs - The tabs of the component.
+ * @param {object} props.tabs.label - The label of the tab.
+ * @param {object} props.tabs.content - The content of the tab.
+ * @param {object} props.tabs.disable - Whether the tab is disabled.
+ * @param {object} props.builderBlock - The Builder.io builder block that is passed to the component from the Builder.io editor.
+ * @param {object} props.builderBlock.id - The id of the Builder.io builder block.
+ *
+ * @returns {JSX.Element} The MUITabs component.
+ *
+ * @exports MUITabs
+ */
 const MUITabs = (props) => {
-  const [value, setValue] = useState(props.defaultTabIndex ?? 0);
+  const [value, setValue] = useState(props.defaultTabIndex - 1 ?? 1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,8 +80,8 @@ const MUITabs = (props) => {
         <Tabs
           value={value}
           onChange={handleChange}
-          centered={props.properties?.centered}
-          variant={props.properties?.variant}
+          centered={props.properties.centered}
+          variant={props.properties.variant}
         >
           {props.tabs.map((tab, index) => (
             <Tab label={tab.label} key={index} disabled={tab.disable} />

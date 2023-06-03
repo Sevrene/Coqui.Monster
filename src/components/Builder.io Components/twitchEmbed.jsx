@@ -1,14 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
-  TwitchEmbed Component
+ * @file Defines the TwitchEmbed component.
+ *
+ * A React functional component that renders a Twitch embed.
+ *
+ * @param {Object} props - An object containing the props for the component.
+ * @param {string} props.channel - A string indicating the channel to be embedded.
+ *
+ * @returns {JSX.Element} - The TwitchEmbed component.
+ *
+ * @exports TwitchEmbed
+ */
 
-  Renders a Twitch embedded video player with a responsive width and a 16:9 aspect ratio.
-  @param {object} props - The props for the component.
-    @param {string} channel - The Twitch channel name to be displayed
-  @returns {JSX.Element} - An iframe embedded Twitch stream
-*/
-function TwitchEmbed(props) {
+const TwitchEmbed = (props) => {
   const [width, setWidth] = useState(0);
   const playerRef = useRef(null);
 
@@ -44,6 +49,6 @@ function TwitchEmbed(props) {
       allowFullScreen
     />
   );
-}
+};
 
 export default TwitchEmbed;
