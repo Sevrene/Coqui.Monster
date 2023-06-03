@@ -8,7 +8,7 @@ import { SvgIcon } from "@mui/material";
   
   A React component that renders an external icon from a provided url.
   @param {Object} props - An object containing the props for the component.ndered.
-    @param {URL} iconURL - The icon file to be displayed.
+    @param {URL} iconFile - The icon file to be displayed.
     @param {URL} color - The icon file to be displayed, if iconType is set to "upload".
   @returns {JSX.Element} - An triple wrapped svg component
 */
@@ -16,7 +16,7 @@ function SvgIconLoader(props) {
 
   return (
     <SvgIcon htmlColor={props.color}>
-      <ReactSVG src={props.iconURL} wrapper="svg" />
+      <ReactSVG src={props.iconFile} wrapper="svg" />
     </SvgIcon>
   );
 }

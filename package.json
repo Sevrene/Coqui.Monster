@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@builder.io/react": "^2.0.15",
+    "@builder.io/widgets": "^1.2.24",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.9",
@@ -14,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-svg": "^16.1.6",
     "web-vitals": "^2.1.4"
   },

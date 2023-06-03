@@ -1,3 +1,5 @@
+import "@builder.io/widgets";
+
 import { Builder, builder } from "@builder.io/react";
 
 import BuilderComponents from "./components/Builder.io Components";
@@ -12,6 +14,7 @@ if (!apiKey) {
   builder.init(apiKey);
 }
 
+// A helper function to create icon inputs
 function iconInput(name, helperText = undefined) {
   return {
     name: name,
@@ -29,10 +32,9 @@ function iconInput(name, helperText = undefined) {
         showIf: `options.get('showIcon')`,
       },
       {
-        name: "iconURL",
-        friendlyName: "iconFile",
+        name: "iconFile",
         type: "file",
-        allowedFileTypes: ['jpg', 'svg'],
+        allowedFileTypes: ["jpg", "svg"],
         helperText: "Currently only SVG files are accepted",
         showIf: `options.get('showIcon')`,
       },
@@ -41,18 +43,19 @@ function iconInput(name, helperText = undefined) {
 }
 
 /**
-  Builder Components
-  @param {React.Component} component - The React component to register.
-  All components from Builder.io Components folder are automatically imported under BuilderComponents.
-  @param {Object} options - An object with properties defining the component's behavior and inputs.
-    @property {string} name - The component name, a required property that specifies the name of the component as it will appear in the Builder editor.
-    @property {string} image - An optional but highly recommended property that allows developers to set an image that will be displayed as a thumbnail for the component in the Builder editor.
-    Utilize https://tabler-icons.io/ and copy the png download link
-    @property {Array<Object>} inputs - An array of objects that defines the inputs that the component accepts. Each object in the array represents an input and can contain properties such as name, type, and defaultValue.
-
-  Full Documentation
-  https://www.builder.io/c/docs/custom-components-input-types
-*/
+ * Builder Components
+ * Register custom components for use in the Builder editor.
+ *
+ * @see https://www.builder.io/c/docs/custom-react-components
+ * @see https://www.builder.io/c/docs/custom-react-components-inputs
+ *
+ * @param {Object} component - The React component to register. All components from Builder.io Components folder are automatically imported under BuilderComponents.
+ * @param {Object} options - An object that contains the properties of the component.
+ * @property {string} name - The name of the component.
+ * @property {boolean} noWrap - Determines whether to wrap the component in a div.
+ * @property {string} image - The image to display in the Builder editor. Utilize https://tabler-icons.io/ and copy the png download link
+ * @property {Array<Object>} inputs - An array of objects that defines the inputs that the component accepts. Each object in the array represents an input and can contain properties such as name, type, and defaultValue.
+ */
 Builder.registerComponent(BuilderComponents.muiAccordion, {
   name: "accordion",
   noWrap: true, // allow for accordion group gutters
@@ -60,45 +63,21 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
     "https://tabler-icons.io/static/tabler-icons/icons-png/layout-navbar-expand.png",
   inputs: [
     {
-      name: "defaultOpen",
-      type: "boolean",
-      helperText: "Refresh the preview to view defaults",
-      defaultValue: false,
-    },
-    {
-      name: "lockOpen",
-      type: "boolean",
-      helperText:
-        "Lock the accordion in the open state. Refresh the preview to take effect",
-      showIf: `options.get('defaultOpen')`,
-      defaultValue: false,
-    },
-    {
       name: "properties",
       type: "object",
       defaultValue: {
-        variant: "text",
-        disableRipple: false,
+        variant: "default",
         elevation: "low",
+        disableRipple: false,
+        defaultOpen: false,
+        lockOpen: false,
       },
       subFields: [
         {
-          name: "variant",
-          type: "text",
-          defaultValue: "default",
-          enum: ["default", "outlined"],
-        },
-        {
-          name: "elevation",
-          type: "text",
-          helperText: "How flat the appearance of the accordion is",
-          enum: ["none", "low", "medium", "high"],
-        },
-        {
           name: "disableRipple",
           type: "boolean",
+          defaultValue: false,
           helperText: "Disable the ripple effect when clicked",
-          defaultValue: true,
         },
         iconInput(
           "icon",
@@ -107,6 +86,9 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
         {
           name: "divider",
           type: "object",
+          defaultValue: {
+            showDivider: false,
+          },
           helperText: "Divider line between header and collapsed content",
           subFields: [
             {
@@ -119,6 +101,37 @@ Builder.registerComponent(BuilderComponents.muiAccordion, {
               showIf: `options.get('showDivider')`,
             },
           ],
+        },
+        {
+          name: "variant",
+          type: "text",
+          advanced: true,
+          defaultValue: "default",
+          enum: ["default", "outlined"],
+        },
+        {
+          name: "elevation",
+          type: "text",
+          advanced: true,
+          defaultValue: "low",
+          helperText: "How flat the appearance of the accordion is",
+          enum: ["none", "low", "medium", "high"],
+        },
+        {
+          name: "defaultOpen",
+          type: "boolean",
+          advanced: true,
+          helperText: "Refresh the preview to view defaults",
+          defaultValue: false,
+        },
+        {
+          name: "lockOpen",
+          type: "boolean",
+          advanced: true,
+          helperText:
+            "Lock the accordion in the open state. Refresh the preview to take effect",
+          showIf: `options.get('defaultOpen')`,
+          defaultValue: false,
         },
       ],
     },
@@ -278,20 +291,104 @@ Builder.registerComponent(BuilderComponents.muiButton, {
 
 Builder.registerComponent(BuilderComponents.carousel, {
   name: "carousel",
-  image: "https://tabler-icons.io/static/tabler-icons/icons-png/carousel-horizontal.png",
+  image:
+    "https://tabler-icons.io/static/tabler-icons/icons-png/carousel-horizontal.png",
   inputs: [
     {
       name: "defaultSlideIndex",
       type: "number",
-      defaultValue: 0,
-      helperText: "Index of the slide to show first",
+      defaultValue: 1,
+      helperText: "Index of the slide to show first. Set to 0 to always show the last slide",
+      min: 0,
     },
     {
-      name: "steps",
+      name: "properties",
+      type: "object",
+      defaultValue: {
+        animation: "slide",
+        adaptiveHeight: false,
+        arrows: true,
+        autoPlay: false,
+        autoPlaySpeed: 5,
+        centerMode: false,
+        dots: true,
+        draggable: true,
+        infinite: false,
+      },
+      subFields: [
+        {
+          name: "animation",
+          type: "text",
+          helperText: "Animation to use when changing slides",
+          enum: ["slide", "fade"],
+          defaultValue: "slide",
+        },
+        {
+          name: "adaptiveHeight",
+          type: "boolean",
+          advanced: true,
+          helperText: "Adjust the height of the carousel to the height of the current slide",
+          defaultValue: false,
+        },
+        {
+          name: "arrows",
+          type: "boolean",
+          advanced: true,
+          helperText: "Show arrows on the sides of the carousel to change slides",
+          defaultValue: true,
+        },
+        {
+          name: "autoPlay",
+          type: "boolean",
+          advanced: true,
+          helperText: "Automatically change slides",
+          defaultValue: false,
+        },
+        {
+          name: "autoPlaySpeed",
+          type: "number",
+          advanced: true,
+          helperText: "Time in seconds between slide changes",
+          showIf: `options.get('autoPlay')`,
+          min: 1,
+          defaultValue: 5,
+        },
+        {
+          name: "centerMode",
+          type: "boolean",
+          advanced: true,
+          helperText: "Center the current slide in the carousel. Show a preview of the next and previous slides on either side",
+          defaultValue: false,
+        },
+        {
+          name: "dots",
+          type: "boolean",
+          advanced: true,
+          helperText: "Show dots at the bottom of the carousel to indicate the current slide",
+          defaultValue: true,
+        },
+        {
+          name: "draggable",
+          type: "boolean",
+          advanced: true,
+          helperText: "Allow the carousel to be dragged to change slides",
+          defaultValue: true,
+        },
+        {
+          name: "infinite",
+          friendlyName: "Infinite Loop",
+          type: "boolean",
+          advanced: true,
+          helperText: "Allow the carousel to loop back to the first slide after the last slide",
+          defaultValue: false,
+        },
+      ],
+    },
+    {
+      name: "slides",
       type: "list",
       copyOnAdd: false,
-      defaultValue: [
-      ],
+      defaultValue: [],
       subFields: [
         {
           name: "content",
@@ -300,6 +397,7 @@ Builder.registerComponent(BuilderComponents.carousel, {
         },
       ],
     },
+    
   ],
 });
 
@@ -316,6 +414,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
         disablePadding: true,
       },
       subFields: [
+        iconInput("icon", "Lefthand icon. Will prepend every list item"),
         {
           name: "maxDisplayHeight",
           type: "number",
@@ -326,6 +425,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
           name: "dense",
           type: "boolean",
           advanced: true,
+          helperText: "Condense list items",
           defaultValue: true,
         },
         {
@@ -335,25 +435,28 @@ Builder.registerComponent(BuilderComponents.muiList, {
           helperText: "Remove top and bottom padding",
           defaultValue: true,
         },
-        iconInput("icon"),
       ],
     },
     {
       name: "subsections",
       type: "list",
+      helperText:
+        "Grouping list items into subsections is sometimes better than spreading them out across multiple lists",
       defaultValue: [
         {
           properties: {
             includeSubheader: false,
             disableGutters: false,
             disableSticky: false,
-            inset: false
+            inset: false,
           },
           items: [],
-          subheaders: [{ 
-            '@type': '@builder.io/sdk:Element',
-            component: { name: 'Text', options: { text: 'Subheader Title' } },
-          }],
+          subheader: [
+            {
+              "@type": "@builder.io/sdk:Element",
+              component: { name: "Text", options: { text: "Subheader Title" } },
+            },
+          ],
         },
       ],
       subFields: [
@@ -370,7 +473,8 @@ Builder.registerComponent(BuilderComponents.muiList, {
             {
               name: "includeSubheader",
               type: "boolean",
-              helperText: "Include a subheader above this subsection. Accepts any child element",
+              helperText:
+                "Include a subheader above this subsection. Accepts any child element",
               defaultValue: false,
             },
             {
@@ -410,7 +514,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
               properties: {
                 disableGutters: false,
                 divider: true,
-                disabled: false,
+                disable: false,
               },
             },
           ],
@@ -436,7 +540,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
               defaultValue: {
                 disableGutters: false,
                 divider: true,
-                disabled: false,
+                disable: false,
               },
               subFields: [
                 {
@@ -448,11 +552,12 @@ Builder.registerComponent(BuilderComponents.muiList, {
                 {
                   name: "divider",
                   type: "boolean",
-                  helperText: "1px light border is added to the bottom of the menu item",
+                  helperText:
+                    "1px light border is added to the bottom of the menu item",
                   defaultValue: true,
                 },
                 {
-                  name: "disabled",
+                  name: "disable",
                   type: "boolean",
                   helperText: "Disable the list item",
                   defaultValue: false,
@@ -462,7 +567,7 @@ Builder.registerComponent(BuilderComponents.muiList, {
           ],
         },
         {
-          name: "subheaders",
+          name: "subheader",
           type: "uiBlocks",
           defaultValue: [],
         },
@@ -478,7 +583,9 @@ Builder.registerComponent(BuilderComponents.muiTabs, {
     {
       name: "defaultTabIndex",
       type: "number",
-      defaultValue: 0,
+      defaultValue: 1,
+      helperText: "Index of the tab to show first. Starts at 1",
+      min: 1,
       required: true,
     },
     {
@@ -505,6 +612,12 @@ Builder.registerComponent(BuilderComponents.muiTabs, {
     {
       name: "tabs",
       type: "list",
+      defaultValue: [
+        {
+          label: "tab1",
+          content: [],
+        },
+      ],
       subFields: [
         {
           name: "label",
@@ -512,20 +625,15 @@ Builder.registerComponent(BuilderComponents.muiTabs, {
           defaultValue: "newTab",
         },
         {
-          name: "disable",
-          type: "boolean",
-          defaultValue: false,
-        },
-        {
           name: "content",
           type: "uiBlocks",
           defaultValue: [],
         },
-      ],
-      defaultValue: [
         {
-          label: "tab1",
-          content: [],
+          name: "disable",
+          type: "boolean",
+          defaultValue: false,
+          advanced: true,
         },
       ],
     },
@@ -545,3 +653,56 @@ Builder.registerComponent(BuilderComponents.twitchEmbed, {
     },
   ],
 });
+
+// Register Custom Menu Items
+Builder.register("insertMenu", {
+  name: "Custom Components",
+  items: [
+    { name: "accordion" },
+    { name: "button" },
+    { name: "carousel" },
+    { name: "list" },
+    { name: "tabs" },
+    { name: "twitchEmbed" },
+  ],
+});
+
+// Register Built in Builder Components
+Builder.register("insertMenu", {
+  name: "Builder Components",
+  items: [
+    { name: "Text" },
+    { name: "Image" },
+    { name: "Core:Button" },
+    { name: "Columns" },
+    { name: "Box" },
+    { name: "Core:Section" },
+    { name: "Video" },
+    { name: "Embed" },
+  ],
+});
+
+Builder.register("insertMenu", {
+  name: "Advanced Builder Components",
+  items: [
+    { name: "Builder:Masonry" },
+    { name: "Custom Code" },
+    { name: "Slot" },
+    { name: "Symbol" },
+  ],
+});
+
+Builder.register("insertMenu", {
+  name: "Builder Form Components",
+  items: [
+    { name: "Form:Form" },
+    { name: "Form:Input" },
+    { name: "Form:SubmitButton" },
+    { name: "Form:Label" },
+    { name: "Form:Select" },
+    { name: "Form:TextArea" },
+  ],
+});
+
+// Hide the rest of the default insert menu setup if not readded above
+Builder.register("editor.settings", { customInsertMenu: true });

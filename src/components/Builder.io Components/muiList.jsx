@@ -11,46 +11,68 @@ import { BuilderBlocks } from "@builder.io/react";
 import SvgIconLoader from "../../svgIconLoader";
 
 /**
-  MUIList
-  
-  A React functional component that renders a list of items as links with icons.
-  @param {Object} props - The props object for the component.
-    @param {number} maxDisplayHeight - The maximum height of the list, in pixels.
-    @param {Object} properties - An object representing the properties of the list.
-      @param {boolean} dense - A boolean value indicating whether to use dense padding for the list items.
-      @param {Object} icon - An object representing the icon to be displayed next to each item.
-        @param {boolean} showIcon - A boolean value indicating whether to display an icon for each item.
-        @param {URL} iconURL - The icon file to be displayed, if iconType is set to "upload".
-    @param {Object[]} subsections - An array of objects representing the sections to be included in the list.
-      @param {boolean} includeSubheader - A boolean value indicating whether to include a subheader for the section.
-      @param {string} subheader - The text to be displayed as the subheader for the section.
-      @param {Object[]} items - An array of objects representing the items to be included in the section.
-        @param {string} text - The text to be displayed for the item.  
-        @param {string} link - The URL to which the item should link.
-  @returns {JSX.Element} A list of links with icons.
-*/
+ * @file Defines the MUIList builder block.
+ *
+ * A React functional component that renders a list of items as links with icons.
+ * This component is based on the Material UI List component.
+ *
+ * @see {@link https://mui.com/components/lists/}
+ * @see {@link https://mui.com/api/list/}
+ *
+ * @param {Object} props - An object containing the props for the component.
+ * @param {Object} props.properties - An object containing the properties for the component.
+ * @param {Object} props.properties.icon - An object containing the properties for the icon.
+ * @param {boolean} props.properties.icon.showIcon - A boolean to show or hide the icon.
+ * @param {string} props.properties.icon.iconColor - A string indicating the color of the  icon.
+ * @param {File} props.properties.icon.iconFile - A file containing the icon.
+ * @param {Object} props.properties.maxDisplayHeight - The maximum height of the list.
+ * @param {Object} props.properties.dense - A boolean to set the list to dense.
+ * @param {Object} props.properties.disablePadding - A boolean to disable padding on the list.
+ * @param {Object} props.subsections - An object containing the subsections for the component.
+ * @param {Object} props.subsections.properties - An object containing the properties for the subsections.
+ * @param {boolean} props.subsections.properties.includeSubheader - A boolean to include a subheader.
+ * @param {boolean} props.subsections.properties.disableGutters - A boolean to disable gutters.
+ * @param {boolean} props.subsections.properties.disableSticky - A boolean to disable sticky.
+ * @param {boolean} props.subsections.properties.inset - A boolean to set the inset.
+ * @param {Object} props.subsections.items - An object containing the items for the subsections.
+ * @param {Object} props.subsections.items.text - A string containing the text for the items.
+ * @param {Object} props.subsections.items.subtext - A string containing the subtext for the items.
+ * @param {Object} props.subsections.items.link - A string containing the link for the items.
+ * @param {Object} props.subsections.items.properties - An object containing the properties for the items.
+ * @param {boolean} props.subsections.items.properties.disableGutters - A boolean to disable gutters.
+ * @param {boolean} props.subsections.items.properties.divider - A boolean to set the divider.
+ * @param {boolean} props.subsections.items.properties.disable - A boolean to disable the items.
+ * @param {Object} props.builderBlock - An object containing the builder block for the component.
+ * @param {string} props.builderBlock.id - A string containing the id for the builder block.
+ *
+ * @returns {JSX.Element} - This List component.
+ *
+ * @exports MUIList
+ */
 const MUIList = (props) => {
   return (
     <List
-      dense={props.properties?.dense}
-      disablePadding={props.properties?.disablePadding}
-      sx={{ overflow: "auto", maxHeight: props.maxDisplayHeight }}
+      dense={props.properties.dense}
+      disablePadding={props.properties.disablePadding}
+      sx={{
+        overflow: "auto",
+        maxHeight: props.properties.maxDisplayHeight || undefined,
+      }}
       subheader={<li />}
     >
       {props.subsections.map((section, index) => [
-        <li>
+        <>
           {section.properties?.includeSubheader && (
             <ListSubheader
               color="inherit"
-              sx={{ backgroundColor: "inherit" }}
-              disableSticky={section.properties?.disableSticky}
-              inset={section.properties?.inset}
-              disableGutters={section.properties?.disableGutters}
+              disableSticky={section.properties.disableSticky}
+              inset={section.properties.inset}
+              disableGutters={section.properties.disableGutters}
             >
               <BuilderBlocks
                 parentElementId={props.builderBlock.id}
                 dataPath={`component.options.subsections.${index}.subheaders`}
-                blocks={section.subheaders}
+                blocks={section.subheader}
               />
             </ListSubheader>
           )}
@@ -59,7 +81,8 @@ const MUIList = (props) => {
               key={index}
               disableGutters={true}
               disablePadding={true}
-              divider={item.properties?.divider}>
+              divider={item.properties?.divider}
+            >
               {item.link ? (
                 <ListItemButton
                   component="a"
@@ -67,34 +90,28 @@ const MUIList = (props) => {
                   target="_blank"
                   rel="noopener"
                   disableGutters={item.properties?.disableGutters}
-                  disabled={item.properties?.disabled}
+                  disabled={item.properties?.disable}
                 >
-                  {props.properties?.icon?.showIcon && (
+                  {props.properties.icon?.showIcon && (
                     <ListItemIcon>
-                      {SvgIconLoader(props.properties?.icon)}
+                      {SvgIconLoader(props.properties.icon)}
                     </ListItemIcon>
                   )}
-                  <ListItemText 
-                    primary={item.text}
-                    secondary={item.subtext}
-                  />
+                  <ListItemText primary={item.text} secondary={item.subtext} />
                 </ListItemButton>
               ) : (
                 <>
-                  {props.properties?.icon?.showIcon && (
+                  {props.properties.icon?.showIcon && (
                     <ListItemIcon>
-                      {SvgIconLoader(props.properties?.icon)}
+                      {SvgIconLoader(props.properties.icon)}
                     </ListItemIcon>
                   )}
-                  <ListItemText
-                    primary={item.text}
-                    secondary={item.subtext}
-                  />
+                  <ListItemText primary={item.text} secondary={item.subtext} />
                 </>
               )}
             </ListItem>
           ))}
-        </li>
+        </>,
       ])}
     </List>
   );
