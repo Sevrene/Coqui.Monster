@@ -10,7 +10,7 @@ import { BuilderBlocks } from "@builder.io/react";
 /**
  * @file Defines the MUIAccordion component.
  *
- * A React functional component that renders an Accordion from the Material UI library.
+ * @summary A React functional component that renders an Accordion from the Material UI library.
  * This component accepts children in its Summary and Collapse section.
  *
  * @see {@link https://mui.com/components/accordion/}

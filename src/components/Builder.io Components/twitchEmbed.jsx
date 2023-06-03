@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 /**
  * @file Defines the TwitchEmbed component.
  *
- * A React functional component that renders a Twitch embed.
+ * @summary A React functional component that renders a Twitch embed.
  *
  * @param {Object} props - An object containing the props for the component.
  * @param {string} props.channel - A string indicating the channel to be embedded.
