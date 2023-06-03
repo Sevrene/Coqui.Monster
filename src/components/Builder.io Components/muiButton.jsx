@@ -1,7 +1,7 @@
 import { Button, Menu, MenuItem } from "@mui/material";
 
 import { Link } from "react-router-dom";
-import SvgIconLoader from "../../../svgIconLoader";
+import SvgIconLoader from "../../svgIconLoader";
 import { useState } from "react";
 
 /**
