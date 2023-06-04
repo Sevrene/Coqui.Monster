@@ -1,6 +1,6 @@
 import "@builder.io/widgets";
 
-import { Builder, builder } from "@builder.io/react";
+import { Builder, builder, withChildren } from "@builder.io/react";
 
 import BuilderComponents from "./components/Builder.io Components";
 
@@ -164,30 +164,138 @@ Builder.registerComponent(BuilderComponents.muiButton, {
       defaultValue: "Button Text",
     },
     {
-      name: "type",
-      type: "text",
-      enum: ["link", "menu"],
-      defaultValue: "link",
-    },
-    {
       name: "link",
       type: "url",
-      showIf: `options.get('type') === "link"`,
     },
     {
       name: "newTab",
       type: "boolean",
       defaultValue: true,
       friendlyName: "Open link in new tab",
-      showIf: `options.get('type') === "link"`,
+      showIf: `options.get('link')?.length > 0`,
+    },
+    {
+      name: "properties",
+      type: "object",
+      defaultValue: {
+        variant: "text",
+        size: "medium",
+        ripple: "cursor",
+        disableElevation: false,
+        disable: false,
+      },
+      subFields: [
+        {
+          name: "variant",
+          type: "text",
+          enum: ["contained", "outlined", "text"],
+          defaultValue: "text",
+        },
+        {
+          name: "size",
+          type: "text",
+          enum: ["small", "medium", "large"],
+          defaultValue: "medium",
+        },
+        {
+          name: "ripple",
+          type: "text",
+          advanced: true,
+          helperText: "Where the ripple effect plays when clicked",
+          enum: ["cursor", "center", "none"],
+          defaultValue: "cursor",
+        },
+        {
+          name: "disableElevation",
+          type: "boolean",
+          advanced: true,
+          helperText: "Flatten the appearance of the button",
+          defaultValue: false,
+        },
+        {
+          name: "disable",
+          type: "boolean",
+          advanced: true,
+          defaultValue: false,
+        },
+        iconInput("startIcon"),
+        iconInput("endIcon"),
+      ],
+    },
+  ],
+});
+
+Builder.registerComponent(withChildren(BuilderComponents.muiButtonMenu), {
+  name: "buttonMenu",
+  image: "https://tabler-icons.io/static/tabler-icons/icons-png/select.png",
+  inputs: [
+    {
+      name: "text",
+      type: "text",
+      defaultValue: "Button Text",
+    },
+    {
+      name: "properties",
+      type: "object",
+      defaultValue: {
+        variant: "text",
+        size: "medium",
+        ripple: "cursor",
+        disableElevation: false,
+        disable: false,
+      },
+      subFields: [
+        {
+          name: "variant",
+          type: "text",
+          enum: ["contained", "outlined", "text"],
+          defaultValue: "text",
+        },
+        {
+          name: "size",
+          type: "text",
+          enum: ["small", "medium", "large"],
+          defaultValue: "medium",
+        },
+        {
+          name: "ripple",
+          type: "text",
+          advanced: true,
+          helperText: "Where the ripple effect plays when clicked",
+          enum: ["cursor", "center", "none"],
+          defaultValue: "cursor",
+        },
+        {
+          name: "disableElevation",
+          type: "boolean",
+          advanced: true,
+          helperText: "Flatten the appearance of the button",
+          defaultValue: false,
+        },
+        {
+          name: "disable",
+          type: "boolean",
+          advanced: true,
+          defaultValue: false,
+        },
+        iconInput("startIcon"),
+        iconInput("endIcon"),
+      ],
     },
     {
       name: "menuItems",
       type: "list",
-      showIf: `options.get('type') === "menu"`,
       defaultValue: [
         {
           text: "Menu Item",
+          link: "",
+          newTab: true,
+          properties: {
+            dense: false,
+            disableGutters: false,
+            divider: false,
+            disable: false,
+          },
         },
       ],
       subFields: [
@@ -205,6 +313,7 @@ Builder.registerComponent(BuilderComponents.muiButton, {
           type: "boolean",
           defaultValue: true,
           friendlyName: "Open link in new tab",
+          showIf: `options.get('link')?.length > 0`,
         },
         {
           name: "properties",
@@ -216,75 +325,39 @@ Builder.registerComponent(BuilderComponents.muiButton, {
             disable: false,
           },
           subFields: [
+            iconInput("startIcon"),
+            iconInput("endIcon"),
             {
               name: "dense",
               type: "boolean",
+              advanced: true,
               helperText: "Compact vertical padding is used for smaller lists",
               defaultValue: false,
             },
             {
               name: "disableGutters",
               type: "boolean",
+              advanced: true,
               helperText: "Remove left and right padding",
               defaultValue: false,
             },
             {
               name: "divider",
               type: "boolean",
+              advanced: true,
               helperText:
                 "1px light border is added to the bottom of the menu item",
               defaultValue: false,
             },
-            iconInput("startIcon"),
-            iconInput("endIcon"),
+            {
+              name: "disable",
+              type: "boolean",
+              advanced: true,
+              defaultValue: false,
+            },
           ],
         },
-        {
-          name: "disable",
-          type: "boolean",
-          defaultValue: false,
-        },
       ],
-    },
-    {
-      name: "properties",
-      type: "object",
-      defaultValue: {
-        variant: "text",
-        size: "medium",
-        ripple: "cursor",
-        disableElevation: false,
-      },
-      subFields: [
-        {
-          name: "variant",
-          type: "text",
-          enum: ["contained", "outlined", "text"],
-        },
-        {
-          name: "size",
-          type: "text",
-          enum: ["small", "medium", "large"],
-        },
-        {
-          name: "ripple",
-          type: "text",
-          helperText: "Where the ripple effect plays when clicked",
-          enum: ["cursor", "center", "none"],
-        },
-        {
-          name: "disableElevation",
-          type: "boolean",
-          helperText: "Flatten the appearance of the button",
-        },
-        iconInput("startIcon"),
-        iconInput("endIcon"),
-      ],
-    },
-    {
-      name: "disable",
-      type: "boolean",
-      defaultValue: false,
     },
   ],
 });
@@ -654,12 +727,17 @@ Builder.registerComponent(BuilderComponents.twitchEmbed, {
   ],
 });
 
+/*
+
+*/
+
 // Register Custom Menu Items
 Builder.register("insertMenu", {
   name: "Custom Components",
   items: [
     { name: "accordion" },
     { name: "button" },
+    { name: "buttonMenu" },
     { name: "carousel" },
     { name: "list" },
     { name: "tabs" },
