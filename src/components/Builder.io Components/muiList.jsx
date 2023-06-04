@@ -13,7 +13,7 @@ import SvgIconLoader from "../../svgIconLoader";
 /**
  * @file Defines the MUIList builder block.
  *
- * A React functional component that renders a list of items as links with icons.
+ * @summary A React functional component that renders a list of items as links with icons.
  * This component is based on the Material UI List component.
  *
  * @see {@link https://mui.com/components/lists/}

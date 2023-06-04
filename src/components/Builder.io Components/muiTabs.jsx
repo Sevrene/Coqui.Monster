@@ -46,7 +46,7 @@ TabPanel.propTypes = {
 /**
  * @file Defines the MUITabs component.
  *
- * A React functional component that renders a Tabs component from the Material UI library.
+ * @summary A React functional component that renders a Tabs component from the Material UI library.
  * This component accepts children in its TabPanel section.
  *
  * @see {@link https://material-ui.com/components/tabs/}
