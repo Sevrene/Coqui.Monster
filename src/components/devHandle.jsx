@@ -38,7 +38,7 @@ const tooltipStyles = {
  *
  * @returns {React.Component} DevHandle
  */
-function DevHandle() {
+const DevHandle = () => {
   const handleLinkClick = (link) => () => {
     window.open(link, "_blank");
   };
@@ -87,6 +87,6 @@ function DevHandle() {
       </Tooltip>
     </div>
   );
-}
+};
 
 export default DevHandle;

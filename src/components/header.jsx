@@ -1,7 +1,8 @@
 import { AppBar, Box, Toolbar, useScrollTrigger } from "@mui/material";
-import { BuilderComponent, builder } from "@builder.io/react";
 import { useEffect, useState } from "react";
 
+import { BuilderComponent } from "@builder.io/react";
+import { builder } from "@builder.io/sdk";
 import styled from "@emotion/styled";
 
 const StyledAppBar = styled(({ modelData, shouldApplyStyling, ...other }) => (
@@ -52,13 +53,12 @@ const StyledAppBar = styled(({ modelData, shouldApplyStyling, ...other }) => (
   It uses the Material-UI AppBar and Toolbar components and the BuilderComponent to render the content of the header.
   @returns {JSX.Element} The header of a web page.
 */
-function Header() {
+const Header = () => {
   const [modelData, setModelData] = useState(null);
 
   // Fetch data from Builder.io when the component mounts
   useEffect(() => {
     async function fetchData() {
-      builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
       try {
         const data = await builder.get("header").toPromise();
         setModelData(data.data);
@@ -100,6 +100,6 @@ function Header() {
       </Toolbar>
     </StyledAppBar>
   );
-}
+};
 
 export default Header;
