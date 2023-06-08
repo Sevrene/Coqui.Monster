@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from "@mui/material";
+import { ListItem, ListItemText, Menu, MenuItem } from "@mui/material";
 
 import { Link } from "react-router-dom";
 import SvgIconLoader from "../../svgIconLoader";
@@ -61,11 +61,21 @@ const MUIMenu = (props) => {
           disabled={item.properties.disable}
         >
           {item.properties.startIcon?.showIcon && (
-            <SvgIconLoader {...item.properties.startIcon} />
+            <ListItem
+              disablePadding
+              sx={{ width: "auto", paddingRight: "16px" }}
+            >
+              <SvgIconLoader {...item.properties.startIcon} />
+            </ListItem>
           )}
-          {item.text}
+          <ListItemText>{item.text}</ListItemText>
           {item.properties.endIcon?.showIcon && (
-            <SvgIconLoader {...item.properties.endIcon} />
+            <ListItem
+              disablePadding
+              sx={{ width: "auto", paddingLeft: "16px" }}
+            >
+              <SvgIconLoader {...item.properties.endIcon} />
+            </ListItem>
           )}
         </MenuItem>
       ))}
