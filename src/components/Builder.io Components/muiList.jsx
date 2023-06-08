@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import { BuilderBlocks } from "@builder.io/react";
+import { Fragment } from "react";
 import SvgIconLoader from "../../svgIconLoader";
 
 /**
@@ -61,7 +62,7 @@ const MUIList = (props) => {
       subheader={<li />}
     >
       {props.subsections.map((section, index) => [
-        <>
+        <Fragment key={index}>
           {section.properties?.includeSubheader && (
             <ListSubheader
               color="inherit"
@@ -111,7 +112,7 @@ const MUIList = (props) => {
               )}
             </ListItem>
           ))}
-        </>,
+        </Fragment>,
       ])}
     </List>
   );
