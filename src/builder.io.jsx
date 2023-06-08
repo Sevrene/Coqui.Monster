@@ -1,8 +1,9 @@
 import "@builder.io/widgets";
 
-import { Builder, builder, withChildren } from "@builder.io/react";
+import { Builder, builder } from "@builder.io/sdk";
 
 import BuilderComponents from "./components/Builder.io Components";
+import { withChildren } from "@builder.io/react";
 
 const apiKey = process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN;
 
@@ -58,7 +59,6 @@ function iconInput(name, helperText = undefined) {
  */
 Builder.registerComponent(BuilderComponents.muiAccordion, {
   name: "accordion",
-  noWrap: true, // allow for accordion group gutters
   image:
     "https://tabler-icons.io/static/tabler-icons/icons-png/layout-navbar-expand.png",
   inputs: [
@@ -371,7 +371,8 @@ Builder.registerComponent(BuilderComponents.carousel, {
       name: "defaultSlideIndex",
       type: "number",
       defaultValue: 1,
-      helperText: "Index of the slide to show first. Set to 0 to always show the last slide",
+      helperText:
+        "Index of the slide to show first. Set to 0 to always show the last slide",
       min: 0,
     },
     {
@@ -400,14 +401,16 @@ Builder.registerComponent(BuilderComponents.carousel, {
           name: "adaptiveHeight",
           type: "boolean",
           advanced: true,
-          helperText: "Adjust the height of the carousel to the height of the current slide",
+          helperText:
+            "Adjust the height of the carousel to the height of the current slide",
           defaultValue: false,
         },
         {
           name: "arrows",
           type: "boolean",
           advanced: true,
-          helperText: "Show arrows on the sides of the carousel to change slides",
+          helperText:
+            "Show arrows on the sides of the carousel to change slides",
           defaultValue: true,
         },
         {
@@ -430,14 +433,16 @@ Builder.registerComponent(BuilderComponents.carousel, {
           name: "centerMode",
           type: "boolean",
           advanced: true,
-          helperText: "Center the current slide in the carousel. Show a preview of the next and previous slides on either side",
+          helperText:
+            "Center the current slide in the carousel. Show a preview of the next and previous slides on either side",
           defaultValue: false,
         },
         {
           name: "dots",
           type: "boolean",
           advanced: true,
-          helperText: "Show dots at the bottom of the carousel to indicate the current slide",
+          helperText:
+            "Show dots at the bottom of the carousel to indicate the current slide",
           defaultValue: true,
         },
         {
@@ -452,7 +457,8 @@ Builder.registerComponent(BuilderComponents.carousel, {
           friendlyName: "Infinite Loop",
           type: "boolean",
           advanced: true,
-          helperText: "Allow the carousel to loop back to the first slide after the last slide",
+          helperText:
+            "Allow the carousel to loop back to the first slide after the last slide",
           defaultValue: false,
         },
       ],
@@ -460,8 +466,11 @@ Builder.registerComponent(BuilderComponents.carousel, {
     {
       name: "slides",
       type: "list",
-      copyOnAdd: false,
-      defaultValue: [],
+      defaultValue: [
+        {
+          content: [],
+        },
+      ],
       subFields: [
         {
           name: "content",
@@ -470,7 +479,6 @@ Builder.registerComponent(BuilderComponents.carousel, {
         },
       ],
     },
-    
   ],
 });
 
