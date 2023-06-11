@@ -10,8 +10,6 @@ import { BuilderComponent } from "@builder.io/react";
 import DevHandle from "./components/devHandle";
 import Header from "./components/header";
 
-builder.init(process.env.REACT_APP_BUILDER_IO_ACCESS_TOKEN);
-
 function App() {
   const [backgroundStyle, setBackgroundStyle] = useState("#A9A9A9");
   const [isBackgroundLoaded, setIsBackgroundLoaded] = useState(false);

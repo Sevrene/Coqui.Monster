@@ -44,10 +44,10 @@ const DevHandle = () => {
   };
 
   return (
-    <div style={{ position: "fixed", bottom: 0, right: 0 }}>
+    <div style={{ position: "fixed", bottom: 0, left: 0 }}>
       <Tooltip
         title="Sevrene"
-        placement="left-end"
+        placement="right-end"
         PopperProps={{
           modifiers: [
             {
@@ -62,7 +62,6 @@ const DevHandle = () => {
       >
         <SpeedDial
           ariaLabel="Dev Handle"
-          sx={{ position: "absolute", bottom: 0, right: 0 }}
           icon={<LogoDev />}
           FabProps={{
             sx: {
