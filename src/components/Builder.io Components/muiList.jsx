@@ -82,6 +82,7 @@ const MUIList = (props) => {
               disableGutters={true}
               disablePadding={true}
               divider={item.properties?.divider}
+              sx={{ paddingLeft: item.link ? undefined : 2 }}
             >
               {item.link ? (
                 <ListItemButton
@@ -93,18 +94,14 @@ const MUIList = (props) => {
                   disabled={item.properties?.disable}
                 >
                   {props.properties.icon?.showIcon && (
-                    <ListItemIcon>
-                      {SvgIconLoader(props.properties.icon)}
-                    </ListItemIcon>
+                    <SvgIconLoader {...props.properties.icon} />
                   )}
                   <ListItemText primary={item.text} secondary={item.subtext} />
                 </ListItemButton>
               ) : (
                 <>
                   {props.properties.icon?.showIcon && (
-                    <ListItemIcon>
-                      {SvgIconLoader(props.properties.icon)}
-                    </ListItemIcon>
+                    <SvgIconLoader {...props.properties.icon} />
                   )}
                   <ListItemText primary={item.text} secondary={item.subtext} />
                 </>

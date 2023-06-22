@@ -65,7 +65,15 @@ const MUIMenu = (props) => {
               disablePadding
               sx={{ width: "auto", paddingRight: "16px" }}
             >
-              <SvgIconLoader {...item.properties.startIcon} />
+              {item.properties.startIcon.iconFile?.endsWith(".svg") ? (
+                <SvgIconLoader {...item.properties.startIcon} />
+              ) : (
+                <img
+                  src={item.properties.startIcon.iconFile}
+                  alt={item.text}
+                  style={{ width: "24px", height: "24px" }}
+                />
+              )}
             </ListItem>
           )}
           <ListItemText>{item.text}</ListItemText>
