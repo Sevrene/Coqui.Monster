@@ -30,7 +30,7 @@ function iconInput(name, helperText = undefined) {
       {
         name: "color",
         type: "color",
-        showIf: `options.get('showIcon') && options.get('iconFile')?.endsWith('.svg')`,
+        showIf: `options.get('showIcon')`,
       },
       {
         name: "iconFile",
