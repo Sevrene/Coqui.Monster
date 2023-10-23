@@ -36,7 +36,8 @@ import SvgIconLoader from "../../svgIconLoader";
  * @exports MUIMenu
  */
 const MUIMenu = (props) => {
-  const handleMenuClose = () => {
+  const handleMenuClose = (event) => {
+    event.stopPropagation();
     props.setOpenMenu(null);
   };
 

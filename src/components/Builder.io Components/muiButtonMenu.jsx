@@ -7,6 +7,7 @@ const MUIButtonMenu = (props) => {
   const [openMenu, setOpenMenu] = useState(null);
 
   const handleMenuClick = (event, menuId) => {
+    event.stopPropagation();
     setOpenMenu({ anchor: event.currentTarget, menuId });
   };
 
