@@ -1,0 +1,111 @@
+import { Box, Tab, Tabs } from "@mui/material";
+
+import { BuilderBlocks } from "@builder.io/react";
+import PropTypes from "prop-types";
+import { useState } from "react";
+
+/**
+ * Defines the TabPanel component.
+ *
+ * A helper function that renders a TabPanel component from the Material UI library.
+ * Utilized in the MUITabs component.
+ *
+ * @see {@link https://material-ui.com/components/tabs/}
+ * @see {@link https://material-ui.com/api/tabs/}
+ *
+ * @param {object} props - The props for the component.
+ * @param {object} props.children - The children of the component.
+ * @param {object} props.value - The value of the component.
+ * @param {object} props.index - The index of the component.
+ * @param {object} props.other - The other props of the component.
+ *
+ * @returns {JSX.Element} - The TabPanel component.
+ */
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+/**
+ * @file Defines the MUITabs component.
+ *
+ * @summary A React functional component that renders a Tabs component from the Material UI library.
+ * This component accepts children in its TabPanel section.
+ *
+ * @see {@link https://material-ui.com/components/tabs/}
+ * @see {@link https://material-ui.com/api/tabs/}
+ *
+ * @param {object} props - The props for the component.
+ * @param {object} props.defaultTabIndex - The default tab index.
+ * @param {object} props.properties - The properties of the component.
+ * @param {object} props.properties.variant - The variant of the component.
+ * @param {object} props.properties.centered - Whether the component is centered.
+ * @param {object} props.tabs - The tabs of the component.
+ * @param {object} props.tabs.label - The label of the tab.
+ * @param {object} props.tabs.content - The content of the tab.
+ * @param {object} props.tabs.disable - Whether the tab is disabled.
+ * @param {object} props.builderBlock - The Builder.io builder block that is passed to the component from the Builder.io editor.
+ * @param {object} props.builderBlock.id - The id of the Builder.io builder block.
+ *
+ * @returns {JSX.Element} The MUITabs component.
+ *
+ * @exports MUITabs
+ */
+const MUITabs = (props) => {
+  const [value, setValue] = useState(props.defaultTabIndex - 1 ?? 1);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          centered={props.properties?.centered}
+          variant={props.properties?.variant}
+        >
+          {props.tabs.map((tab, index) => (
+            <Tab
+              label={tab.label}
+              key={index}
+              disabled={tab.disable}
+              sx={{ overflow: "visible" }}
+            />
+          ))}
+        </Tabs>
+      </Box>
+      {props.tabs.map((tab, index) => (
+        <TabPanel value={value} index={index} key={index}>
+          {props.tabs?.length && (
+            <BuilderBlocks
+              parentElementId={props.builderBlock.id}
+              dataPath={`component.options.tabs.${value}.content`}
+              blocks={tab.content}
+            />
+          )}
+        </TabPanel>
+      ))}
+    </Box>
+  );
+};
+
+export default MUITabs;

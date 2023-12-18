@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Coqui.Monster
 
-## Getting Started
+Coqui.Monster is primarly a [React](https://mui.com/material-ui/getting-started/overview/) app with custom components utilizing the [Material Design](https://mui.com/material-ui/getting-started/overview/) framework intended for integration with [Builder.io](https://builder.io).
+All components within this app are intended for use by [Coqui](https://www.twitch.tv/coqui) for her website [Coqui.Monster](https://coqui.monster/)
 
-First, run the development server:
+## Contributing
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+While the actual website design of [Coqui.Monster](https://coqui.monster/) is closed-sourced,
+you are free to contribute additional components for easier and better customizability.
+
+To get started with contributing, you will need to have Node.js and npm installed on your machine.
+You can install Node.js from the official website at <https://nodejs.org>.
+Once you have Node.js installed, you can clone the Coqui.Monster repository to your local machine using Git: `git clone https://github.com/Sevrene/Coqui.Monster.git`
+or through the [GitHub repository](https://github.com/Sevrene/Coqui.Monster)
+
+Next, navigate to the project directory and install the required dependencies using npm:
+
+```cmd
+cd Coqui.Monster
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Finally, start the development server to launch the app in your web browser:
+`npm start`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Integrating with Builder.io
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Coqui.Monster integrates with [Builder.io](https://builder.io) to render almost all content and to allow Coqui full creative control of the design of the site.
+To get started with Builder.io, you will need to sign up for a free account on the website at <https://builder.io>.
 
-## Learn More
+Once you have signed up for an account, you can create a new page and customize it using the drag-and-drop editor.
+When you are ready to integrate the page with your local branch of Coqui.Monster,
+you can simply copy the API key from your Builder.io account and paste it into your app's local env as `REACT_APP_BUILDER_IO_ACCESS_TOKEN=[key]`.
+From here you will be able to test the functionality of current components as well as incorporate your own.
 
-To learn more about Next.js, take a look at the following resources:
+## Submitting Contributions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All pull requests and issues are welcome on the [GitHub repository](https://github.com/Sevrene/Coqui.Monster). Please ensure that your code follows the project's coding standards and includes tests and comments where appropriate.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Coqui.Monster is licensed under the MIT License, which means that you are free to use, modify, and distribute the code for personal or commercial purposes.
