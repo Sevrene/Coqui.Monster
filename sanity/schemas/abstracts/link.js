@@ -4,15 +4,21 @@ const linkSchema = {
   type: 'object',
   fields: [
     {
-      title: 'URL',
-      name: 'url',
-      type: 'url',
+      title: 'Text',
+      name: 'text',
+      type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
-      title: 'Label',
-      name: 'label',
+      title: 'Icon',
+      name: 'icon',
       type: 'string',
+    },
+    {
+      title: 'Link',
+      name: 'link',
+      type: 'url',
+      description: 'URL to navigate when the button is clicked',
       validation: (Rule) => Rule.required(),
     },
   ],
