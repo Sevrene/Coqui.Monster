@@ -56,9 +56,14 @@ export function Header() {
           maxWidth: '1920px',
         }}
       >
-        <Box position='relative' width='100px' height='100%'>
+        <Box position='relative' width='114px' height='100%'>
           <Link href='/'>
-            <Image src='/images/brand/signature.png' alt='Logo' fill />
+            <Image
+              src='/images/brand/signature.png'
+              alt='Logo'
+              width={114}
+              height={64}
+            />
           </Link>
         </Box>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>

@@ -34,13 +34,13 @@ export default function Home() {
         >
           <Box sx={{ flex: '60%', flexGrow: 1 }}>
             <Box style={{ position: 'relative', paddingBottom: '56.25%' }}>
-              <iframe // TODO: Suggest friends channels when offline
+              <iframe
                 style={{ position: 'absolute', width: '100%', height: '100%' }}
                 title='livestream'
                 src={
                   'https://player.twitch.tv/?channel=' +
                   'coqui' +
-                  '&muted=true&parent=coqui.monster&parent=coqui-monster.netlify.app&parent=localhost'
+                  '&muted=true&parent=coqui.monster&parent=coqui-monster.netlify.app&parent=localhost&parent=potential-space-computing-machine-v5xr6jqpgqfpr54-3000.app.github.dev'
                 }
                 allowFullScreen
               />

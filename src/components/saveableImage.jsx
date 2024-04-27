@@ -49,21 +49,12 @@ export default function SaveableImage({ imageData = {} }) {
 
   return (
     <Box sx={{ position: 'relative' }}>
-      {ctrlDown && (
-        <a
-          href={finalImageData.src}
-          style={{
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-          }}
-        />
-      )}
       <Image
         src={finalImageData.src}
         alt={finalImageData.alt}
         width={finalImageData.width}
         height={finalImageData.height}
+        unoptimized={ctrlDown}
         {...finalImageData}
       />
     </Box>

@@ -28,10 +28,12 @@ function MusicPlayer() {
       audioRef.current.src = currentSong.track;
       audioRef.current.onloadeddata = () => {
         if (playing) {
+          audioRef.current.volume = 0.1;
           audioRef.current.play();
         }
       };
     } else if (playing && audioRef.current) {
+      audioRef.current.volume = 0.1;
       audioRef.current.play();
     } else if (audioRef.current) {
       audioRef.current.pause();

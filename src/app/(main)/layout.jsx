@@ -3,7 +3,9 @@ import { Header } from '@/components/layout/header';
 import { Providers } from '@/components/providers';
 import { constStyles } from '@/styles/constStyles';
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'https://coqui.monster';
+//const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'https://coqui.monster';
+const baseURL =
+  'https://potential-space-computing-machine-v5xr6jqpgqfpr54-3000.app.github.dev';
 const faviconBase = `${baseURL}/images/brand/logo`;
 const description =
   'Coqui Saporana is a frog vtuber who streams on Twitch. She is also a member of the 3AM VTuber group.';

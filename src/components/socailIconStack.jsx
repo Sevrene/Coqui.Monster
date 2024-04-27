@@ -1,4 +1,4 @@
-import SocialIcon from './SocialIcon';
+import SocialIcon from './socialIcon';
 import { Stack } from '@mui/material';
 
 export default function SocialIconStack({ socials, direction = 'row' }) {
