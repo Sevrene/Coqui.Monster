@@ -1,0 +1,126 @@
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from '@mui/material';
+
+import CreditsChip from '../credits/creditsChip';
+import { Mic } from '@mui/icons-material';
+import { voiceActingRoles } from '@/mockData';
+
+/**
+ * Renders the VoiceActing component.
+ * This component displays voice acting roles and a full portfolio link.
+ * It also provides contact information for casting inquiries.
+ *
+ * @returns {JSX.Element} The VoiceActing component.
+ */
+export default function VoiceActing() {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}
+    >
+      <Typography
+        variant='h4'
+        sx={{
+          '@media (max-width:400px)': {
+            fontSize: '1.6rem',
+          },
+          marginBottom: '12px',
+        }}
+      >
+        🔪🐸 VOICE ACTING 🐸🔪
+      </Typography>
+      <Grid container spacing={2} columns={2} maxWidth='80%'>
+        {voiceActingRoles.map((role) => (
+          <Grid item key={role.title} xs={2} md={1}>
+            <CreditsChip
+              link={role.link}
+              LabelComponent={() => (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    overflow: 'hidden',
+                    '&:hover': {
+                      overflow: 'visible',
+                    },
+                  }}
+                >
+                  <ListItemAvatar>
+                    {role.imageData && (
+                      <Avatar
+                        src={role.imageData.src}
+                        alt={role.title}
+                        variant='rounded'
+                      />
+                    )}
+                  </ListItemAvatar>
+                  <ListItemText primary={role.title} secondary={role.role} />
+                </Box>
+              )}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Box sx={{ padding: '16px' }}>
+        <Typography
+          variant='h6'
+          sx={{
+            '@media (max-width:400px)': {
+              fontSize: '1.6rem',
+            },
+            margin: '16px 0',
+          }}
+        >
+          FULL PORTFOLIO
+        </Typography>
+        <Button
+          variant='contained'
+          color='brandPurple'
+          endIcon={<Mic />}
+          href={
+            'https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362'
+          }
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Full Profile
+        </Button>
+      </Box>
+      <Typography
+        variant='h5'
+        sx={{
+          '@media (max-width:400px)': {
+            fontSize: '1.6rem',
+          },
+          marginTop: '64px',
+        }}
+      >
+        Interested in Casting?
+      </Typography>
+      <Typography variant='body1'>
+        Contact{' '}
+        <Box
+          component='a'
+          href='mailto:coquiestions@gmail.com'
+          sx={{
+            color: 'inherit',
+          }}
+        >
+          Coqui
+        </Box>{' '}
+        at the business email below
+      </Typography>
+    </Box>
+  );
+}

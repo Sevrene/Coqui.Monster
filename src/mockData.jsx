@@ -13,7 +13,8 @@ import {
   IconShoppingBag,
 } from '@tabler/icons-react';
 
-import ThreeAmLogo from './components/customSvgComponents';
+import { FolderSharedOutlined } from '@mui/icons-material';
+import ThreeAmLogo from './utils/customSvgComponents';
 import { constStyles } from './styles/constStyles';
 
 export const mainPageBackground = {
@@ -117,57 +118,34 @@ export const threeAmSection = {
   reversed: true,
 };
 
-export const voiceActingSection = {
-  title: '🔪🐸 VOICE ACTING 🐸🔪',
-  body: 'Did you know I also do voice acting? Check out some of the projects I have worked on!',
-};
-
 export const voiceActingRoles = [
   {
     title: 'Urusei Yatsura',
     role: 'Ten',
-    link: 'https://coqui.monster/voice-acting',
+    link: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=25106',
     imageData: {
-      src: '/images/brand/about.png',
-      alt: 'Voice Acting Logo',
-      width: 100,
-      height: 100,
+      src: '/images/voice_roles/ten.png',
+      alt: 'Ten from Urusei Yatsura',
     },
-    buttonProps: { variant: 'contained', color: 'brandPurple' },
   },
   {
     title: 'Re:cycle of the Penguindrum',
     role: 'Purinchu',
-    link: 'https://coqui.monster/voice-acting',
+    link: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=24213',
     imageData: {
-      src: '/images/brand/about.png',
-      alt: 'Voice Acting Logo',
-      width: 100,
-      height: 100,
+      src: '/images/voice_roles/purinchu.png',
+      alt: 'Purinchu from Re:cycle of the Penguindrum',
     },
-    buttonProps: { variant: 'contained', color: 'brandPurple' },
   },
   {
-    title: 'Title 3',
-    link: 'https://coqui.monster/voice-acting',
+    // TODO: Fill out the info here
+    title: 'Oshi no Ko',
+    role: 'Character Name',
+    link: 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=25783',
     imageData: {
-      src: '/images/brand/about.png',
-      alt: 'Voice Acting Logo',
-      width: 100,
-      height: 100,
+      src: '/images/voice_roles/oshi_no_ko.jpg',
+      alt: 'X from Oshi no Ko',
     },
-    buttonProps: { variant: 'contained', color: 'brandPurple' },
-  },
-  {
-    title: 'Title 4',
-    link: 'https://coqui.monster/voice-acting',
-    imageData: {
-      src: '/images/brand/about.png',
-      alt: 'Voice Acting Logo',
-      width: 100,
-      height: 100,
-    },
-    buttonProps: { variant: 'contained', color: 'brandPurple' },
   },
 ];
 
@@ -177,21 +155,27 @@ export const supportSection = [
     link: 'https://store.3am.moe/',
     tooltip: 'Team Merch Store',
     icon: <ThreeAmLogo color='black' />,
-    buttonProps: { variant: 'contained', color: 'brand3AM' },
+    buttonProps: {
+      variant: 'contained',
+      color: 'brand3AM',
+    },
   },
   {
     text: 'UWU Market',
     link: 'https://uwumarket.us/collections/coqui',
     tooltip: 'Merch Collaboration',
     icon: <IconShoppingBag />,
-    buttonProps: { sx: { color: 'black' }, variant: 'contained', color: 'uwu' },
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
   },
   {
     text: 'Throne',
     link: 'https://throne.com/coqui',
     tooltip: 'Direct Support',
     icon: <IconGift />,
-    buttonProps: { variant: 'contained', color: 'throne' },
+    buttonProps: { variant: 'contained', color: 'brandAccent' },
   },
   {
     text: 'Gamer Supps',
@@ -199,9 +183,8 @@ export const supportSection = [
     tooltip: 'Affiliate',
     icon: <IconBabyBottle />,
     buttonProps: {
-      sx: { color: 'black' },
       variant: 'contained',
-      color: 'gamerSupps',
+      color: 'brandAccent',
     },
   },
   {
@@ -210,9 +193,71 @@ export const supportSection = [
     tooltip: 'Affiliate',
     icon: <IconDeviceGamepad2 />,
     buttonProps: {
-      sx: { color: 'black' },
       variant: 'contained',
-      color: 'humble',
+      color: 'brandAccent',
+    },
+  },
+];
+
+export const communitySection = [
+  {
+    text: '3AM Discord',
+    link: 'https://discord.com/invite/3AMParty',
+    tooltip: '3AM Discord',
+    icon: <ThreeAmLogo color='black' />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brand3AM',
+    },
+  },
+  {
+    text: 'South Side Discord',
+    link: 'https://discord.com/invite/TheSouthSide',
+    tooltip: 'South Side Discord',
+    icon: <IconBrandDiscord />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
+  },
+  {
+    text: 'Steam Group',
+    link: 'https://steamcommunity.com/groups/SouthSideBros',
+    tooltip: 'Community Steam Group',
+    icon: <IconBrandSteam />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
+  },
+  {
+    text: 'Visual Novel',
+    link: 'https://rummyandcoqui.itch.io/rummy-and-coqui-valenskinks-day',
+    tooltip: "Valenskins' Day Visual Novel",
+    icon: <IconBook />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
+  },
+  {
+    text: 'Coqui Assets',
+    link: 'https://discord.com/channels/786373342549770260/973817255177629696',
+    tooltip: 'Discord Assets Channel',
+    icon: <IconBrush />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
+  },
+  {
+    text: 'Reference Sheet',
+    link: 'https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA',
+    tooltip: 'Coqui Reference Sheet',
+    icon: <FolderSharedOutlined />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
     },
   },
 ];
@@ -233,31 +278,10 @@ export const socials = [
     renderLocation: ['Footer', 'Header'],
   },
   {
-    name: 'Discord',
-    url: 'https://discord.com/invite/TheSouthSide',
-    icon: <IconBrandDiscord />,
-    iconColor: '#7289DA',
-    renderLocation: ['Footer', 'Header'],
-  },
-  {
     name: 'OnlyFrogs',
     url: 'https://discord.com/invite/TheSouthSide',
     icon: <IconBrandOnlyfans />,
     iconColor: '#00BFFF',
-    renderLocation: ['Header'],
-  },
-  {
-    name: 'Steam Group',
-    url: 'https://steamcommunity.com/groups/SouthSideBros',
-    icon: <IconBrandSteam />,
-    iconColor: '#6290EE',
-    renderLocation: ['Header'],
-  },
-  {
-    name: 'Youtube',
-    url: 'https://www.youtube.com/@C0QUI',
-    icon: <IconBrandYoutube />,
-    iconColor: '#FF0000',
     renderLocation: ['Footer', 'Header'],
   },
   {
@@ -265,7 +289,7 @@ export const socials = [
     url: 'https://www.youtube.com/rummyandcoqui',
     icon: <IconBrandYoutube />,
     iconColor: '#FF0000',
-    renderLocation: ['Header'],
+    renderLocation: ['Footer', 'Header'],
   },
   {
     name: '3AM',
@@ -274,164 +298,257 @@ export const socials = [
     iconColor: '#948DE8', // color follows the white override above, but iconColor is used for the hover effect
     renderLocation: ['Footer', 'Header'],
   },
-  {
-    name: 'Visual Novel',
-    url: 'https://rummyandcoqui.itch.io/rummy-and-coqui-valenskinks-day',
-    icon: <IconBook />,
-    iconColor: '#FF00FF',
-    renderLocation: ['Header'],
-  },
-  {
-    name: 'Assets',
-    url: 'https://discord.com/channels/786373342549770260/973817255177629696',
-    icon: <IconBrush />,
-    iconColor: '#FFD700',
-    renderLocation: ['Header'],
-  },
 ];
 
+// TODO: Put the proper people in Main Credits
 export const mainCredits = [
   {
     link: 'https://twitter.com/tsulala',
-    title: '🎨 Rem 🎨',
-    body: (
-      <>
-        Ma1 Ma2 Ma3 Ma4
-        <br />
-        Ma5 Ma6
-      </>
-    ),
+    title: 'Rem',
+    body: 'Ma',
+    image: '/images/credits_art/Rem.jpg',
   },
   {
     link: 'https://twitter.com/AriyaSusanto',
-    title: '🎨 Pops 🎨',
+    title: 'Pops',
     body: 'ARS',
+    image: '/images/credits_art/ARS.jpg',
   },
   {
     link: 'https://twitter.com/JustBiddy_',
-    title: 'MV',
-    body: 'Vicky',
+    title: 'Vicky',
+    body: 'MV',
+    image: '/images/credits_art/Vicky.jpg',
   },
   {
     link: 'https://twitter.com/king_kriminal',
-    title: 'Logo1 Logo2 Logo3 Logo4',
-    body: 'Krimbo',
+    title: 'Krimbo',
+    body: 'Logo',
+    image: '/images/credits_art/Krimbo.jpg',
   },
 ];
 
 export const musicCredits = [
   {
-    songName: '🎶 OP * BRB Music 🎶',
+    songName: 'The Way of the Coqui',
     artist: 'InfoDrive',
-    track: '/music/resetMan.mp3',
-    songLink: 'https://www.twitch.tv/infodrive',
+    track: '',
+    songLink: '',
     artistSocials: 'https://www.twitch.tv/infodrive',
-    image: 'https://via.placeholder.com/150',
+    image: '/images/song_art/infoDrive_all.png',
   },
   {
-    songName: '🎶 Just chatting song 🎶',
-    artist: 'Lucianus',
-    track: '/music/pyite.mp3',
+    songName: 'Terrorizer',
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: 'Badass',
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: 'Fall In',
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: "Flexin'",
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: 'Froggy Footwork',
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: 'From The Top',
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: 'Bells Of The Frog',
+    artist: 'InfoDrive',
+    track: '',
+    songLink: '',
+    artistSocials: 'https://www.twitch.tv/infodrive',
+    image: '/images/song_art/infoDrive_all.png',
+  },
+  {
+    songName: 'Köngäs - Ocho (feat. Coqui)',
+    artist: 'Köngäs',
+    track: '',
+    songLink: 'https://distrokid.com/hyperfollow/kngs3/ocho-feat-coqui-2',
+    artistSocials: 'https://hyperfollow.com/kongas',
+    image: '/images/song_art/kongas_ocho.jpg',
+  },
+  {
+    songName: 'A Relaxing Army of Frogs',
+    artist: 'CrossingsVT',
+    track: 'aRelaxingArmyOfFrogs_crossingsVT.mp3',
+    songLink: 'https://on.soundcloud.com/tPZnEY8cinvFS87h9',
+    artistSocials: 'https://twitter.com/CrossingsVT',
+    image: '/images/song_art/generic.jpg',
+  },
+  {
+    songName: 'The Nyaa Song',
+    artist: 'Nodens',
+    track: 'theNyaaSong_nodens.mp3',
+    songLink: '',
+    artistSocials: 'https://twitter.com/Nodens64',
+    image: '/images/song_art/generic.jpg',
+  },
+  {
+    songName: 'Licker Store',
+    artist: 'HardNormalMatty',
+    track: 'lickerStore_hardNormalMatty.mp3',
     songLink: '',
     artistSocials: '',
-    image: 'https://via.placeholder.com/150',
+    image: '/images/song_art/matty_lickerStore.jpg',
+  },
+  {
+    songName: 'Delinquent Grace',
+    artist: 'corpse_ch',
+    track: 'delinquentGrace_corpse.mp3',
+    songLink: 'https://www.youtube.com/watch?v=MrrnZsMFxJA',
+    artistSocials: 'https://x.com/corpse_ch',
+    image: '/images/song_art/corpse_delinquentGrace.jpg',
   },
 ];
 
+// TODO: Fill out the details for each credit
 export const miscCredits = [
   {
     link: 'https://twitter.com/Faulerro',
-    title: '🎥 Animations 🎥',
-    body: 'Faulerro',
+    title: 'Faulerro',
+    body: 'Animations',
+    image: '/images/credits_art/Faulerro.jpg',
   },
   {
     link: 'https://twitter.com/OverdriveVT',
-    title: '🎨 Channel Icon 🎨',
-    body: 'Sierra',
+    title: 'Sierra',
+    body: 'Channel Icon',
+    image: '/images/credits_art/Sierra.jpg',
   },
   {
     link: 'https://twitter.com/MuttleyStrike',
-    title: '🎨 ALT MODEL - FROGSUIT 🎨',
-    body: 'MuttleyStrike',
+    title: 'MuttleyStrike',
+    body: 'ALT MODEL - FROGSUIT',
+    image: '/images/credits_art/MuttleyStrike.jpg',
   },
   {
     link: 'https://www.twitch.tv/pumpiino',
-    title: '🎨 ALT MODEL - SEWER WATER 🎨',
-    body: 'Pumpiino',
+    title: 'Pumpiino',
+    body: 'ALT MODEL - SEWER WATER',
+    image: '/images/credits_art/Pumpiino.jpg',
   },
   {
     link: 'https://twitter.com/Inkcurry',
-    title: '🎨 ALT MODEL - FROG PUPPET 🎨',
-    body: 'Inkcurry',
+    title: 'Inkcurry',
+    body: 'ALT MODEL - FROG PUPPET',
+    image: '/images/credits_art/Inkcurry.jpg',
   },
   {
     link: '',
-    title: '🎥 Animated "Now Loading" Screen 🎥',
-    body: 'Suzuya_Cry',
+    title: 'Suzuya_Cry',
+    body: 'Animated "Now Loading" Screen',
+    image: '/images/credits_art/generic.jpg',
   },
   {
     link: 'https://twitter.com/fenef033',
-    title: '🎨 BRB Screen 🎨',
-    body: 'fenef033',
+    title: 'fenef033',
+    body: 'BRB Screen',
+    image: '/images/credits_art/fenef033.jpg',
   },
   {
     link: 'https://www.twitch.tv/pickychannel',
-    title: '🎨 Ending Screen 🎨',
-    body: 'PickyChannel',
+    title: 'PickyChannel',
+    body: 'Ending Screen',
+    image: '/images/credits_art/PickyChannel.jpg',
   },
   {
     link: 'https://twitter.com/flivine',
-    title: '🎨 Channel Points Icon 🎨',
-    body: 'Fliv',
+    title: 'Fliv',
+    body: 'Channel Points Icon',
+    image: '/images/credits_art/Fliv.jpg',
   },
   {
     link: 'https://twitter.com/DiamondRoseArt',
-    title: '🎨 C-Word Pass Icon 🎨',
-    body: 'ADiamondRose',
+    title: 'ADiamondRose',
+    body: 'C-Word Pass Icon',
+    image: '/images/credits_art/ADiamondRose.jpg',
   },
   {
     link: 'https://twitter.com/NotChaott',
-    title: '🎨 Blush Emote 🎨',
-    body: 'NotChaott',
+    title: 'NotChaott',
+    body: 'Blush Emote',
+    image: '/images/credits_art/NotChaott.jpg',
   },
   {
     link: 'https://twitter.com/_VioletSketches',
-    title: '🎤 Follow Alert 🎤',
-    body: 'VioletSketches',
-  },
-  {
-    link: 'https://www.twitch.tv/romavt',
-    title: '🎤 Follow Alert 🎤',
-    body: 'Roma',
-  },
-  {
-    link: 'https://twitter.com/drynapp',
-    title: '🎨 Lobby Winter Art 🎨',
-    body: 'drynapp',
-  },
-  {
-    link: 'https://twitter.com/andouilles',
-    title: '🎨 Halloween Cat Chibi 🎨',
-    body: 'Andouilles',
-  },
-  {
-    link: 'https://ko-fi.com/svnnydraw',
-    title: '🎥 Halloween Witch Loading Screen 🎥',
-    body: 'SynnyDraw',
-  },
-  {
-    link: 'https://skeb.jp/@rion04170419',
-    title: '🎨 Twitch Banner 🎨',
-    body: 'rion04170419',
-  },
-  {
-    link: 'https://twitter.com/Shenrix_',
-    title: '🎨 Channel Emotes 🎨',
-    body: 'Shenrix',
+    title: 'VioletSketches',
+    body: 'Follow Alert',
+    image: '/images/credits_art/VioletSketches.jpg',
   },
   {
     link: '',
-    title: '🎨 Channel Emotes 🎨',
-    body: 'Migu',
+    title: 'Roma',
+    body: 'Follow Alert',
+    image: '/images/credits_art/generic.jpg',
+  },
+  {
+    link: 'https://twitter.com/drynapp',
+    title: 'drynapp',
+    body: 'Lobby Winter Art',
+    image: '/images/credits_art/drynapp.jpg',
+  },
+  {
+    link: 'https://twitter.com/andouilles',
+    title: 'Andouilles',
+    body: 'Halloween Cat Chibi',
+    image: '/images/credits_art/Andouilles.jpg',
+  },
+  {
+    link: 'https://ko-fi.com/svnnydraw',
+    title: 'SynnyDraw',
+    body: 'Halloween Witch Loading Screen',
+    image: '/images/credits_art/SynnyDraw.jpg',
+  },
+  {
+    link: 'https://skeb.jp/@rion04170419',
+    title: 'rion04170419',
+    body: 'Twitch Banner',
+    image: '/images/credits_art/rion04170419.jpg',
+  },
+  {
+    link: 'https://twitter.com/Shenrix_',
+    title: 'Shenrix',
+    body: 'Channel Emotes',
+    image: '/images/credits_art/Shenrix.jpg',
+  },
+  {
+    link: '',
+    title: 'Migu',
+    body: 'Channel Emotes ',
+    image: '/images/credits_art/generic.jpg',
   },
 ];

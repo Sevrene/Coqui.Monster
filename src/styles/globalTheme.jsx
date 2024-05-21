@@ -27,24 +27,9 @@ const globalTheme = createTheme({
         main: constStyles.brand3AM, // 3AM Purple
       },
     }),
-    gamerSupps: palette.augmentColor({
+    brandAccent: palette.augmentColor({
       color: {
-        main: constStyles.gamerSupps, // GamerSupps Purple
-      },
-    }),
-    throne: palette.augmentColor({
-      color: {
-        main: constStyles.throne, // Throne pink
-      },
-    }),
-    humble: palette.augmentColor({
-      color: {
-        main: constStyles.humble, // Humble Red
-      },
-    }),
-    uwu: palette.augmentColor({
-      color: {
-        main: constStyles.uwu, //Uwu Pink
+        main: constStyles.brandAccent, // Accent
       },
     }),
   },

@@ -1,39 +1,34 @@
-'use client';
-
 import {
   Box,
   Button,
-  IconButton,
+  Chip,
   Link,
-  Snackbar,
+  Stack,
   Tooltip,
   Typography,
 } from '@mui/material';
 import { IconCopy, IconMail } from '@tabler/icons-react';
 
+import { CopyButton } from '../socials/copyButton';
 import DevHandle from './devHandle';
-import SocialIconStack from '../socailIconStack';
-import { alpha } from '@mui/material';
+import { InfoOutlined } from '@mui/icons-material';
+import SocialIconStack from '../socials/socailIconStack';
+import { constStyles } from '@/styles/constStyles';
 import { footerBackground } from '@/mockData';
 import { formatBackgroundStyle } from '@/utils/styleUtils';
 import { socials } from '@/mockData';
-import { useState } from 'react';
 
+/**
+ * Renders the footer component.
+ * @returns {JSX.Element} The rendered footer component.
+ */
 export function Footer() {
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <Box
       component='footer'
       sx={{
+        display: 'flex',
+        justifyContent: 'center',
         color: 'white',
         background: formatBackgroundStyle(footerBackground),
         padding: '8px 0',
@@ -42,88 +37,141 @@ export function Footer() {
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          width: '80%',
-          justifyContent: 'space-between',
-          margin: '0 auto',
+          flexGrow: 1,
+          maxWidth: '1920px',
         }}
       >
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography
-            sx={{
-              fontSize: 'lg',
-              fontWeight: 'bold',
-              marginBottom: '8px',
-            }}
-          >
-            Socials
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <SocialIconStack
-              socials={socials.filter((social) =>
-                social.renderLocation.includes('Footer')
-              )}
-            />
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={{ xs: 4, md: 0 }}
+          sx={{
+            justifyContent: 'space-evenly',
+          }}
+        >
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography
+              sx={{
+                fontSize: 'lg',
+                fontWeight: 'bold',
+                marginBottom: '8px',
+              }}
+            >
+              Socials
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <SocialIconStack
+                socials={socials.filter((social) =>
+                  social.renderLocation.includes('Footer')
+                )}
+              />
+            </Box>
           </Box>
-        </Box>
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography
-            sx={{
-              display: 'inline-flex',
-              fontSize: 'lg',
-              fontWeight: 'bold',
-              marginBottom: '8px',
-            }}
-          >
-            Contact
-            <IconMail style={{ marginLeft: '6px' }} />
-          </Typography>
-          <Typography>
-            <Tooltip title='Business Inquiries' arrow>
-              <Button
-                aria-label='Email coquiestions@gmail.com'
-                component={Link}
-                href={'mailto:coquiestions@gmail.com'}
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    background: alpha('#948DE8', 0.25),
-                  },
-                }}
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography
+              sx={{
+                fontSize: 'lg',
+                fontWeight: 'bold',
+                marginBottom: '8px',
+              }}
+            >
+              Experimental{' '}
+              <Tooltip
+                title={
+                  <Typography variant='body2'>
+                    These features are experimental and may not work as intended
+                    and may be removed at any time
+                  </Typography>
+                }
+                placement='top'
               >
-                coquiestions@gmail.com
-              </Button>
-            </Tooltip>
-            <Tooltip title='Copy to Clipboard' arrow>
-              <IconButton
-                aria-label='Copy contact email to clipboard'
-                onClick={handleClick}
-                sx={{
-                  '&:hover': {
-                    backgroundColor: 'transparent',
-                  },
-                }}
+                <InfoOutlined fontSize='small' />
+              </Tooltip>
+            </Typography>
+            <Stack
+              direction='row'
+              spacing={1}
+              flexWrap='wrap'
+              useFlexGap
+              sx={{
+                justifyContent: 'center',
+              }}
+            >
+              <Tooltip
+                title={
+                  <Typography variant='body2'>
+                    Try holding `ctrl` before right clicking on any image to
+                    access the original, non webp version
+                  </Typography>
+                }
+                arrow
               >
-                <Snackbar
-                  open={open}
-                  autoHideDuration={1000}
-                  onClose={handleClose}
-                  message='Copied to clipboard!'
-                />
-                <IconCopy />
-              </IconButton>
-            </Tooltip>
-          </Typography>
-        </Box>
+                <Chip label='WebP Avoider' />
+              </Tooltip>
+              <Tooltip
+                title={
+                  <Typography variant='body2'>
+                    Certain key sequences can be used to access hidden features
+                  </Typography>
+                }
+                arrow
+              >
+                <Chip label='Coded Comedy' />
+              </Tooltip>
+              <Tooltip
+                title={
+                  <Typography variant='body2'>
+                    Preview listen to music from the music credits tab
+                  </Typography>
+                }
+                arrow
+              >
+                <Chip label='Music Player' />
+              </Tooltip>
+            </Stack>
+          </Box>
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography
+              sx={{
+                display: 'inline-flex',
+                fontSize: 'lg',
+                fontWeight: 'bold',
+                marginBottom: '8px',
+              }}
+            >
+              Contact
+              <IconMail style={{ marginLeft: '6px' }} />
+            </Typography>
+            <Typography sx={{ whiteSpace: 'nowrap' }}>
+              <Tooltip title='Business Inquiries' arrow>
+                <Button
+                  aria-label='Email coquiestions@gmail.com'
+                  component={Link}
+                  href={'mailto:coquiestions@gmail.com'}
+                  sx={{
+                    color: 'white',
+                    textDecoration: 'none',
+                    '&:hover': {
+                      background: `${constStyles.brandAccent}50`,
+                    },
+                  }}
+                >
+                  coquiestions@gmail.com
+                </Button>
+              </Tooltip>
+              <Tooltip title='Copy to Clipboard' arrow placement='top'>
+                {' ' /* Workaround for tooltip not showing */}
+                <CopyButton icon={<IconCopy />} />
+              </Tooltip>
+            </Typography>
+          </Box>
+        </Stack>
+        <DevHandle />
       </Box>
-      <DevHandle />
     </Box>
   );
 }

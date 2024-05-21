@@ -1,6 +1,6 @@
 # Coqui.Monster
 
-Coqui.Monster is primarily a React app with custom components utilizing the [Material UI Library](https://mui.com/material-ui/) and built on the [NextJS Framework](https://nextjs.org/) and managed by [Sanity.io](https://www.sanity.io/).
+Coqui.Monster is primarily a React app with custom components utilizing the [Material UI Library](https://mui.com/material-ui/) and built on the [NextJS Framework](https://nextjs.org/) and (will be) managed by [Sanity.io](https://www.sanity.io/).
 
 All code within this project are intended for use by [Coqui](https://www.twitch.tv/coqui) for her website [Coqui.Monster](https://coqui.monster/)
 
@@ -35,7 +35,7 @@ You will be prompted with a popup to open the app within your browser. If you ar
 
 ## License
 
-Coqui.Monster is licensed under the MIT License, which means that you are free to use, modify, and distribute the code for personal or commercial purposes.
+Coqui.Monster is licensed under the MIT License except where otherwise noted. See the [LICENSE](/LICENSE.md) file for more information and/or the respective license files in the directories of the project.
 
 ## Submitting Contributions
 

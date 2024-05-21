@@ -1,5 +1,9 @@
 import { Box, Typography } from '@mui/material';
 
+/**
+ * Renders the developer handle component.
+ * @returns {JSX.Element} The rendered developer handle component.
+ */
 export default function DevHandle() {
   return (
     <Typography

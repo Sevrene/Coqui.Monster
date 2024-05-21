@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 
-import SaveableImage from './saveableImage';
+import SaveableImage from './experimental/saveableImage';
 
 /**
  * Renders a content section with a title, body, and optional image.
@@ -31,7 +31,7 @@ export default function ContentSection({
         align='center'
         sx={{
           '@media (max-width:400px)': {
-            fontSize: '1.9rem',
+            fontSize: '1.6rem',
           },
         }}
       >
@@ -42,7 +42,12 @@ export default function ContentSection({
         sx={{ width: '80%', alignItems: 'center' }}
       >
         {Object.keys(imageData).length > 0 && (
-          <SaveableImage imageData={imageData} />
+          <SaveableImage
+            src={imageData.src}
+            alt={imageData.alt}
+            width={imageData.width}
+            height={imageData.height}
+          />
         )}
         <Typography variant='body1'>{body}</Typography>
       </Stack>

@@ -1,14 +1,19 @@
 import { Box, Divider, Stack } from '@mui/material';
-import { aboutSection, threeAmSection, voiceActingSection } from '@/mockData';
+import { aboutSection, threeAmSection } from '@/mockData';
 
-import ComedyWrapper from '@/components/comedyWrapper';
+import ComedyWrapper from '@/components/comedy/comedyWrapper';
+import CommunitySection from '@/components/community/communitySection';
 import ContentSection from '@/components/contentSection';
-import Credits from '@/components/credits';
-import MusicDrawer from '@/components/musicDrawer';
-import MusicPlayer from '@/components/musicPlayer';
-import SupportSection from '@/components/supportSection';
-import VoiceActingSection from '@/components/voiceActingSection';
+import Credits from '@/components/credits/credits';
+import MusicPlayer from '@/components/credits/music/musicPlayer';
+import StreamViewer from '@/components/stream/streamViewer';
+import SupportSection from '@/components/support/supportSection';
+import VoiceActing from '@/components/voice_acting/voiceActing';
 
+/**
+ * Renders the Home page component.
+ * @returns {JSX.Element} The rendered Home component.
+ */
 export default function Home() {
   return (
     <main
@@ -16,7 +21,7 @@ export default function Home() {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 1,
-        marginTop: '64px',
+        marginTop: '96px',
         alignItems: 'center',
       }}
     >
@@ -26,65 +31,58 @@ export default function Home() {
           color: 'white',
         }}
       >
-        <Box
+        <Stack
+          direction={{ xs: 'column', lg: 'row' }}
+          spacing={{ xs: 4, lg: 0 }}
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'column', lg: 'row' },
+            padding: '16px',
           }}
         >
-          <Box sx={{ flex: '60%', flexGrow: 1 }}>
-            <Box style={{ position: 'relative', paddingBottom: '56.25%' }}>
-              <iframe
-                style={{ position: 'absolute', width: '100%', height: '100%' }}
-                title='livestream'
-                src={
-                  'https://player.twitch.tv/?channel=' +
-                  'coqui' +
-                  '&muted=true&parent=coqui.monster&parent=coqui-monster.netlify.app&parent=localhost&parent=potential-space-computing-machine-v5xr6jqpgqfpr54-3000.app.github.dev'
-                }
-                allowFullScreen
-              />
-            </Box>
-            <Box display='flex' justifyContent='center' marginTop='24px'>
-              <SupportSection />
-            </Box>
+          <Box sx={{ flex: '60%' }}>
+            <StreamViewer />
           </Box>
           <Stack
+            spacing={{ xs: 4, lg: 2 }}
             sx={{
               flex: '40%',
-              padding: '16px',
-              alignItems: 'center',
-              justifyContent: 'space-around',
+              justifyContent: 'space-evenly',
             }}
           >
             <ContentSection {...aboutSection} />
             <ContentSection {...threeAmSection} />
           </Stack>
-        </Box>
-        <Divider sx={{ margin: '32px 0' }} />
-        <Box
+        </Stack>
+        <Stack
+          direction={{ xs: 'column', lg: 'row' }}
+          spacing={{ xs: 2, lg: 0 }}
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'column', lg: 'row' },
+            padding: '16px',
           }}
         >
-          <Box sx={{ flex: '60%', flexGrow: 1, marginBottom: '32px' }}>
+          <Box sx={{ flex: 1 }}>
+            <SupportSection />
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <CommunitySection />
+          </Box>
+        </Stack>
+        <Divider sx={{ margin: '32px 0' }} />
+        <Stack
+          direction={{ xs: 'column', lg: 'row' }}
+          spacing={{ xs: 2, lg: 0 }}
+          sx={{
+            padding: '16px',
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
             <Credits />
           </Box>
-          <Box
-            sx={{
-              flex: '40%',
-              margin: '16px',
-            }}
-          >
-            <VoiceActingSection />
+          <Box sx={{ flex: 1 }}>
+            <VoiceActing />
           </Box>
-        </Box>
+        </Stack>
       </Box>
-      <Box>
-        <MusicDrawer />
-        <MusicPlayer />
-      </Box>
+      <MusicPlayer />
       <ComedyWrapper />
     </main>
   );

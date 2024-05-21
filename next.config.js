@@ -40,4 +40,51 @@ module.exports = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/ref',
+        destination:
+          'https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA',
+        permanent: true,
+      },
+      {
+        source: '/voice',
+        destination:
+          'https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362',
+        permanent: true,
+      },
+      {
+        source: '/questions',
+        destination: 'https://marshmallow-qa.com/coqui_monster',
+        permanent: true,
+      },
+      {
+        source: '/uwu',
+        destination: 'https://uwumarket.us/collections/coqui',
+        permanent: true,
+      },
+      {
+        source: '/throne',
+        destination: 'https://throne.com/coqui',
+        permanent: true,
+      },
+      {
+        source: '/supps',
+        destination: 'https://gamersupps.gg/?ref=COQUI',
+        permanent: true,
+      },
+      {
+        source: '/humble',
+        destination:
+          'https://www.humblebundle.com/?partner=coqui&charity=78175',
+        permanent: true,
+      },
+      {
+        source: '/free-cword-pass',
+        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        permanent: true,
+      },
+    ];
+  },
 };
