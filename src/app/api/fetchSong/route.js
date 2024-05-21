@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
@@ -9,7 +7,7 @@ import path from 'path';
  * @param {Request} nextReq - The incoming request object.
  * @returns {Response} - The response object containing the song file or an error message.
  */
-export async function GET(nextReq) {
+export function GET(nextReq) {
   const referer = nextReq.headers.get('Referer');
 
   if (!referer || !referer.startsWith(process.env.NEXT_PUBLIC_BASE_URL)) {
