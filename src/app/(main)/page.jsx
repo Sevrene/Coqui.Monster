@@ -17,6 +17,7 @@ import VoiceActing from '@/components/voice_acting/voiceActing';
 export default function Home() {
   return (
     <main
+      id='main'
       style={{
         display: 'flex',
         flexDirection: 'column',

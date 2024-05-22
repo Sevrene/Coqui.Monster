@@ -83,7 +83,7 @@ module.exports = {
       {
         source: '/free-cword-pass',
         destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        permanent: false, // TODO: See if setting this to false removes the discord preview
+        permanent: true,
       },
     ];
   },

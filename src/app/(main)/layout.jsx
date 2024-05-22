@@ -13,20 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <body>
       <noscript>You need to enable JavaScript to run this app.</noscript>
-      <a
-        href='#main'
-        style={{
-          position: 'absolute',
-          top: '-40px',
-          left: 0,
-          width: '1px',
-          height: '1px',
-          overflow: 'hidden',
-          clip: 'rect(0, 0, 0, 0)',
-        }}
-      >
-        Skip to main content
-      </a>
+      <a href='#main'>Skip to main content</a>
       <Providers>
         <Header />
         {children}

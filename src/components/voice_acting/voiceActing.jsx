@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 import CreditsChip from '../credits/creditsChip';
+import Image from 'next/image';
 import { Mic } from '@mui/icons-material';
 import { voiceActingRoles } from '@/mockData';
 
@@ -60,10 +61,18 @@ export default function VoiceActing() {
                   <ListItemAvatar>
                     {role.imageData && (
                       <Avatar
-                        src={role.imageData.src}
-                        alt={role.title}
                         variant='rounded'
-                      />
+                        sx={{
+                          background: 'transparent',
+                        }}
+                      >
+                        <Image
+                          src={role.imageData.src}
+                          alt={role.title}
+                          width='40'
+                          height='40'
+                        />
+                      </Avatar>
                     )}
                   </ListItemAvatar>
                   <ListItemText
@@ -84,7 +93,7 @@ export default function VoiceActing() {
       </Grid>
       <Box sx={{ padding: '16px' }}>
         <Typography
-          variant='h6'
+          variant='h5'
           sx={{
             '@media (max-width:400px)': {
               fontSize: '1.6rem',

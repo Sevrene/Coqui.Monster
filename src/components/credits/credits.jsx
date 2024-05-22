@@ -78,7 +78,7 @@ export default function Credits() {
           ))}
           <Grid item xs={2} md={1}>
             <Typography
-              variant='h6'
+              variant='h5'
               sx={{
                 '@media (max-width:400px)': {
                   fontSize: '1.6rem',
@@ -104,7 +104,7 @@ export default function Credits() {
           </Grid>
           <Grid item xs={2} md={1}>
             <Typography
-              variant='h6'
+              variant='h5'
               sx={{
                 '@media (max-width:400px)': {
                   fontSize: '1.6rem',
