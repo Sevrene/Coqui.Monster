@@ -18,6 +18,9 @@ export default function ComedyWrapper() {
     setIsOpen(true);
   };
 
+  // Hello there! I see you're looking at my code.
+  // I hope you're having a good day! 😄
+  // Here's a little secret for you:
   useComedy('comedy', handleComedy);
 
   return (

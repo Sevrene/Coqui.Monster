@@ -42,41 +42,38 @@ export default function Credits() {
         </Typography>
         <Grid container spacing={2} columns={2} maxWidth='80%'>
           {mainCredits.map((credit) => (
-            <Grid item key={credit.title} xs={2} md={1}>
-              <CreditsChip
-                link={credit.link}
-                LabelComponent={() => (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <ListItemAvatar>
-                      {credit.image && (
-                        <Avatar alt={credit.title} src={credit.image} />
-                      )}
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={credit.title}
-                      secondary={credit.body}
-                    />
-                    <Tooltip title={'Artist Socials'}>
-                      <Button
-                        disabled={!credit.link}
-                        endIcon={<RecentActors />}
-                        sx={{
-                          borderRadius: 2,
-                          color: 'brandYellow.main',
-                        }}
-                      >
-                        {credit.link ? 'Artist' : 'No Artist Link'}
-                      </Button>
-                    </Tooltip>
-                  </Box>
-                )}
-              />
+            <Grid item key={credit.title} xs={2} sm={1}>
+              <CreditsChip link={credit.link}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <ListItemAvatar>
+                    {credit.image && (
+                      <Avatar alt={credit.title} src={credit.image} />
+                    )}
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={credit.title}
+                    secondary={credit.body}
+                  />
+                  <Tooltip title={'Artist Socials'}>
+                    <Button
+                      disabled={!credit.link}
+                      endIcon={<RecentActors />}
+                      sx={{
+                        borderRadius: 2,
+                        color: 'brandYellow.main',
+                      }}
+                    >
+                      {credit.link ? 'Artist' : 'No Artist Link'}
+                    </Button>
+                  </Tooltip>
+                </Box>
+              </CreditsChip>
             </Grid>
           ))}
           <Grid item xs={2} md={1}>

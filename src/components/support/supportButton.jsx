@@ -19,7 +19,7 @@ export default function SupportButton({
   buttonProps,
 }) {
   return (
-    <Tooltip title={tooltip} arrow>
+    <Tooltip title={tooltip} arrow placement='top'>
       <Button
         {...buttonProps}
         startIcon={icon}

@@ -115,12 +115,13 @@ export function Footer() {
               <Tooltip
                 title={
                   <Typography variant='body2'>
-                    Certain key sequences can be used to access hidden features
+                    Certain key sequences can be pressed to access hidden
+                    features
                   </Typography>
                 }
                 arrow
               >
-                <Chip label='Coded Comedy' />
+                <Chip label='Hidden Comedy' />
               </Tooltip>
               <Tooltip
                 title={

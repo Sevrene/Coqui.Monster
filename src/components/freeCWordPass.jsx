@@ -6,30 +6,27 @@ export function FreeCWordPass() {
   return (
     <Box
       sx={{
-        position: 'absolute',
-        right: '30%',
-        top: '-70%',
-        transition: 'top 0.3s ease-in-out',
+        position: 'sticky',
+        transform: 'translateX(100px) translateY(-150%)',
+        transition: 'transform 0.3s ease-in-out',
         '&:hover': {
-          top: '0%',
+          transform: 'translateX(100px) translateY(0)',
         },
       }}
     >
-      <Tooltip title='Free C Word Pass'>
-        <a href='/free-cword-pass'>
-          <Image
-            src='/images/brand/cute_pass.png'
-            alt='Logo'
-            width={64}
-            height={64}
-            style={{
-              position: 'absolute',
+      <a href='/free-cword-pass'>
+        <Image
+          src='/images/brand/cute_pass.png'
+          alt='Logo'
+          width={64}
+          height={64}
+          style={{
+            position: 'absolute',
 
-              cursor: 'pointer',
-            }}
-          />
-        </a>
-      </Tooltip>
+            cursor: 'pointer',
+          }}
+        />
+      </a>
     </Box>
   );
 }

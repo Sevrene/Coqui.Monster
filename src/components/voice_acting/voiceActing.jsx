@@ -5,6 +5,7 @@ import {
   Grid,
   ListItemAvatar,
   ListItemText,
+  Tooltip,
   Typography,
 } from '@mui/material';
 
@@ -42,18 +43,18 @@ export default function VoiceActing() {
       </Typography>
       <Grid container spacing={2} columns={2} maxWidth='80%'>
         {voiceActingRoles.map((role) => (
-          <Grid item key={role.title} xs={2} md={1}>
-            <CreditsChip
-              link={role.link}
-              LabelComponent={() => (
+          <Tooltip
+            key={role.title}
+            title={<Typography>{role.title}</Typography>}
+            arrow
+            placement='top'
+          >
+            <Grid item xs={2} sm={1}>
+              <CreditsChip link={role.link}>
                 <Box
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    overflow: 'hidden',
-                    '&:hover': {
-                      overflow: 'visible',
-                    },
                   }}
                 >
                   <ListItemAvatar>
@@ -65,11 +66,20 @@ export default function VoiceActing() {
                       />
                     )}
                   </ListItemAvatar>
-                  <ListItemText primary={role.title} secondary={role.role} />
+                  <ListItemText
+                    primary={role.title}
+                    secondary={role.role}
+                    primaryTypographyProps={{
+                      sx: {
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      },
+                    }}
+                  />
                 </Box>
-              )}
-            />
-          </Grid>
+              </CreditsChip>
+            </Grid>
+          </Tooltip>
         ))}
       </Grid>
       <Box sx={{ padding: '16px' }}>

@@ -32,7 +32,11 @@ export default function CommunitySection() {
         justifyContent='center'
         sx={{
           '& > *': {
-            flexBasis: { xs: 'calc(100% / 2)', md: 'calc(100% / 4)' },
+            flexBasis: {
+              xs: 'calc(100% / 1.5)',
+              sm: 'calc(100% / 2.5)',
+              md: 'calc(100% / 3.5)',
+            },
           },
         }}
       >

@@ -4,6 +4,12 @@ Coqui.Monster is primarily a React app with custom components utilizing the [Mat
 
 All code within this project are intended for use by [Coqui](https://www.twitch.tv/coqui) for her website [Coqui.Monster](https://coqui.monster/)
 
+## Hosting
+
+Coqui.Monster is currently hosted on Netlify and is built and deployed through GitHub Actions.
+The project will hopefully be moved to [Cloudflare Pages](https://pages.cloudflare.com/) in the future for better performance and to take advantage of the unlimited bandwidth.
+This is dependent on whether or not the project can be made to work with server-side rendering on Cloudflare.
+
 ## Running Locally
 
 You will need to have Node.js and npm installed on your machine.

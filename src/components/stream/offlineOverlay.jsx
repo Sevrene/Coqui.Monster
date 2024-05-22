@@ -72,7 +72,7 @@ export default function OfflineOverlay() {
           }}
           onMouseEnter={() => setShowWaitImage(true)}
           onMouseLeave={() => setShowWaitImage(false)}
-          onClick={() => setShowWaitImage(!showSchedule)}
+          onClick={() => setShowWaitImage(!showWaitImage)}
         >
           While You Wait
         </Button>
@@ -103,8 +103,8 @@ export default function OfflineOverlay() {
         {showWaitImage && (
           <Image
             src='/gifs/supercracksmaller.gif'
-            alt='Twitter Schedule'
-            unoptimized
+            alt='While You Wait'
+            // unoptimized // Somehow setting unoptimized causes the mouse enter/leave to ony function on every other hover (And prevents the onLoad from working more than once)
             width='1920'
             height='1080'
             style={{

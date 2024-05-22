@@ -5,9 +5,6 @@ const description =
   'Coqui Saporana is a frog vtuber who streams on Twitch. She is also a member of the 3AM VTuber group.';
 const themeColor = constStyles.brandPurple;
 
-// TODO: Fix the openGraph so that it shows for all pages (Even 404?)
-//  Currently prevents openGraph from displaying when pasting link with / at end vs without
-
 /**
  * Metadata object containing information about the application.
  * @typedef {Object} Metadata

@@ -8,7 +8,7 @@ import { Chip } from '@mui/material';
  * @param {React.Component} props.LabelComponent - The component to render as the label for the chip.
  * @returns {React.Component} The rendered CreditsChip component.
  */
-export default function CreditsChip({ link, LabelComponent }) {
+export default function CreditsChip({ link, children }) {
   return (
     <a
       href={link}
@@ -18,15 +18,17 @@ export default function CreditsChip({ link, LabelComponent }) {
     >
       <Chip
         sx={{
-          height: 'auto',
+          height: '56px', // TODO: This magic number is kind of janky. Setting to auto causes layout shift issues on hover though. Should see if I can get this to grow height in place instead of shifting everything down.
           width: '100%',
           '& .MuiChip-label': {
-            width: '100%',
-            overflow: 'visible',
+            width: { xs: '100%', xl: '75%' },
+          },
+          '&:hover .MuiListItemText-primary': {
+            whiteSpace: 'normal',
           },
         }}
         clickable
-        label={<LabelComponent />}
+        label={children}
       />
     </a>
   );

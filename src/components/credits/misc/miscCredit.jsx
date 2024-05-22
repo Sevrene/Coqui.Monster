@@ -41,12 +41,11 @@ export default function MiscCredit({ credit }) {
           {credit.image && <Avatar alt={credit.title} src={credit.image} />}
         </ListItemAvatar>
         <ListItemText primary={credit.title} secondary={credit.body} />
-        <Tooltip
-          title='Additional details go here if subtitles cant easily describe the credit in a short blurb'
-          placement='left'
-        >
-          <InfoOutlined />
-        </Tooltip>
+        {credit.details && (
+          <Tooltip title={credit.details} placement='left'>
+            <InfoOutlined />
+          </Tooltip>
+        )}
       </Box>
       <Tooltip title={'Artist Socials'}>
         <Button

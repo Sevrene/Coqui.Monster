@@ -1,4 +1,4 @@
-// TODO: Move this to a utility function once subscribed to the event
+// TODO: Properly make this a webhook subscriber
 
 import { NextResponse } from 'next/server';
 
