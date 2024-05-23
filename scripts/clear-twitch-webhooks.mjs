@@ -6,6 +6,10 @@ dotenv.config({ path: '.env.development.local' });
 const clientId = process.env.TWITCH_CLIENT_ID;
 const clientSecret = process.env.TWITCH_CLIENT_SECRET;
 
+/**
+ * Retrieves the access token from Twitch API using client credentials.
+ * @returns {Promise<string>} The access token.
+ */
 const getAccessToken = async () => {
   const response = await fetch('https://id.twitch.tv/oauth2/token', {
     method: 'POST',
@@ -20,6 +24,11 @@ const getAccessToken = async () => {
   return data.access_token;
 };
 
+/**
+ * Fetches the subscriptions from the Twitch API.
+ * @param {string} accessToken - The access token for authentication.
+ * @returns {Promise<Object>} - A promise that resolves to the fetched data.
+ */
 const checkSubscriptions = async (accessToken) => {
   const response = await fetch(
     'https://api.twitch.tv/helix/eventsub/subscriptions',
@@ -37,6 +46,10 @@ const checkSubscriptions = async (accessToken) => {
   return data;
 };
 
+/**
+ * Clears all Twitch webhooks subscriptions.
+ * @returns {Promise<void>} A promise that resolves when all webhooks subscriptions are cleared.
+ */
 const clearWebhooks = async () => {
   try {
     const accessToken = await getAccessToken();

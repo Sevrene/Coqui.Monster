@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev && npm run register-twitch-webhook",
+    "dev": "next dev",
     "build": "next build && npm run register-twitch-webhook",
     "start": "next start && npm run register-twitch-webhook",
     "lint": "next lint",

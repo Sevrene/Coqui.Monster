@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 
-import SaveableImage from './experimental/saveableImage';
+import Image from 'next/image';
 
 /**
  * Renders a content section with a title, body, and optional image.
@@ -42,7 +42,7 @@ export default function ContentSection({
         sx={{ width: '80%', alignItems: 'center' }}
       >
         {Object.keys(imageData).length > 0 && (
-          <SaveableImage
+          <Image
             src={imageData.src}
             alt={imageData.alt}
             width={imageData.width}

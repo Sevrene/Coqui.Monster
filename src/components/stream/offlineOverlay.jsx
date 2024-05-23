@@ -1,9 +1,9 @@
 'use client';
 
+import { Button, CircularProgress } from '@mui/material';
 import { Diamond, Today } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 
-import { Button } from '@mui/material';
 import Image from 'next/image';
 
 /**
@@ -12,9 +12,15 @@ import Image from 'next/image';
  * @returns {JSX.Element} The OfflineOverlay component.
  */
 export default function OfflineOverlay() {
-  const [liveStatus, setLiveStatus] = useState(false);
-  const [showSchedule, setShowSchedule] = useState(false);
-  const [showWaitImage, setShowWaitImage] = useState(false);
+  const [liveStatus, setLiveStatus] = useState(null);
+  const [scheduleState, setScheduleState] = useState({
+    show: false,
+    loading: false,
+  });
+  const [waitImageState, setWaitImageState] = useState({
+    show: false,
+    loading: false,
+  });
 
   /**
    * Fetches the live status from the server and updates the liveStatus state.
@@ -30,7 +36,7 @@ export default function OfflineOverlay() {
     checkLiveStatus();
   }, []);
 
-  if (liveStatus) {
+  if (liveStatus === null || liveStatus) {
     return null;
   } else {
     return (
@@ -39,7 +45,9 @@ export default function OfflineOverlay() {
         <Button
           variant='contained'
           color='primary'
-          endIcon={<Today />}
+          endIcon={
+            scheduleState.loading ? <CircularProgress size={20} /> : <Today />
+          }
           sx={{
             position: 'absolute',
             top: '16px',
@@ -49,9 +57,14 @@ export default function OfflineOverlay() {
             borderRadius: '4px',
             color: 'black',
           }}
-          onMouseEnter={() => setShowSchedule(true)}
-          onMouseLeave={() => setShowSchedule(false)}
-          onClick={() => setShowSchedule(!showSchedule)}
+          onMouseEnter={() => setScheduleState({ show: true, loading: true })}
+          onMouseLeave={() => setScheduleState({ show: false })}
+          onClick={() =>
+            setScheduleState((prevState) => ({
+              show: !prevState.show,
+              loading: !prevState.loading,
+            }))
+          }
         >
           Twitter Schedule
         </Button>
@@ -60,7 +73,13 @@ export default function OfflineOverlay() {
         <Button
           variant='contained'
           color='primary'
-          endIcon={<Diamond />}
+          endIcon={
+            waitImageState.loading ? (
+              <CircularProgress size={20} />
+            ) : (
+              <Diamond />
+            )
+          }
           sx={{
             position: 'absolute',
             bottom: '16px',
@@ -70,15 +89,20 @@ export default function OfflineOverlay() {
             borderRadius: '4px',
             color: 'black',
           }}
-          onMouseEnter={() => setShowWaitImage(true)}
-          onMouseLeave={() => setShowWaitImage(false)}
-          onClick={() => setShowWaitImage(!showWaitImage)}
+          onMouseEnter={() => setWaitImageState({ show: true, loading: true })}
+          onMouseLeave={() => setWaitImageState({ show: false })}
+          onClick={() =>
+            setWaitImageState((prevState) => ({
+              show: !prevState.show,
+              loading: !prevState.loading,
+            }))
+          }
         >
           While You Wait
         </Button>
 
         {/* Image for Twitter Schedule */}
-        {showSchedule && (
+        {scheduleState.show && (
           <Image
             src='/images/twitter_schedule.jpg'
             alt='Twitter Schedule'
@@ -95,12 +119,13 @@ export default function OfflineOverlay() {
             onLoad={(e) => {
               e.target.style.width = '80%';
               e.target.style.height = '80%';
+              setScheduleState({ show: true, loading: false });
             }}
           />
         )}
 
         {/* Image for While You Wait */}
-        {showWaitImage && (
+        {waitImageState.show && (
           <Image
             src='/gifs/supercracksmaller.gif'
             alt='While You Wait'
@@ -118,6 +143,7 @@ export default function OfflineOverlay() {
             onLoad={(e) => {
               e.target.style.width = '80%';
               e.target.style.height = '80%';
+              setWaitImageState({ show: true, loading: false });
             }}
           />
         )}

@@ -10,6 +10,13 @@ export const cache = {
   lastUpdate: null,
 };
 
+/**
+ * Verifies the Twitch signature of a webhook request.
+ * @param {string} body - The body of the webhook request.
+ * @param {Headers} headers - The headers of the webhook request.
+ * @param {string} secret - The secret used to generate the signature.
+ * @returns {Promise<boolean>} - A promise that resolves to true if the signature is valid, false otherwise.
+ */
 const verifyTwitchSignature = async (body, headers, secret) => {
   const messageId = headers.get('twitch-eventsub-message-id');
   const timestamp = headers.get('twitch-eventsub-message-timestamp');
@@ -37,7 +44,6 @@ export async function POST(req) {
   const body = await req.text();
 
   if (!verifyTwitchSignature(body, req.headers, TWITCH_SECRET)) {
-    console.log('Failed to verify signature');
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
@@ -47,17 +53,14 @@ export async function POST(req) {
   ) {
     const challenge = JSON.parse(body).challenge;
 
-    console.log('Responding to challenge');
-
     return new NextResponse(challenge, {
       status: 200,
       headers: { 'Content-Type': 'text/plain' },
     });
   }
 
+  console.log('Updating Live Status Cache');
   const event = body ? JSON.parse(body) : null;
-
-  console.log(event);
 
   if (
     event.subscription.type === 'stream.online' &&
@@ -66,7 +69,6 @@ export async function POST(req) {
   ) {
     cache.live = true;
     cache.lastUpdate = new Date();
-    console.log(`Channel ${channelId} is live`);
   } else if (
     event.subscription.type === 'stream.offline' &&
     event.subscription.status === 'enabled' &&
@@ -74,7 +76,6 @@ export async function POST(req) {
   ) {
     cache.live = false;
     cache.lastUpdate = new Date();
-    console.log(`Channel ${channelId} is offline`);
   }
 
   return new NextResponse({ status: 200 });

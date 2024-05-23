@@ -104,13 +104,14 @@ export function Footer() {
               <Tooltip
                 title={
                   <Typography variant='body2'>
-                    Try holding `ctrl` before right clicking on any image to
-                    access the original, non webp version
+                    Some text may be too long to fit where it is displayed on
+                    certain devices. This should be covered by hover effects,
+                    but may not be perfect. Please report any issues!
                   </Typography>
                 }
                 arrow
               >
-                <Chip label='WebP Avoider' />
+                <Chip label='Long Text' />
               </Tooltip>
               <Tooltip
                 title={
