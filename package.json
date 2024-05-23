@@ -3,29 +3,26 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev && npm run register-twitch-webhook",
+    "build": "next build && npm run register-twitch-webhook",
+    "start": "next start && npm run register-twitch-webhook",
+    "lint": "next lint",
+    "register-twitch-webhook": "node scripts/register-twitch-webhook.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.14.16",
-    "@sanity/color-input": "^3.1.0",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.20.2",
     "@svgr/webpack": "^8.1.0",
     "@tabler/icons-react": "^3.2.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.2.3",
     "next": "^14.2.3",
-    "next-sanity": "^9.0.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^5.1.0",
-    "sanity": "^3.20.2",
     "styled-components": "^6.1.8"
   }
 }

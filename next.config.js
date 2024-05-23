@@ -31,15 +31,6 @@ const nextConfig = {
 
 module.exports = {
   ...nextConfig,
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-        port: '',
-      },
-    ],
-  },
   async redirects() {
     return [
       {

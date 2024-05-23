@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import crypto from 'crypto';
 
 const TWITCH_SECRET = process.env.TWITCH_SECRET;
-const predefinedChannelId = '633385488';
+const channelId = process.env.TWITCH_CHANNEL_ID;
+const MESSAGE_TYPE_VERIFICATION = 'webhook_callback_verification';
 
 export const cache = {
   live: false,
@@ -39,22 +40,34 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
+  if (
+    req.headers.get('twitch-eventsub-message-type') ===
+    MESSAGE_TYPE_VERIFICATION
+  ) {
+    const challenge = JSON.parse(body).challenge;
+
+    return new NextResponse(challenge, {
+      status: 200,
+      headers: { 'Content-Type': 'text/plain' },
+    });
+  }
+
   const event = body ? JSON.parse(body) : null;
 
   if (
     event.subscription.type === 'stream.online' &&
-    event.event.broadcaster_user_id === predefinedChannelId
+    event.event.broadcaster_user_id === channelId
   ) {
     cache.live = true;
     cache.lastUpdate = new Date();
-    console.log(`Channel ${predefinedChannelId} is live`);
+    console.log(`Channel ${channelId} is live`);
   } else if (
     event.subscription.type === 'stream.offline' &&
-    event.event.broadcaster_user_id === predefinedChannelId
+    event.event.broadcaster_user_id === channelId
   ) {
     cache.live = false;
     cache.lastUpdate = new Date();
-    console.log(`Channel ${predefinedChannelId} is offline`);
+    console.log(`Channel ${channelId} is offline`);
   }
 
   return NextResponse.json({ status: 200, ok: true });
