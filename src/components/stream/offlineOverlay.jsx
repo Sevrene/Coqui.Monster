@@ -59,12 +59,13 @@ export default function OfflineOverlay() {
           }}
           onMouseEnter={() => setScheduleState({ show: true, loading: true })}
           onMouseLeave={() => setScheduleState({ show: false })}
-          onClick={() =>
-            setScheduleState((prevState) => ({
-              show: !prevState.show,
-              loading: !prevState.loading,
-            }))
-          }
+          onClick={() => {
+            if (scheduleState.show && !scheduleState.loading) {
+              setScheduleState({ show: false, loading: false });
+            } else if (!scheduleState.show && !scheduleState.loading) {
+              setScheduleState({ show: true, loading: true });
+            }
+          }}
         >
           Twitter Schedule
         </Button>
@@ -91,12 +92,13 @@ export default function OfflineOverlay() {
           }}
           onMouseEnter={() => setWaitImageState({ show: true, loading: true })}
           onMouseLeave={() => setWaitImageState({ show: false })}
-          onClick={() =>
-            setWaitImageState((prevState) => ({
-              show: !prevState.show,
-              loading: !prevState.loading,
-            }))
-          }
+          onClick={() => {
+            if (waitImageState.show && !waitImageState.loading) {
+              setWaitImageState({ show: false, loading: false });
+            } else if (!waitImageState.show && !waitImageState.loading) {
+              setWaitImageState({ show: true, loading: true });
+            }
+          }}
         >
           While You Wait
         </Button>

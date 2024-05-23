@@ -69,6 +69,7 @@ export async function POST(req) {
   ) {
     cache.live = true;
     cache.lastUpdate = new Date();
+    console.log('Stream is live!');
   } else if (
     event.subscription.type === 'stream.offline' &&
     event.subscription.status === 'enabled' &&
@@ -76,6 +77,12 @@ export async function POST(req) {
   ) {
     cache.live = false;
     cache.lastUpdate = new Date();
+    console.log('Stream is offline!');
+  } else {
+    console.log(
+      'Error updating cache: Invalid event type or broadcaster ID: ',
+      event
+    );
   }
 
   return new NextResponse({ status: 200 });
