@@ -37,6 +37,7 @@ export async function POST(req) {
   const body = await req.text();
 
   if (!verifyTwitchSignature(body, req.headers, TWITCH_SECRET)) {
+    console.log('Failed to verify signature');
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
@@ -46,6 +47,8 @@ export async function POST(req) {
   ) {
     const challenge = JSON.parse(body).challenge;
 
+    console.log('Responding to challenge');
+
     return new NextResponse(challenge, {
       status: 200,
       headers: { 'Content-Type': 'text/plain' },
@@ -54,8 +57,11 @@ export async function POST(req) {
 
   const event = body ? JSON.parse(body) : null;
 
+  console.log(event);
+
   if (
     event.subscription.type === 'stream.online' &&
+    event.subscription.status === 'enabled' &&
     event.event.broadcaster_user_id === channelId
   ) {
     cache.live = true;
@@ -63,6 +69,7 @@ export async function POST(req) {
     console.log(`Channel ${channelId} is live`);
   } else if (
     event.subscription.type === 'stream.offline' &&
+    event.subscription.status === 'enabled' &&
     event.event.broadcaster_user_id === channelId
   ) {
     cache.live = false;
@@ -70,5 +77,5 @@ export async function POST(req) {
     console.log(`Channel ${channelId} is offline`);
   }
 
-  return NextResponse.json({ status: 200, ok: true });
+  return new NextResponse({ status: 200 });
 }
