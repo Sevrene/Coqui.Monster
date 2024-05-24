@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { cache } from '../twitch-webhook/route';
+import { cache } from '@/app/cache/live-status';
 
 /**
  * Retrieves the live status and last update from the cache.

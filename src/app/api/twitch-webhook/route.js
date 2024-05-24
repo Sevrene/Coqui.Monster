@@ -1,14 +1,10 @@
 import { NextResponse } from 'next/server';
+import { cache } from '@/app/cache/live-status';
 import crypto from 'crypto';
 
 const TWITCH_SECRET = process.env.TWITCH_SECRET;
 const channelId = process.env.TWITCH_CHANNEL_ID;
 const MESSAGE_TYPE_VERIFICATION = 'webhook_callback_verification';
-
-export const cache = {
-  live: false,
-  lastUpdate: null,
-};
 
 /**
  * Verifies the Twitch signature of a webhook request.
@@ -59,7 +55,6 @@ export async function POST(req) {
     });
   }
 
-  console.log('Updating Live Status Cache');
   const event = body ? JSON.parse(body) : null;
 
   if (

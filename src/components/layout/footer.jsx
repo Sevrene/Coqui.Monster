@@ -104,14 +104,12 @@ export function Footer() {
               <Tooltip
                 title={
                   <Typography variant='body2'>
-                    Some text may be too long to fit where it is displayed on
-                    certain devices. This should be covered by hover effects,
-                    but may not be perfect. Please report any issues!
+                    Preview listen to music from the music credits tab
                   </Typography>
                 }
                 arrow
               >
-                <Chip label='Long Text' />
+                <Chip label='Music Player' />
               </Tooltip>
               <Tooltip
                 title={
@@ -127,12 +125,14 @@ export function Footer() {
               <Tooltip
                 title={
                   <Typography variant='body2'>
-                    Preview listen to music from the music credits tab
+                    Not all features are properly reflected for mobile users.
+                    Notably most experimental features and tooltips being
+                    difficult for mobile users to access.
                   </Typography>
                 }
                 arrow
               >
-                <Chip label='Music Player' />
+                <Chip label='Mobile' />
               </Tooltip>
             </Stack>
           </Box>
