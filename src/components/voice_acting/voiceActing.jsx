@@ -91,7 +91,7 @@ export default function VoiceActing() {
           </Tooltip>
         ))}
       </Grid>
-      <Box sx={{ padding: '16px' }}>
+      <Box sx={{ paddingTop: '16px' }}>
         <Typography
           variant='h5'
           sx={{

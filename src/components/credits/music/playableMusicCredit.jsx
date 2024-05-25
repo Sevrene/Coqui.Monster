@@ -1,8 +1,8 @@
 'use client';
 
+import { IconButton, useMediaQuery } from '@mui/material';
 import { Pause, PlayArrow } from '@mui/icons-material';
 
-import { IconButton } from '@mui/material';
 import { MusicPlayerContext } from '@/components/providers/musicPlayerCtxProvider';
 import { useContext } from 'react';
 
@@ -16,6 +16,7 @@ import { useContext } from 'react';
 export default function PlayableMusicCredit({ credit }) {
   const { switchTrack, currentSong, playing, playAudio, pauseAudio } =
     useContext(MusicPlayerContext);
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   /**
    * Handles the play button click event.
@@ -35,7 +36,7 @@ export default function PlayableMusicCredit({ credit }) {
   const isCurrentSong = currentSong?.track === credit.track;
 
   return (
-    <IconButton onClick={handlePlay}>
+    <IconButton onClick={handlePlay} disabled={isSmallScreen}>
       {isCurrentSong && playing ? <Pause /> : <PlayArrow />}{' '}
     </IconButton>
   );

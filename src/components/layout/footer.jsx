@@ -104,7 +104,8 @@ export function Footer() {
               <Tooltip
                 title={
                   <Typography variant='body2'>
-                    Preview listen to music from the music credits tab
+                    Preview listen to music from the music credits tab.
+                    Currently unavailable on mobile.
                   </Typography>
                 }
                 arrow
@@ -133,6 +134,17 @@ export function Footer() {
                 arrow
               >
                 <Chip label='Mobile' />
+              </Tooltip>
+              <Tooltip
+                title={
+                  <Typography variant='body2'>
+                    Misc credits will be further improved in the future to
+                    provide more information.
+                  </Typography>
+                }
+                arrow
+              >
+                <Chip label='Misc Credits' />
               </Tooltip>
             </Stack>
           </Box>

@@ -5,6 +5,7 @@ import {
   Grid,
   ListItemAvatar,
   ListItemText,
+  Stack,
   Tooltip,
   Typography,
 } from '@mui/material';
@@ -76,7 +77,17 @@ export default function Credits() {
               </CreditsChip>
             </Grid>
           ))}
-          <Grid item xs={2} md={1}>
+        </Grid>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            justifyContent: 'space-evenly',
+            width: '100%',
+            paddingTop: '16px',
+          }}
+        >
+          <Box>
             <Typography
               variant='h5'
               sx={{
@@ -101,8 +112,8 @@ export default function Credits() {
             >
               Open Full List
             </DrawerToggleButton>
-          </Grid>
-          <Grid item xs={2} md={1}>
+          </Box>
+          <Box>
             <Typography
               variant='h5'
               sx={{
@@ -127,8 +138,8 @@ export default function Credits() {
             >
               Open Full List
             </DrawerToggleButton>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
         <Typography
           variant='h5'
           sx={{

@@ -299,31 +299,24 @@ export const socials = [
   },
 ];
 
-// TODO: Put the proper people in Main Credits
 export const mainCredits = [
   {
     link: 'https://twitter.com/tsulala',
     title: 'Rem',
-    body: 'Ma',
+    body: 'Artist',
     image: '/images/credits_art/Rem.jpg',
   },
   {
-    link: 'https://twitter.com/AriyaSusanto',
-    title: 'Pops',
-    body: 'ARS',
-    image: '/images/credits_art/ARS.jpg',
+    link: 'https://twitter.com/Calavera_vt',
+    title: 'Calavera',
+    body: 'Rigger',
+    image: '/images/credits_art/Calavera.jpg',
   },
   {
     link: 'https://twitter.com/JustBiddy_',
     title: 'Vicky',
-    body: 'MV',
+    body: 'Intro',
     image: '/images/credits_art/Vicky.jpg',
-  },
-  {
-    link: 'https://twitter.com/king_kriminal',
-    title: 'Krimbo',
-    body: 'Logo',
-    image: '/images/credits_art/Krimbo.jpg',
   },
 ];
 
@@ -434,21 +427,42 @@ export const musicCredits = [
   },
 ];
 
-// TODO: Fill out the details for each credit
 export const miscCredits = [
+  {
+    link: 'https://twitter.com/king_kriminal',
+    title: 'Krimbo',
+    body: '1.0 Logo',
+    image: '/images/credits_art/Krimbo.jpg',
+  },
+  {
+    link: 'https://twitter.com/AriyaSusanto',
+    title: 'ARS',
+    body: '1.0 Pops',
+    image: '/images/credits_art/ARS.jpg',
+  },
   {
     link: 'https://twitter.com/Faulerro',
     title: 'Faulerro',
-    body: 'Animations',
-    details: 'Which ones?',
+    body: 'Channel Emotes',
     image: '/images/credits_art/Faulerro.jpg',
   },
   {
-    link: 'https://twitter.com/OverdriveVT',
-    title: 'Sierra',
-    body: 'Channel Icon',
-    details: 'Which one?',
-    image: '/images/credits_art/Sierra.jpg',
+    link: 'https://twitter.com/MachachaFulgrim',
+    title: 'Macha-cha',
+    body: 'Channel Emotes',
+    image: '/images/credits_art/Macha-cha.jpg',
+  },
+  {
+    link: 'https://twitter.com/FoxReallyWell',
+    title: 'FoxFriend4U',
+    body: 'Channel Emotes',
+    image: '/images/credits_art/FoxFriend4U.jpg',
+  },
+  {
+    link: 'https://twitter.com/theblortch',
+    title: 'TheBlortch',
+    body: 'Animations & Emotes',
+    image: '/images/credits_art/TheBlortch.jpg',
   },
   {
     link: 'https://twitter.com/MuttleyStrike',
@@ -478,15 +492,7 @@ export const miscCredits = [
     link: 'https://twitter.com/fenef033',
     title: 'fenef033',
     body: 'BRB Screen',
-    details: 'Which one?',
     image: '/images/credits_art/fenef033.jpg',
-  },
-  {
-    link: 'https://www.twitch.tv/pickychannel',
-    title: 'PickyChannel',
-    body: 'Ending Screen',
-    details: 'Which one?',
-    image: '/images/credits_art/PickyChannel.jpg',
   },
   {
     link: 'https://twitter.com/flivine',
@@ -507,17 +513,9 @@ export const miscCredits = [
     image: '/images/credits_art/NotChaott.jpg',
   },
   {
-    link: 'https://twitter.com/_VioletSketches',
-    title: 'VioletSketches',
-    body: 'Follow Alert',
-    details: 'Which one?',
-    image: '/images/credits_art/VioletSketches.jpg',
-  },
-  {
     link: '',
     title: 'Roma',
     body: 'Follow Alert',
-    details: 'Which one?',
     image: '/images/credits_art/generic.jpg',
   },
   {
@@ -542,21 +540,18 @@ export const miscCredits = [
     link: 'https://skeb.jp/@rion04170419',
     title: 'rion04170419',
     body: 'Twitch Banner',
-    details: 'Current?',
     image: '/images/credits_art/rion04170419.jpg',
   },
   {
     link: 'https://twitter.com/Shenrix_',
     title: 'Shenrix',
     body: 'Channel Emotes',
-    details: 'Which ones?',
     image: '/images/credits_art/Shenrix.jpg',
   },
   {
     link: '',
     title: 'Migu',
-    body: 'Channel Emotes ',
-    details: 'Which ones?',
+    body: 'Channel Emotes',
     image: '/images/credits_art/generic.jpg',
   },
 ];
