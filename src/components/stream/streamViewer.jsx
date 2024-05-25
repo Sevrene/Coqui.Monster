@@ -18,7 +18,7 @@ export default function StreamViewer() {
         src={
           'https://player.twitch.tv/?channel=' +
           'coqui' +
-          '&muted=true&parent=coqui.monster&parent=ver-2-0--coqui-monster.netlify.app&parent=localhost'
+          '&muted=true&parent=coqui.monster&parent=localhost'
         }
         allowFullScreen
       />
