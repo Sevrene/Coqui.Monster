@@ -76,6 +76,11 @@ module.exports = {
         destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         permanent: true,
       },
+      {
+        source: '/height-chart',
+        destination: '/images/comedy/height_chart.jpg',
+        permanent: true,
+      },
     ];
   },
 };
