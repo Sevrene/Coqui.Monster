@@ -15,6 +15,7 @@ import CreditDrawers from './creditDrawers';
 import CreditsChip from './creditsChip';
 import DrawerToggleButton from '../drawerToggleButton';
 import { IconMusic } from '@tabler/icons-react';
+import Image from 'next/image';
 import { mainCredits } from '@/mockData';
 
 /**
@@ -53,8 +54,15 @@ export default function Credits() {
                   }}
                 >
                   <ListItemAvatar>
-                    {credit.image && (
-                      <Avatar alt={credit.title} src={credit.image} />
+                    {credit.image && ( // TODO: Check if this needs the same sx as voiceActing.jsx
+                      <Avatar>
+                        <Image
+                          src={credit.image}
+                          alt={credit.title}
+                          width='40'
+                          height='40'
+                        />
+                      </Avatar>
                     )}
                   </ListItemAvatar>
                   <ListItemText
