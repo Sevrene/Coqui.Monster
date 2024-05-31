@@ -5,10 +5,19 @@ import OfflineOverlay from './offlineOverlay';
 import Script from 'next/script';
 import { useState } from 'react';
 
+/**
+ * Renders the Twitch stream viewer component.
+ * @returns {JSX.Element} The rendered Twitch stream viewer component.
+ */
 export default function StreamViewer() {
   const [isLive, setIsLive] = useState(null);
   const channelName = 'coqui';
 
+  /**
+   * Loads the Twitch player and sets the live status.
+   *
+   * NOTE: May want to consider adding listeners for the player to update in real-time, but for now this is sufficient.
+   */
   const loadTwitchPlayer = () => {
     if (window.Twitch && window.Twitch.Player) {
       const player = new window.Twitch.Player('twitch-player', {
@@ -20,7 +29,11 @@ export default function StreamViewer() {
         parent: ['coqui.monster'],
       });
 
-      setIsLive(!player.getEnded());
+      // Duration is either null (live) or a number (VOD) or 0 (offline)
+      // This is mostly a workaround to check if the stream is live without the need for the Twitch API
+      // However, the Twitch API requires client IDs, OAuth tokens, webhooks, and api calls to get the stream status, which is a bit much for this simple use case
+      // If further information ends up being needed at some point the Twitch API can be reimplemented here
+      setIsLive(player.getDuration() === null);
     }
   };
 

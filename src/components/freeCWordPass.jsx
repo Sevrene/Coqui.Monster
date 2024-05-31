@@ -1,7 +1,12 @@
-import { Box, Tooltip } from '@mui/material';
-
+import { Box } from '@mui/material';
 import Image from 'next/image';
 
+/**
+ * Renders the FreeCWordPass component.
+ * This component displays a sticky box with an image that links to the '/free-cword-pass' page.
+ *
+ * @returns {JSX.Element} The rendered FreeCWordPass component.
+ */
 export function FreeCWordPass() {
   return (
     <Box
