@@ -8,7 +8,7 @@ import { constStyles } from '@/styles/constStyles';
  * @returns {JSX.Element|null} The rendered AnnouncementBar component.
  */
 export function AnnouncementBar() {
-  const announcement = 'Coqui.Monster 2.0 is Live!';
+  const announcement = 'PROUD 143rd Place of Twitch Rivals!';
 
   if (!announcement) {
     return null;
