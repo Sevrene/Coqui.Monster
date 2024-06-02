@@ -81,6 +81,11 @@ module.exports = {
         destination: '/images/comedy/height_chart.jpg',
         permanent: true,
       },
+      {
+        source: '/chair-setup',
+        destination: '/images/comedy/coq_chair.png',
+        permanent: true,
+      },
     ];
   },
 };
