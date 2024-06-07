@@ -77,6 +77,12 @@ module.exports = {
         permanent: true,
       },
       {
+        source: '/minecraft',
+        destination:
+          'https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556',
+        permanent: true,
+      },
+      {
         source: '/height-chart',
         destination: '/images/comedy/height_chart.jpg',
         permanent: true,

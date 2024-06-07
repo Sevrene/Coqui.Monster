@@ -2,6 +2,7 @@ import {
   IconBabyBottle,
   IconBook,
   IconBrandDiscord,
+  IconBrandMinecraft,
   IconBrandOnlyfans,
   IconBrandSteam,
   IconBrandTwitch,
@@ -224,6 +225,16 @@ export const communitySection = [
     link: 'https://steamcommunity.com/groups/SouthSideBros',
     tooltip: 'Community Steam Group',
     icon: <IconBrandSteam />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
+  },
+  {
+    text: 'Minecraft Server',
+    link: 'https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556',
+    tooltip: 'Community Minecraft Server',
+    icon: <IconBrandMinecraft />,
     buttonProps: {
       variant: 'contained',
       color: 'brandAccent',
