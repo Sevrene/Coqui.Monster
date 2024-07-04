@@ -20,7 +20,7 @@ status = 200
 
 [[redirects]]
   from = "https://testing.coqui.monster"
-  to = "https://google.com"
+  to = "https://store.vshojo.com/collections/apricot"
   status = 301
   force = true
 
