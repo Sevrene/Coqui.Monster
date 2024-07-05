@@ -92,6 +92,11 @@ module.exports = {
         destination: '/images/comedy/coq_chair.png',
         permanent: true,
       },
+      {
+        source: '/nice-booby',
+        destination: '/images/comedy/nice_booby.jpg',
+        permanent: true,
+      },
     ];
   },
 };
