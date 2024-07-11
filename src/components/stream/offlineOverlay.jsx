@@ -86,8 +86,8 @@ export default function OfflineOverlay() {
         <Image
           src='/images/twitter_schedule.jpg'
           alt='Twitter Schedule'
-          width='1920'
-          height='1080'
+          width='1200'
+          height='675'
           style={{
             position: 'absolute',
             top: '60px',
@@ -110,8 +110,8 @@ export default function OfflineOverlay() {
           src='/gifs/supercracksmaller.gif'
           alt='While You Wait'
           // unoptimized // Somehow setting unoptimized causes the mouse enter/leave to ony function on every other hover (And prevents the onLoad from working more than once)
-          width='1920'
-          height='1080'
+          width='540'
+          height='360'
           style={{
             position: 'absolute',
             bottom: '60px',
