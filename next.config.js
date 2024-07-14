@@ -97,6 +97,11 @@ module.exports = {
         destination: '/images/comedy/nice_booby.jpg',
         permanent: true,
       },
+      {
+        source: '/egg',
+        destination: '/videos/comedy/hmmmm.mp4',
+        permanent: true,
+      },
     ];
   },
 };
