@@ -102,6 +102,11 @@ module.exports = {
         destination: '/videos/comedy/hmmmm.mp4',
         permanent: true,
       },
+      {
+source: '/discord',
+destination: 'https://discord.gg/coqui',
+permanent: true,
+      }
     ];
   },
 };
