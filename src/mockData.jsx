@@ -9,14 +9,13 @@ import {
   IconBrandTwitter,
   IconBrandYoutube,
   IconBrush,
-  IconDeviceGamepad2,
   IconGift,
   IconShoppingBag,
 } from '@tabler/icons-react';
 
 import { FolderSharedOutlined } from '@mui/icons-material';
-import ThreeAmLogo from './utils/customSvgComponents';
 import { constStyles } from './styles/constStyles';
+import ThreeAmLogo from './utils/customSvgComponents';
 
 export const mainPageBackground = {
   type: 'gradient',
@@ -187,16 +186,6 @@ export const supportSection = [
       color: 'brandAccent',
     },
   },
-  {
-    text: 'Humble Partner',
-    link: 'https://www.humblebundle.com/?partner=coqui&charity=78175',
-    tooltip: 'Affiliate',
-    icon: <IconDeviceGamepad2 />,
-    buttonProps: {
-      variant: 'contained',
-      color: 'brandAccent',
-    },
-  },
 ];
 
 export const communitySection = [
@@ -221,6 +210,16 @@ export const communitySection = [
     },
   },
   {
+    text: 'Coqui Discord',
+    link: 'http://discord.gg/COQUI',
+    tooltip: 'Coqui Discord',
+    icon: <IconBrandDiscord />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brand3AM',
+    },
+  },
+  {
     text: 'Steam Group',
     link: 'https://steamcommunity.com/groups/SouthSideBros',
     tooltip: 'Community Steam Group',
@@ -234,6 +233,16 @@ export const communitySection = [
     text: 'Minecraft Server',
     link: 'https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556',
     tooltip: 'Community Minecraft Server',
+    icon: <IconBrandMinecraft />,
+    buttonProps: {
+      variant: 'contained',
+      color: 'brandAccent',
+    },
+  },
+  {
+    text: 'Cobblemon Server',
+    link: 'https://discord.com/channels/786373342549770260/1180826995605647441/1311871230986686535',
+    tooltip: 'Community Cobblemon Server',
     icon: <IconBrandMinecraft />,
     buttonProps: {
       variant: 'contained',

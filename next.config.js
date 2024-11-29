@@ -66,12 +66,6 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/humble',
-        destination:
-          'https://www.humblebundle.com/?partner=coqui&charity=78175',
-        permanent: true,
-      },
-      {
         source: '/free-cword-pass',
         destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         permanent: true,
@@ -83,30 +77,16 @@ module.exports = {
         permanent: true,
       },
       {
-        source: '/height-chart',
-        destination: '/images/comedy/height_chart.jpg',
+        source: '/cobblemon',
+        destination:
+          'https://discord.com/channels/786373342549770260/1180826995605647441/1311871230986686535',
         permanent: true,
       },
       {
-        source: '/chair-setup',
-        destination: '/images/comedy/coq_chair.png',
+        source: '/discord',
+        destination: 'https://discord.gg/coqui',
         permanent: true,
       },
-      {
-        source: '/nice-booby',
-        destination: '/images/comedy/nice_booby.jpg',
-        permanent: true,
-      },
-      {
-        source: '/egg',
-        destination: '/videos/comedy/hmmmm.mp4',
-        permanent: true,
-      },
-      {
-source: '/discord',
-destination: 'https://discord.gg/coqui',
-permanent: true,
-      }
     ];
   },
 };

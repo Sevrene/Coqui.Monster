@@ -1,11 +1,11 @@
 import { AppBar, Box, Toolbar } from '@mui/material';
 
-import { AnnouncementBar } from './announcementBar';
-import { HeaderScrollIn } from './headerScrollIn';
+import { socials } from '@/mockData';
 import Image from 'next/image';
 import Link from 'next/link';
 import SocialIconStack from '../socials/socailIconStack';
-import { socials } from '@/mockData';
+import { AnnouncementBar } from './announcementBar';
+import { HeaderScrollIn } from './headerScrollIn';
 
 /**
  * Renders the header component.
