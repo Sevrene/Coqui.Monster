@@ -8,8 +8,7 @@ import { FreeCWordPass } from '../freeCWordPass';
  * @returns {JSX.Element|null} The rendered AnnouncementBar component.
  */
 export function AnnouncementBar() {
-  const announcement =
-    'Version 2.1 currently in development! 🚀 Updates may be slower than normal';
+  const announcement = 'Version 2.1 Soon';
 
   if (!announcement) {
     return null;

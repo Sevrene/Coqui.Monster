@@ -87,6 +87,32 @@ module.exports = {
         destination: 'https://discord.gg/coqui',
         permanent: true,
       },
+      {
+        source: '/3d-model',
+        destination:
+          'https://bsky.app/profile/coqui.bsky.social/post/3lf2geztg6k2p',
+        permanent: true,
+      },
+      {
+        source: '/3am',
+        destination: 'https://3am.moe/',
+        permanent: true,
+      },
+      {
+        source: '/store',
+        destination: 'https://store.3am.moe/',
+        permanent: true,
+      },
+      {
+        source: '/twitch',
+        destination: 'https://www.twitch.tv/COQUI',
+        permanent: true,
+      },
+      {
+        source: '/bsky',
+        destination: 'https://bsky.app/profile/coqui.bsky.social',
+        permanent: true,
+      },
     ];
   },
 };
