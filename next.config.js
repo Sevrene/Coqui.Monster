@@ -38,125 +38,93 @@ module.exports = {
         destination:
           'https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/voice',
         destination:
           'https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/questions',
         destination: 'https://marshmallow-qa.com/coqui_monster',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/uwu',
         destination: 'https://uwumarket.us/collections/coqui',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/throne',
         destination: 'https://throne.com/coqui',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/supps',
         destination: 'https://gamersupps.gg/?ref=COQUI',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/free-cword-pass',
         destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/minecraft',
         destination:
           'https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/cobblemon',
         destination:
           'https://discord.com/channels/786373342549770260/1180826995605647441/1326321954873147453',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/discord',
         destination: 'https://discord.gg/coqui',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/3d-model',
         destination:
           'https://bsky.app/profile/coqui.bsky.social/post/3lf2geztg6k2p',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/3am',
         destination: 'https://3am.moe/',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/store',
         destination: 'https://store.3am.moe/',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/twitch',
         destination: 'https://www.twitch.tv/COQUI',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
       },
       {
         source: '/bsky',
         destination: 'https://bsky.app/profile/coqui.bsky.social',
         permanent: false,
-        headers: {
-          'Cache-Control': 'no-cache no-store max-age=0 must-revalidate',
-        },
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache no-store max-age=0 must-revalidate',
+          },
+        ],
       },
     ];
   },
