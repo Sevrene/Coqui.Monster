@@ -113,6 +113,11 @@ module.exports = {
         destination: 'https://bsky.app/profile/coqui.bsky.social',
         permanent: false,
       },
+      {
+        source: '/vods',
+        destination: 'https://www.youtube.com/@CoquiArchives',
+        permanent: false,
+      },
     ];
   },
   async headers() {
