@@ -119,6 +119,11 @@ module.exports = {
         permanent: false,
       },
       {
+        source: '/clips',
+        destination: 'https://www.youtube.com/@C0QUI',
+        permanent: false,
+      },
+      {
         source: '/vods',
         destination: 'https://www.youtube.com/@CoquiArchives',
         permanent: false,
