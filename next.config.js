@@ -128,6 +128,11 @@ module.exports = {
         destination: 'https://www.youtube.com/@CoquiArchives',
         permanent: false,
       },
+      {
+        source: '/face-reveal',
+        destination: 'https://www.lmgt.com/?q=Cute+Coqui+Frog',
+        permanent: false,
+      },
     ];
   },
   async headers() {
