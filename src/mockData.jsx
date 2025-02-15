@@ -1,15 +1,15 @@
 import {
   IconBabyBottle,
   IconBook,
+  IconBrandBluesky,
   IconBrandDiscord,
   IconBrandMinecraft,
-  IconBrandOnlyfans,
   IconBrandSteam,
   IconBrandTwitch,
-  IconBrandTwitter,
   IconBrandYoutube,
   IconBrush,
   IconGift,
+  IconPropeller,
   IconShoppingBag,
 } from '@tabler/icons-react';
 
@@ -154,6 +154,7 @@ export const supportSection = [
     link: 'https://store.3am.moe/',
     tooltip: 'Team Merch Store',
     icon: <ThreeAmLogo color='black' />,
+    fullWidth: true,
     buttonProps: {
       variant: 'contained',
       color: 'brand3AM',
@@ -164,6 +165,7 @@ export const supportSection = [
     link: 'https://uwumarket.us/collections/coqui',
     tooltip: 'Merch Collaboration',
     icon: <IconShoppingBag />,
+    fullWidth: false,
     buttonProps: {
       variant: 'contained',
       color: 'brandAccent',
@@ -174,6 +176,7 @@ export const supportSection = [
     link: 'https://throne.com/coqui',
     tooltip: 'Direct Support',
     icon: <IconGift />,
+    fullWidth: false,
     buttonProps: { variant: 'contained', color: 'brandAccent' },
   },
   {
@@ -181,6 +184,7 @@ export const supportSection = [
     link: 'https://gamersupps.gg/?ref=COQUI',
     tooltip: 'Affiliate',
     icon: <IconBabyBottle />,
+    fullWidth: false,
     buttonProps: {
       variant: 'contained',
       color: 'brandAccent',
@@ -287,35 +291,56 @@ export const socials = [
     url: 'https://www.twitch.tv/coqui',
     icon: <IconBrandTwitch />,
     iconColor: '#9147FF',
-    renderLocation: ['Footer', 'Header'],
+    renderLocation: ['FooterPrimary', 'Header'],
   },
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/c0qui',
-    icon: <IconBrandTwitter />,
+    name: 'BlueSky',
+    url: 'https://bsky.app/profile/coqui.3am.moe',
+    icon: <IconBrandBluesky />,
     iconColor: '#1DA1F2',
-    renderLocation: ['Footer', 'Header'],
+    renderLocation: ['FooterPrimary', 'Header'],
   },
   {
-    name: 'OnlyFrogs',
+    name: 'SouthSide Discord',
     url: 'https://discord.com/invite/TheSouthSide',
-    icon: <IconBrandOnlyfans />,
+    icon: <IconBrandDiscord />,
     iconColor: '#00BFFF',
-    renderLocation: ['Footer', 'Header'],
+    renderLocation: ['FooterSecondary'],
+  },
+  {
+    name: 'Coquicord',
+    url: 'https://discord.gg/coqui',
+    icon: <IconBrandDiscord />,
+    iconColor: '#00BFFF',
+    renderLocation: ['FooterPrimary', 'Header'],
   },
   {
     name: 'Clips Channel',
     url: 'https://www.youtube.com/@C0QUI',
     icon: <IconBrandYoutube />,
     iconColor: '#FF0000',
-    renderLocation: ['Footer', 'Header'],
+    renderLocation: ['FooterSecondary'],
+  },
+  {
+    name: 'Archive Channel [Unofficial]',
+    url: 'https://www.youtube.com/@CoquiArchives',
+    icon: <IconBrandYoutube />,
+    iconColor: '#FF0000',
+    renderLocation: ['FooterSecondary'],
+  },
+  {
+    name: 'Frogsly',
+    url: 'https://fansly.com/EVILBRAT/',
+    icon: <IconPropeller />,
+    iconColor: '#2699F6',
+    renderLocation: ['FooterPrimary', 'Header'],
   },
   {
     name: '3AM',
     url: 'https://www.3am.moe',
     icon: <ThreeAmLogo color='white' />,
     iconColor: '#948DE8', // color follows the white override above, but iconColor is used for the hover effect
-    renderLocation: ['Footer', 'Header'],
+    renderLocation: ['FooterPrimary', 'Header'],
   },
 ];
 
