@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 
-import SupportButton from './supportButton';
 import { supportSection } from '@/mockData';
+import SupportButton from './supportButton';
 
 /**
  * Renders the SupportSection component.
@@ -41,7 +41,7 @@ export default function SupportSection() {
         }}
       >
         {supportSection.map((support) => {
-          const { text, link, tooltip, icon, buttonProps } = support;
+          const { text, link, tooltip, icon, fullWidth, buttonProps } = support;
           return (
             <SupportButton
               key={text}
@@ -51,7 +51,10 @@ export default function SupportSection() {
               icon={icon}
               buttonProps={{
                 ...buttonProps,
-                sx: { flexGrow: { xs: 0, md: 1 } },
+                sx: {
+                  flexGrow: { xs: 0, md: 1 },
+                  flexBasis: fullWidth ? '100%' : 'default',
+                },
               }}
             />
           );

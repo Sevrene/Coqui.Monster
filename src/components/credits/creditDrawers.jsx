@@ -1,13 +1,13 @@
-import { Box } from '@mui/material';
+import { miscCredits, musicCredits } from '@/mockData';
+
 import { Brush } from '@mui/icons-material';
-import DrawerContainer from './drawerContainer';
+import { Box } from '@mui/material';
 import { IconMusic } from '@tabler/icons-react';
+import DrawerContainer from './drawerContainer';
 import MiscCreditsList from './misc/miscCreditList';
 import MiscDrawer from './misc/miscDrawer';
 import MusicCreditsList from './music/musicCreditList';
 import MusicDrawer from './music/musicDrawer';
-import { miscCredits } from '@/mockData';
-import { musicCredits } from '@/mockData';
 
 /**
  * Renders the CreditDrawers component.
@@ -16,7 +16,7 @@ import { musicCredits } from '@/mockData';
 export default function CreditDrawers() {
   return (
     <>
-      <DrawerContainer pullTabProps={{ top: '45%' }}>
+      <DrawerContainer pullTabProps={{ top: `calc(50% - 48px)` }}>
         <MusicDrawer>
           <Box
             sx={{
@@ -32,7 +32,7 @@ export default function CreditDrawers() {
           <MusicCreditsList credits={musicCredits} />
         </MusicDrawer>
       </DrawerContainer>
-      <DrawerContainer pullTabProps={{ top: '55%' }}>
+      <DrawerContainer pullTabProps={{ top: `calc(50% + 48px)` }}>
         <MiscDrawer>
           <Box
             sx={{

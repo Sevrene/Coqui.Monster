@@ -1,7 +1,9 @@
+import { footerBackground, socials } from '@/mockData';
 import {
   Box,
   Button,
   Chip,
+  Divider,
   Link,
   Stack,
   Tooltip,
@@ -9,14 +11,12 @@ import {
 } from '@mui/material';
 import { IconCopy, IconMail } from '@tabler/icons-react';
 
-import { CopyButton } from '../socials/copyButton';
-import DevHandle from './devHandle';
-import { InfoOutlined } from '@mui/icons-material';
-import SocialIconStack from '../socials/socailIconStack';
 import { constStyles } from '@/styles/constStyles';
-import { footerBackground } from '@/mockData';
 import { formatBackgroundStyle } from '@/utils/styleUtils';
-import { socials } from '@/mockData';
+import { InfoOutlined } from '@mui/icons-material';
+import { CopyButton } from '../socials/copyButton';
+import SocialIconStack from '../socials/socailIconStack';
+import DevHandle from './devHandle';
 
 /**
  * Renders the footer component.
@@ -66,7 +66,18 @@ export function Footer() {
             >
               <SocialIconStack
                 socials={socials.filter((social) =>
-                  social.renderLocation.includes('Footer')
+                  social.renderLocation.includes('FooterPrimary')
+                )}
+              />
+              <Divider
+                orientation='vertical'
+                variant='middle'
+                flexItem
+                sx={{ borderWidth: '1px', borderColor: 'black' }}
+              />
+              <SocialIconStack
+                socials={socials.filter((social) =>
+                  social.renderLocation.includes('FooterSecondary')
                 )}
               />
             </Box>
