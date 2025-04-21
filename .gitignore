@@ -37,3 +37,9 @@ next-env.d.ts
 
 # TODO files
 TODO.md
+
+# local docs
+/docs
+
+# local media
+/media
