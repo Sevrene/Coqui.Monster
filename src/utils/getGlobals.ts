@@ -6,13 +6,7 @@ import type { Config } from 'src/payload-types';
 type Global = keyof Config['globals'];
 
 async function checkPreview(): Promise<boolean> {
-  const draft = await draftMode();
-
-  if (!draft.isEnabled) {
-    return false;
-  }
-
-  return draft.isEnabled;
+  return (await draftMode()).isEnabled;
 }
 
 export async function getGlobal(slug: Global, depth = 0) {
