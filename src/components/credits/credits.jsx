@@ -1,3 +1,4 @@
+import { Brush, RecentActors } from '@mui/icons-material';
 import {
   Avatar,
   Box,
@@ -5,18 +6,16 @@ import {
   Grid,
   ListItemAvatar,
   ListItemText,
-  Stack,
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Brush, RecentActors } from '@mui/icons-material';
 
-import CreditDrawers from './creditDrawers';
-import CreditsChip from './creditsChip';
-import DrawerToggleButton from '../drawerToggleButton';
+import { mainCredits } from '@/mockData';
 import { IconMusic } from '@tabler/icons-react';
 import Image from 'next/image';
-import { mainCredits } from '@/mockData';
+import DrawerToggleButton from '../drawerToggleButton';
+import CreditDrawers from './creditDrawers';
+import CreditsChip from './creditsChip';
 
 /**
  * Renders the Credits component.
@@ -75,7 +74,7 @@ export default function Credits() {
                       endIcon={<RecentActors />}
                       sx={{
                         borderRadius: 2,
-                        color: 'brandYellow.main',
+                        color: 'links',
                       }}
                     >
                       {credit.link ? 'Artist' : 'No Artist Link'}
@@ -113,7 +112,7 @@ export default function Credits() {
             <DrawerToggleButton
               toggleName='music'
               variant='contained'
-              color='brandPurple'
+              color='primary'
               target='_blank'
               rel='noopener noreferrer'
               endIcon={<IconMusic />}
@@ -139,7 +138,7 @@ export default function Credits() {
             <DrawerToggleButton
               toggleName='misc'
               variant='contained'
-              color='brandPurple'
+              color='primary'
               target='_blank'
               rel='noopener noreferrer'
               endIcon={<Brush />}

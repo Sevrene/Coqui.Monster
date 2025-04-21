@@ -1,0 +1,89 @@
+import { AppBar, Box, Toolbar } from '@mui/material';
+
+import { ParsedHeaderData } from '@/cms_data/headerData';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ReactNode } from 'react';
+import FreeCWordPass from '../../custom/freeCWordPass';
+import SocialIconStack from '../../socials/socailIconStack';
+import AnnouncementBar from './announcementBar';
+import HeaderScrollIn from './headerScrollIn';
+
+interface HeaderProps {
+  headerData: ParsedHeaderData;
+}
+
+export function Header({ headerData }: HeaderProps): ReactNode {
+  // This is required but I don't know why. Something with hydration?
+  // It avoids a type error when headerData is undefined because Header gets called early for some reason
+  if (!headerData) {
+    return null;
+  }
+
+  const { announcement, fadeIn, logo, headerMode, background, socials } =
+    headerData;
+
+  return (
+    <Box>
+      <AppBar
+        sx={{
+          position: headerMode,
+          elevation: '0',
+          background: fadeIn ? 'none' : background,
+          boxShadow: 'none',
+        }}
+      >
+        <AnnouncementBar announcement={announcement} />
+        {fadeIn ? (
+          <HeaderScrollIn background={background} />
+        ) : (
+          <Box
+            sx={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              boxShadow:
+                background == 'transparent' ? '' : '0px 5px 15px #000000',
+            }}
+          />
+        )}
+        <FreeCWordPass />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            height: '64px',
+          }}
+        >
+          <Toolbar
+            style={{
+              flexGrow: 1,
+              maxWidth: '1920px',
+            }}
+          >
+            <Box position='relative' width='114px' height='100%'>
+              <Link href='/'>
+                <Image
+                  src={logo.url}
+                  alt={logo.alt}
+                  width={Math.max(logo.width, 114)}
+                  height={Math.max(logo.height, 64)}
+                  style={{ width: 'auto', height: '100%' }}
+                />
+              </Link>
+            </Box>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: 'flex',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <SocialIconStack socials={socials} />
+            </Box>
+          </Toolbar>
+        </Box>
+      </AppBar>
+    </Box>
+  );
+}

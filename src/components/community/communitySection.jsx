@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 
-import SupportButton from '../support/supportButton';
 import { communitySection } from '@/mockData';
+import SupportButton from '../support/supportButton';
 
 /**
  * Renders the CommunitySection component.
@@ -41,7 +41,8 @@ export default function CommunitySection() {
         }}
       >
         {communitySection.map((communityItem) => {
-          const { text, link, tooltip, icon, buttonProps } = communityItem;
+          const { text, link, tooltip, icon, fullWidth, buttonProps } =
+            communityItem;
           return (
             <SupportButton
               key={text}
@@ -51,6 +52,10 @@ export default function CommunitySection() {
               icon={icon}
               buttonProps={{
                 ...buttonProps,
+                sx: {
+                  flexGrow: { xs: 0, md: 1 },
+                  flexBasis: fullWidth ? '100%' : 'default',
+                },
               }}
             />
           );

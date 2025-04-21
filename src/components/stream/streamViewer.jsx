@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Box } from '@mui/material';
-import OfflineOverlay from './offlineOverlay';
 import Script from 'next/script';
+import OfflineOverlay from './offlineOverlay';
 
 const channelName = 'coqui';
 

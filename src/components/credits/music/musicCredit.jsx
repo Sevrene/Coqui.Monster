@@ -1,3 +1,4 @@
+import { LibraryMusic, RecentActors } from '@mui/icons-material';
 import {
   Avatar,
   Box,
@@ -8,7 +9,6 @@ import {
   Stack,
   Tooltip,
 } from '@mui/material';
-import { LibraryMusic, RecentActors } from '@mui/icons-material';
 
 import PlayableMusicCredit from './playableMusicCredit';
 
@@ -57,7 +57,7 @@ export default function MusicCredit({ credit }) {
             sx={{
               width: '50%',
               borderRadius: 2,
-              color: 'brandYellow.main',
+              color: 'links',
               whiteSpace: 'nowrap',
               fontSize: credit.songLink ? 'initial' : 'x-small',
             }}
@@ -74,7 +74,7 @@ export default function MusicCredit({ credit }) {
             sx={{
               width: '50%',
               borderRadius: 2,
-              color: 'brandYellow.main',
+              color: 'links',
               whiteSpace: 'nowrap',
               fontSize: credit.artistSocials ? 'initial' : 'x-small',
             }}

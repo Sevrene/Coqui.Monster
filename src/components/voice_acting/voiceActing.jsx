@@ -9,10 +9,10 @@ import {
   Typography,
 } from '@mui/material';
 
-import CreditsChip from '../credits/creditsChip';
-import Image from 'next/image';
-import { Mic } from '@mui/icons-material';
 import { voiceActingRoles } from '@/mockData';
+import { Mic } from '@mui/icons-material';
+import Image from 'next/image';
+import CreditsChip from '../credits/creditsChip';
 
 /**
  * Renders the VoiceActing component.
@@ -105,7 +105,7 @@ export default function VoiceActing() {
         </Typography>
         <Button
           variant='contained'
-          color='brandPurple'
+          color='secondary'
           endIcon={<Mic />}
           href={
             'https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362'

@@ -1,5 +1,6 @@
 'use client';
 
+import { Close, InfoOutlined, VolumeDown, VolumeUp } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -10,7 +11,6 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { Close, InfoOutlined, VolumeDown, VolumeUp } from '@mui/icons-material';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { MusicPlayerContext } from '@/components/providers/musicPlayerCtxProvider';
@@ -189,7 +189,7 @@ function MusicPlayer() {
                     rel='noopener noreferrer'
                     style={{
                       textDecoration: 'none',
-                      color: constStyles.brandYellow,
+                      color: 'links',
                     }}
                   >
                     <Typography

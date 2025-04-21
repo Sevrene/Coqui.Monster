@@ -1,3 +1,4 @@
+const { withPayload } = require('@payloadcms/next/withPayload');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
@@ -29,7 +30,7 @@ const nextConfig = {
   },
 };
 
-module.exports = {
+module.exports = withPayload({
   ...nextConfig,
   async redirects() {
     return [
@@ -154,4 +155,4 @@ module.exports = {
       },
     ];
   },
-};
+});

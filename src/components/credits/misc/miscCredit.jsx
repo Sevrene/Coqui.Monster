@@ -1,3 +1,4 @@
+import { InfoOutlined, RecentActors } from '@mui/icons-material';
 import {
   Avatar,
   Box,
@@ -7,7 +8,6 @@ import {
   ListItemText,
   Tooltip,
 } from '@mui/material';
-import { InfoOutlined, RecentActors } from '@mui/icons-material';
 
 /**
  * Renders a miscellaneous credit component.
@@ -53,7 +53,7 @@ export default function MiscCredit({ credit }) {
           disabled={!credit.link}
           target='_blank'
           endIcon={<RecentActors />}
-          sx={{ width: '100%', borderRadius: 2, color: 'brandYellow.main' }}
+          sx={{ width: '100%', borderRadius: 2, color: 'links' }}
         >
           {credit.link ? 'Artist' : 'No Artist Link'}
         </Button>

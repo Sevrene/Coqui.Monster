@@ -1,9 +1,7 @@
-import { GlobalStyles, ThemeProvider } from '@mui/material';
-
+import { getGlobal } from '@/utils/getGlobals';
+import { GlobalStyles } from '@mui/material';
 import { Contexts } from './contexts';
-import { formatBackgroundStyle } from '@/utils/styleUtils';
-import globalTheme from '@/styles/globalTheme';
-import { mainPageBackground } from '@/mockData';
+import ThemeWrapper from './themeWrapper';
 
 /**
  * Renders a set of providers for the application.
@@ -12,9 +10,11 @@ import { mainPageBackground } from '@/mockData';
  * @param {ReactNode} props.children - The child components to be rendered.
  * @returns {ReactNode} The rendered providers with the child components.
  */
-export function Providers({ children }) {
+export async function Providers({ children }) {
+  const themeData = await getGlobal('theme', 1);
+
   return (
-    <ThemeProvider theme={globalTheme}>
+    <ThemeWrapper themeConfig={themeData}>
       <GlobalStyles
         styles={{
           html: {
@@ -28,11 +28,11 @@ export function Providers({ children }) {
             flexDirection: 'column',
             minHeight: '100vh',
             margin: 0,
-            background: formatBackgroundStyle(mainPageBackground),
+            background: 'linear-gradient(180deg, #6600CC 0%, #000000 100%)',
           },
         }}
       />
       <Contexts>{children}</Contexts>
-    </ThemeProvider>
+    </ThemeWrapper>
   );
 }

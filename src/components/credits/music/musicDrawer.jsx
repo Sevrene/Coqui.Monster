@@ -26,7 +26,7 @@ export default function MusicDrawer({ children }) {
           onClick={() => toggleDrawer('music')}
           variant='contained'
           size='large'
-          color='brandYellow'
+          color='links'
           startIcon={<IconMusic />}
           sx={{
             border: '1px solid black',

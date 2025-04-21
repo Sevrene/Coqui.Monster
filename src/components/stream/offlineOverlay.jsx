@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, CircularProgress } from '@mui/material';
 import { Diamond, Today } from '@mui/icons-material';
+import { Button, CircularProgress } from '@mui/material';
 
 import Image from 'next/image';
 import { useState } from 'react';
@@ -26,7 +26,7 @@ export default function OfflineOverlay() {
       {/* Button for Twitter Schedule */}
       <Button
         variant='contained'
-        color='primary'
+        color='secondary'
         endIcon={
           scheduleState.loading ? <CircularProgress size={20} /> : <Today />
         }
@@ -55,7 +55,7 @@ export default function OfflineOverlay() {
       {/* Button for While You Wait */}
       <Button
         variant='contained'
-        color='primary'
+        color='secondary'
         endIcon={
           waitImageState.loading ? <CircularProgress size={20} /> : <Diamond />
         }
@@ -84,7 +84,7 @@ export default function OfflineOverlay() {
       {/* Image for Twitter Schedule */}
       {scheduleState.show && (
         <Image
-          src='/images/twitter_schedule.jpg'
+          src='/images/schedule.jpg'
           alt='Twitter Schedule'
           width='1200'
           height='675'

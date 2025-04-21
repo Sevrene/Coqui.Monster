@@ -1,29 +1,41 @@
 {
   "name": "coqui.monster",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run register-twitch-webhook",
-    "start": "next start && npm run register-twitch-webhook",
+    "build": "npm run generate-icons && next build",
+    "start": "next start",
     "lint": "next lint",
-    "register-twitch-webhook": "node scripts/register-twitch-webhook.mjs"
+    "generate:importmap": "payload generate:importmap",
+    "generate-icons": "node scripts/generateIconList.mjs"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^6.1.1",
-    "@mui/material": "^6.1.1",
-    "@tabler/icons-react": "^3.19.0",
-    "dotenv": "^16.4.5",
-    "next": "^14.2.14",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-icons": "^5.3.0",
-    "styled-components": "^6.1.13"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@innovixx/payload-color-picker-field": "^2.0.1",
+    "@innovixx/payload-icon-picker-field": "^1.0.0-beta.6",
+    "@mui/icons-material": "^6.3.1",
+    "@mui/material": "^6.3.1",
+    "@payloadcms/db-postgres": "^3.35.1",
+    "@payloadcms/live-preview-react": "^3.35.1",
+    "@payloadcms/next": "^3.35.1",
+    "@payloadcms/payload-cloud": "^3.35.1",
+    "@payloadcms/richtext-lexical": "^3.35.1",
+    "@tabler/icons-react": "^3.28.1",
+    "dotenv": "^16.4.7",
+    "graphql": "^16.10.0",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^15.1.4",
+    "payload": "^3.35.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "eslint": "^9.11.1"
+    "eslint": "^9.18.0",
+    "typescript": "5.7.3"
   }
 }

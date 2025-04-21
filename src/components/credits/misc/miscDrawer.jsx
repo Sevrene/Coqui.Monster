@@ -2,8 +2,8 @@
 
 import { Button, Drawer, Tooltip } from '@mui/material';
 
-import { Brush } from '@mui/icons-material';
 import { DrawerContext } from '@/components/providers/drawerCtxProvider';
+import { Brush } from '@mui/icons-material';
 import { useContext } from 'react';
 
 /**
@@ -25,7 +25,7 @@ export default function MiscDrawer({ children }) {
           onClick={() => toggleDrawer('misc')}
           variant='contained'
           size='large'
-          color='brandYellow'
+          color='links'
           startIcon={<Brush />}
           sx={{
             border: '1px solid black',
