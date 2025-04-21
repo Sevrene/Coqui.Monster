@@ -1,5 +1,5 @@
-import SocialIcon from './socialIcon';
 import { Stack } from '@mui/material';
+import SocialIcon from './socialIcon';
 
 /**
  * Renders a stack of social icons.
@@ -13,7 +13,7 @@ import { Stack } from '@mui/material';
 export default function SocialIconStack({ socials, direction = 'row', sx }) {
   return (
     <Stack direction={direction} flexWrap='wrap' sx={sx}>
-      {socials.map((social) => (
+      {socials?.map((social) => (
         <SocialIcon key={social.name} social={social} />
       ))}
     </Stack>

@@ -62,15 +62,17 @@ export function Header({ headerData }: HeaderProps): ReactNode {
             }}
           >
             <Box position='relative' width='114px' height='100%'>
-              <Link href='/'>
-                <Image
-                  src={logo.url}
-                  alt={logo.alt}
-                  width={Math.max(logo.width, 114)}
-                  height={Math.max(logo.height, 64)}
-                  style={{ width: 'auto', height: '100%' }}
-                />
-              </Link>
+              {logo && (
+                <Link href='/'>
+                  <Image
+                    src={logo.url}
+                    alt={logo.alt}
+                    width={Math.max(logo.width, 114)}
+                    height={Math.max(logo.height, 64)}
+                    style={{ width: 'auto', height: '100%' }}
+                  />
+                </Link>
+              )}
             </Box>
             <Box
               sx={{

@@ -14,15 +14,19 @@ export default function ThemeWrapper({ themeConfig, children }) {
         palette: {
           mode: 'light',
           primary: {
-            main: themeConfig.colors.primary.color,
+            main:
+              themeConfig.colors.primary?.color ||
+              baseTheme.palette.primary.main,
           },
           secondary: {
-            main: themeConfig.colors.secondary.color,
+            main:
+              themeConfig.colors.secondary?.color ||
+              baseTheme.palette.secondary.main,
           },
           link: baseTheme.palette.augmentColor({
             name: 'link',
             color: {
-              main: themeConfig.colors.links.color || '#000',
+              main: themeConfig.colors.links?.color || '#000',
             },
           }),
         },
