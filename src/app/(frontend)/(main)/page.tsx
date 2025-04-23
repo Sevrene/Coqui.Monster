@@ -1,5 +1,5 @@
-import { Box, Divider, Stack } from '@mui/material';
 import { aboutSection, threeAmSection } from '@/mockData';
+import { Box, Divider, Stack } from '@mui/material';
 
 import ComedyWrapper from '@/components/comedy/comedyWrapper';
 import CommunitySection from '@/components/community/communitySection';
@@ -9,12 +9,9 @@ import MusicPlayer from '@/components/credits/music/musicPlayer';
 import StreamViewer from '@/components/stream/streamViewer';
 import SupportSection from '@/components/support/supportSection';
 import VoiceActing from '@/components/voice_acting/voiceActing';
+import { JSX } from 'react';
 
-/**
- * Renders the Home page component.
- * @returns {JSX.Element} The rendered Home component.
- */
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <main
       id='main'
