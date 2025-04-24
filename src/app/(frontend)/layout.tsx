@@ -5,9 +5,12 @@ import { Header } from '@/components/layout/header/header';
 import { Providers } from '@/components/providers/providers';
 import { constStyles } from '@/styles/constStyles';
 import { ExitPreview } from '@/utils/exit-preview';
+import { GlobalStyles } from '@mui/material';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 import { RefreshRouteOnSave } from './RefreshRouteOnSave';
+
+// TODO: Tie metadata and GlobalStyles to CMS data
 
 const baseURL: string =
   process.env.NEXT_PUBLIC_BASE_URL || 'https://coqui.monster';
@@ -124,6 +127,23 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body>
+        <GlobalStyles
+          styles={{
+            html: {
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+            },
+            body: {
+              display: 'flex',
+              flexDirection: 'column',
+              minHeight: '100vh',
+              margin: 0,
+              background: 'linear-gradient(180deg, #6600CC 0%, #000000 100%)',
+            },
+          }}
+        />
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <a
           href='#main'
