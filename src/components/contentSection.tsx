@@ -1,6 +1,21 @@
 import { Box, Stack, Typography } from '@mui/material';
+import { JSX, ReactNode } from 'react';
 
 import Image from 'next/image';
+
+interface ImageData {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface ContentSectionProps {
+  title?: string;
+  body?: ReactNode;
+  imageData?: ImageData;
+  reversed?: boolean;
+}
 
 /**
  * Renders a content section with a title, body, and optional image.
@@ -15,9 +30,9 @@ import Image from 'next/image';
 export default function ContentSection({
   title = 'Title',
   body = 'Body',
-  imageData = {},
+  imageData = { src: '', alt: '', width: 0, height: 0 },
   reversed = false,
-}) {
+}: ContentSectionProps): JSX.Element {
   return (
     <Box
       sx={{

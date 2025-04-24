@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 //  - Get the (main) layout to apply to this page
 //  - Have the page display correctly, and
 //  - Properly label itself as a 404 page
-
+// TODO: See if I can re-apply the (main) layout to this page based off the written to file CMS data
 const messages = [
   '404: Page not found',
   "Hint: I hear 'comedy' is pretty funny",

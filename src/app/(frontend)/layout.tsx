@@ -1,7 +1,5 @@
 export const dynamic = 'force-static';
 
-import { ParsedHeaderData, getHeaderData } from '@/cms_data/headerData';
-
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 import { Providers } from '@/components/providers/providers';
@@ -17,7 +15,7 @@ const description: string =
   'Coqui Saporana is a frog vtuber who streams on Twitch. She is also a member of the 3AM VTuber group.';
 const themeColor: string = constStyles.brandPurple;
 
-interface IMetaOpenGraphImage {
+interface IMetaImage {
   url: string;
   width: number;
   height: number;
@@ -29,22 +27,15 @@ interface IMetaOpenGraph {
   description: string;
   url: string;
   siteName: string;
-  images: IMetaOpenGraphImage[];
+  images: IMetaImage[];
   type: string;
   color: string;
-}
-
-interface IMetaTwitterImage {
-  url: string;
-  width: number;
-  height: number;
-  alt: string;
 }
 
 interface IMetaTwitter {
   title: string;
   description: string;
-  image: IMetaTwitterImage;
+  image: IMetaImage;
   card: string;
   color: string;
 }
@@ -128,7 +119,6 @@ interface RootLayoutProps {
 export default async function RootLayout({
   children,
 }: RootLayoutProps): Promise<ReactNode> {
-  const headerData: ParsedHeaderData = await getHeaderData();
   const draft = await draftMode();
 
   return (
@@ -152,7 +142,7 @@ export default async function RootLayout({
         <RefreshRouteOnSave />
         {draft.isEnabled && <ExitPreview />}
         <Providers>
-          <Header headerData={headerData} />
+          <Header />
           {children}
           <Footer />
         </Providers>
