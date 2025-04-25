@@ -13,10 +13,7 @@ export function formatBackgroundStyle(backgroundSettings) {
         (colorObj) => {
           const baseColor = colorObj.color.color;
           const formattedTransparency =
-            colorObj.transparency !== null &&
-            colorObj.transparency !== undefined
-              ? colorObj.transparency.toString().padStart(2, '0')
-              : '';
+            colorObj.transparency?.toString().padStart(2, '0') ?? '';
 
           return `${baseColor}${formattedTransparency} ${colorObj.position}%`;
         }

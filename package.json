@@ -2,14 +2,17 @@
   "name": "coqui.monster",
   "version": "2.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "npm run clear-cache && npm run generate-icons && next build",
+    "prebuild": "npm run generate:importmap && npm run generate:redirects && npm run generate-icons && npm run clear-cache",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "generate:importmap": "payload generate:importmap",
     "generate-icons": "node scripts/generateIconList.mjs",
-    "clear-cache": "node scripts/clearCache.mjs"
+    "clear-cache": "node scripts/clearCache.mjs",
+    "generate:redirects": "payload run scripts/generateRedirects.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -22,6 +25,7 @@
     "@payloadcms/live-preview-react": "^3.35.1",
     "@payloadcms/next": "^3.35.1",
     "@payloadcms/payload-cloud": "^3.35.1",
+    "@payloadcms/plugin-redirects": "^3.35.1",
     "@payloadcms/richtext-lexical": "^3.35.1",
     "@tabler/icons-react": "^3.28.1",
     "dotenv": "^16.4.7",

@@ -1,15 +1,15 @@
-import { aboutSection, threeAmSection } from '@/mockData';
 import { Box, Divider, Stack } from '@mui/material';
+import { aboutSection, threeAmSection } from '@/mockData';
 
 import ComedyWrapper from '@/components/comedy/comedyWrapper';
 import CommunitySection from '@/components/community/communitySection';
 import ContentSection from '@/components/contentSection';
 import Credits from '@/components/credits/credits';
+import { JSX } from 'react';
 import MusicPlayer from '@/components/credits/music/musicPlayer';
 import StreamViewer from '@/components/stream/streamViewer';
 import SupportSection from '@/components/support/supportSection';
 import VoiceActing from '@/components/voice_acting/voiceActing';
-import { JSX } from 'react';
 
 export default function Home(): JSX.Element {
   return (

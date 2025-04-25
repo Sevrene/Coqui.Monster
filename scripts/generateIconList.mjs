@@ -1,15 +1,18 @@
 import * as TablerIcons from '@tabler/icons-react';
 
+import React from 'react';
+import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const outputJsonPath = path.resolve(__dirname, '../public/tabler-icons.json');
+const outputJsonPath = path.resolve(
+  __dirname,
+  '../src/cms_data/tabler-icons.json'
+);
 
 const generateCMSJson = () => {
   console.log('🚀 Generating Tabler icon list...');

@@ -1,11 +1,19 @@
 import type { CollectionConfig } from 'payload';
 
+// This collection is used to store gradients for use throughout the site
 const Gradients: CollectionConfig = {
   slug: 'gradients',
+  versions: {
+    drafts: {
+      autosave: true,
+    },
+    maxPerDoc: 5,
+  },
   admin: {
     useAsTitle: 'name',
-    description:
-      'Example: gradient(0deg, #6600CC 0%, #000000 100%) transitions from purple to black starting from the bottom',
+    group: 'System',
+    hideAPIURL: process.env.NODE_ENV === 'production',
+    defaultColumns: ['name', 'colors', 'angle', 'updatedAt', 'createdAt'],
   },
   fields: [
     {
@@ -18,12 +26,25 @@ const Gradients: CollectionConfig = {
       type: 'number',
       label: 'Gradient Angle (in degrees)',
       defaultValue: 0,
+      min: 0,
+      max: 360,
+      admin: {
+        components: {
+          Cell: '@/cms/components/cells/angleCell.tsx',
+        },
+      },
     },
     {
       name: 'colors',
       type: 'array',
       label: 'Colors',
       minRows: 2,
+      admin: {
+        position: 'sidebar',
+        components: {
+          Cell: '@/cms/components/cells/gradientCell.tsx',
+        },
+      },
       fields: [
         {
           name: 'color',

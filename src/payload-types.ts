@@ -69,10 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    redirects: Redirect;
     socials: Social;
     colors: Color;
     gradients: Gradient;
+    redirects: Redirect;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,10 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     socials: SocialsSelect<false> | SocialsSelect<true>;
     colors: ColorsSelect<false> | ColorsSelect<true>;
     gradients: GradientsSelect<false> | GradientsSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -160,9 +160,13 @@ export interface User {
  */
 export interface Media {
   id: number;
+  /**
+   * Simple text description of the image.
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
   url?: string | null;
   thumbnailURL?: string | null;
   filename?: string | null;
@@ -172,27 +176,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: number;
-  /**
-   * The path you want to redirect from. Must start with a "/"
-   */
-  source: string;
-  /**
-   * The path/url you want to redirect to
-   */
-  destination: string;
-  /**
-   * 301 Redirect (If you don't know what this means, do not check this box)
-   */
-  permanent: boolean;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -232,10 +215,9 @@ export interface Color {
   color: string;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
- * Example: gradient(0deg, #6600CC 0%, #000000 100%) transitions from purple to black starting from the bottom
- *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gradients".
  */
@@ -254,6 +236,39 @@ export interface Gradient {
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * The path you want to redirect from. Must start with a "/"
+   */
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?: {
+      relationTo: 'redirects';
+      value: number | Redirect;
+    } | null;
+    /**
+     * The url to redirect to
+     */
+    url?: string | null;
+  };
+  /**
+   * If you don't know what this means, do not change this
+   */
+  type: '301' | '302';
+  /**
+   * Hide this redirect from the public facing redirects list. The redirect will still work.
+   */
+  hidden?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -365,10 +380,6 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'redirects';
-        value: number | Redirect;
-      } | null)
-    | ({
         relationTo: 'socials';
         value: number | Social;
       } | null)
@@ -379,6 +390,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gradients';
         value: number | Gradient;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -449,6 +464,7 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
   url?: T;
   thumbnailURL?: T;
   filename?: T;
@@ -458,17 +474,6 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects_select".
- */
-export interface RedirectsSelect<T extends boolean = true> {
-  source?: T;
-  destination?: T;
-  permanent?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -496,6 +501,7 @@ export interface ColorsSelect<T extends boolean = true> {
   color?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -512,6 +518,25 @@ export interface GradientsSelect<T extends boolean = true> {
         transparency?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  type?: T;
+  hidden?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -579,6 +604,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * The header is the top section of the website, containing the logo, announcement bar, and navigation links.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
@@ -619,6 +646,8 @@ export interface Header {
   createdAt?: string | null;
 }
 /**
+ * The footer is the bottom section of the website, containing social media links and contact information.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */

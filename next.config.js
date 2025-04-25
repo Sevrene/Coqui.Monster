@@ -1,4 +1,6 @@
-const { withPayload } = require('@payloadcms/next/withPayload');
+import redirects from './redirects/redirects.js';
+import { withPayload } from '@payloadcms/next/withPayload';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {
@@ -30,118 +32,9 @@ const nextConfig = {
   },
 };
 
-module.exports = withPayload({
+export default withPayload({
   ...nextConfig,
-  async redirects() {
-    return [
-      // 3AM Redirects
-      {
-        source: '/3am',
-        destination: 'https://3am.moe/',
-        permanent: false,
-      },
-      {
-        source: '/store',
-        destination: 'https://store.3am.moe/',
-        permanent: false,
-      },
-      // Social Redirects
-      {
-        source: '/twitch',
-        destination: 'https://www.twitch.tv/COQUI',
-        permanent: false,
-      },
-      {
-        source: '/bsky',
-        destination: 'https://bsky.app/profile/coqui.bsky.social',
-        permanent: false,
-      },
-      {
-        source: '/youtube',
-        destination: 'https://www.youtube.com/@C0QUI',
-        permanent: false,
-      },
-      {
-        source: '/discord',
-        destination: 'https://discord.gg/coqui',
-        permanent: false,
-      },
-      {
-        source: '/clips',
-        destination: 'https://www.youtube.com/@C0QUI',
-        permanent: false,
-      },
-      {
-        source: '/vods',
-        destination: 'https://www.youtube.com/@CoquiArchives',
-        permanent: false,
-      },
-      // Support Redirects
-      {
-        source: '/uwu',
-        destination: 'https://uwumarket.us/collections/coqui',
-        permanent: false,
-      },
-      {
-        source: '/throne',
-        destination: 'https://throne.com/coqui',
-        permanent: false,
-      },
-      {
-        source: '/supps',
-        destination: 'https://gamersupps.gg/?ref=COQUI',
-        permanent: false,
-      },
-      {
-        source: '/kawa', // This is a duplicate redirect for the 3AM store
-        destination:
-          'https://merch.kawaentertainment.com/en-ca/collections/3am',
-        permanent: false,
-      },
-      // Community Redirects
-      {
-        source: '/questions',
-        destination: 'https://marshmallow-qa.com/coqui_monster',
-        permanent: false,
-      },
-      {
-        source: '/minecraft',
-        destination:
-          'https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556',
-        permanent: false,
-      },
-      {
-        source: '/cobblemon',
-        destination:
-          'https://discord.com/channels/786373342549770260/1180826995605647441/1326321954873147453',
-        permanent: false,
-      },
-      // Misc Redirects
-      {
-        source: '/ref',
-        destination:
-          'https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA',
-        permanent: false,
-      },
-      {
-        source: '/voice',
-        destination:
-          'https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362',
-        permanent: false,
-      },
-      {
-        source: '/free-cword-pass',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        permanent: false,
-      },
-      {
-        source: '/3d-model',
-        destination:
-          'https://bsky.app/profile/coqui.bsky.social/post/3lf2geztg6k2p',
-        permanent: false,
-      },
-    ];
-  },
+  redirects,
   async headers() {
     return [
       {

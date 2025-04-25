@@ -1,10 +1,10 @@
 import { GlobalStyles, Typography } from '@mui/material';
 
+import { ExitPreview } from '@/utils/exit-preview';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
-import { ExitPreview } from '@/utils/exit-preview';
-import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
+import { draftMode } from 'next/headers';
 
 const messages = [
   '404: Page not found',

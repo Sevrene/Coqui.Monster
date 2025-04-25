@@ -15,7 +15,7 @@ const resolveSocialUsage =
           equals: globalName,
         },
       },
-      limit: 1000,
+      limit: 999,
       draft: false,
     });
 

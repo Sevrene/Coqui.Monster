@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import resolveSocialUsage from '../helper/resolveSocialUsage';
+import resolveSocialUsage from '../hooks/resolveSocialUsage';
 
 const Header: GlobalConfig = {
   slug: 'header',
@@ -8,6 +8,11 @@ const Header: GlobalConfig = {
       autosave: true,
       schedulePublish: true,
     },
+  },
+  admin: {
+    group: 'Content',
+    description:
+      'The header is the top section of the website, containing the logo, announcement bar, and navigation links.',
   },
   fields: [
     {

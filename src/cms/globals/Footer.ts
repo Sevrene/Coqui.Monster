@@ -1,6 +1,6 @@
-import { validateUrl } from '@payloadcms/richtext-lexical';
 import type { GlobalConfig } from 'payload';
-import resolveSocialUsage from '../helper/resolveSocialUsage';
+import resolveSocialUsage from '../hooks/resolveSocialUsage';
+import { validateUrl } from '@payloadcms/richtext-lexical';
 
 const Footer: GlobalConfig = {
   slug: 'footer',
@@ -9,6 +9,11 @@ const Footer: GlobalConfig = {
       autosave: true,
       schedulePublish: true,
     },
+  },
+  admin: {
+    group: 'Content',
+    description:
+      'The footer is the bottom section of the website, containing social media links and contact information.',
   },
   fields: [
     {

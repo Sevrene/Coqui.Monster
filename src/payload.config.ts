@@ -1,19 +1,19 @@
-import { postgresAdapter } from '@payloadcms/db-postgres';
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
+import { Colors } from './cms/collections/Colors';
+import Footer from './cms/globals/Footer';
+import Gradients from './cms/collections/Gradients';
+import Header from './cms/globals/Header';
+import { Media } from './cms/collections/Media';
+import { Socials } from './cms/collections/Socials';
+import Theme from './cms/globals/Theme';
+import { Users } from './cms/collections/Users';
+import { buildConfig } from 'payload';
+import { fileURLToPath } from 'url';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
-import { buildConfig } from 'payload';
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { redirectsPlugin } from '@payloadcms/plugin-redirects';
+import redirectsPluginConfig from './cms/plugins/redirectsPluginConfig';
 import sharp from 'sharp';
-import { fileURLToPath } from 'url';
-import { Colors } from './cms/collections/Colors';
-import Gradients from './cms/collections/Gradients';
-import { Media } from './cms/collections/Media';
-import Redirects from './cms/collections/Redirects';
-import { Socials } from './cms/collections/Socials';
-import { Users } from './cms/collections/Users';
-import Footer from './cms/globals/Footer';
-import Header from './cms/globals/Header';
-import Theme from './cms/globals/Theme';
 
 // storage-adapter-import-placeholder
 
@@ -29,18 +29,11 @@ export default buildConfig({
     livePreview: {
       url: `http://localhost:3000/next/preview?preview=true&previewSecret=${process.env.PREVIEW_SECRET}`,
       globals: ['header', 'footer', 'theme'],
-      collections: [
-        'users',
-        'media',
-        'redirects',
-        'socials',
-        'colors',
-        'gradients',
-      ],
+      collections: ['colors', 'gradients', 'media', 'socials', 'users'],
     },
   },
   globals: [Header, Footer, Theme],
-  collections: [Users, Media, Redirects, Socials, Colors, Gradients],
+  collections: [Users, Media, Socials, Colors, Gradients],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET,
   typescript: {
@@ -53,7 +46,8 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
+    // TODO: Probably want to extract this to a separate file
+    redirectsPlugin(redirectsPluginConfig),
     // storage-adapter-placeholder
   ],
 });

@@ -1,11 +1,11 @@
 import { GlobalSlug, getPayload } from 'payload';
 
-import configPromise from '@payload-config';
-import fs from 'fs';
-import { draftMode } from 'next/headers';
-import path from 'path';
 import type { Config } from 'src/payload-types';
+import configPromise from '@payload-config';
+import { draftMode } from 'next/headers';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
+import path from 'path';
 
 type Global = keyof Config['globals'];
 const __filename = fileURLToPath(import.meta.url);
@@ -22,12 +22,11 @@ export async function getGlobal(slug: Global, depth = 0) {
   let data: any = {};
 
   if (process.env.NODE_ENV === 'development') {
-    console.log('Development mode | fetching fresh data for:', slug);
     return await getCMSData(slug, depth, isPreview, cacheFile);
   }
 
   if (!isPreview && fs.existsSync(cacheFile)) {
-    console.log('Cache file exists, returning cached data:', cacheFile);
+    //console.log('Cache file exists, returning cached data:', cacheFile);
     return (data = await getCachedData(cacheFile));
   }
 
@@ -41,7 +40,7 @@ export async function getGlobal(slug: Global, depth = 0) {
 
   // No active lock; proceed to fetch header data
   try {
-    console.log('No active lock, proceeding to fetch data for:', slug);
+    //console.log('No active lock, proceeding to fetch data for:', slug);
     fs.writeFileSync(lockFile, 'fetching');
     const data = await getCMSData(slug, depth, isPreview, cacheFile);
 
@@ -69,6 +68,7 @@ export const getCachedData = async (cacheFile: string) => {
   return null;
 };
 
+// TODO: Look into using unstable_cache for this
 export const getCMSData = async (
   slug: GlobalSlug,
   depth: number,
@@ -89,7 +89,7 @@ export const getCMSData = async (
 
   try {
     fs.writeFileSync(cacheFile, JSON.stringify(globalData, null, 2), 'utf-8');
-    console.log(`${slug} data written to file successfully`);
+    //console.log(`${slug} data written to file successfully`);
   } catch (error) {
     console.error('Error writing data to file:', error);
   }
