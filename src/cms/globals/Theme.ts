@@ -1,7 +1,12 @@
 import type { GlobalConfig } from 'payload';
+import { AdminGroups } from '../utils/adminGroups';
 
 const Theme: GlobalConfig = {
   slug: 'theme',
+  admin: {
+    group: AdminGroups.SITE,
+    hideAPIURL: process.env.NODE_ENV === 'production',
+  },
   fields: [
     {
       name: 'colors',

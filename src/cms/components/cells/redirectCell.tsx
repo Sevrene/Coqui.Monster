@@ -5,7 +5,7 @@ type RedirectCellProps = {
   cellData: Redirect['to'];
 };
 
-export default async function RedirectCell({ cellData }: RedirectCellProps) {
+export default function RedirectCell({ cellData }: RedirectCellProps) {
   if (!cellData) {
     return <></>;
   }

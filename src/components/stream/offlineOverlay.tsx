@@ -11,7 +11,7 @@ import { useState } from 'react';
  * This component displays buttons and images when the liveStatus is false.
  * @returns {JSX.Element} The OfflineOverlay component.
  */
-export default function OfflineOverlay() {
+export default function OfflineOverlay({ scheduleImage, waitImage }) {
   const [scheduleState, setScheduleState] = useState({
     show: false,
     loading: false,
@@ -23,10 +23,10 @@ export default function OfflineOverlay() {
 
   return (
     <>
-      {/* Button for Twitter Schedule */}
+      {/* Button for Schedule */}
       <Button
         variant='contained'
-        color='secondary'
+        color='primary'
         endIcon={
           scheduleState.loading ? <CircularProgress size={20} /> : <Today />
         }
@@ -34,13 +34,12 @@ export default function OfflineOverlay() {
           position: 'absolute',
           top: '16px',
           right: '16px',
-          color: 'white',
           padding: '8px',
           borderRadius: '4px',
           color: 'black',
         }}
         onMouseEnter={() => setScheduleState({ show: true, loading: true })}
-        onMouseLeave={() => setScheduleState({ show: false })}
+        onMouseLeave={() => setScheduleState({ show: false, loading: false })}
         onClick={() => {
           if (scheduleState.show && !scheduleState.loading) {
             setScheduleState({ show: false, loading: false });
@@ -49,13 +48,13 @@ export default function OfflineOverlay() {
           }
         }}
       >
-        Twitter Schedule
+        Schedule
       </Button>
 
       {/* Button for While You Wait */}
       <Button
         variant='contained'
-        color='secondary'
+        color='primary'
         endIcon={
           waitImageState.loading ? <CircularProgress size={20} /> : <Diamond />
         }
@@ -63,13 +62,12 @@ export default function OfflineOverlay() {
           position: 'absolute',
           bottom: '16px',
           left: '16px',
-          color: 'white',
           padding: '8px',
           borderRadius: '4px',
           color: 'black',
         }}
         onMouseEnter={() => setWaitImageState({ show: true, loading: true })}
-        onMouseLeave={() => setWaitImageState({ show: false })}
+        onMouseLeave={() => setWaitImageState({ show: false, loading: false })}
         onClick={() => {
           if (waitImageState.show && !waitImageState.loading) {
             setWaitImageState({ show: false, loading: false });
@@ -81,11 +79,11 @@ export default function OfflineOverlay() {
         While You Wait
       </Button>
 
-      {/* Image for Twitter Schedule */}
+      {/* Image for Schedule */}
       {scheduleState.show && (
         <Image
-          src='/images/schedule.jpg'
-          alt='Twitter Schedule'
+          src={scheduleImage}
+          alt='Schedule'
           width='1200'
           height='675'
           style={{
@@ -97,8 +95,9 @@ export default function OfflineOverlay() {
             transition: 'width 0.5s, height 0.5s',
           }}
           onLoad={(e) => {
-            e.target.style.width = '80%';
-            e.target.style.height = '80%';
+            const targetElement = e.target as HTMLElement;
+            targetElement.style.width = '80%';
+            targetElement.style.height = '80%';
             setScheduleState({ show: true, loading: false });
           }}
         />
@@ -107,7 +106,7 @@ export default function OfflineOverlay() {
       {/* Image for While You Wait */}
       {waitImageState.show && (
         <Image
-          src='/gifs/supercracksmaller.gif'
+          src={waitImage}
           alt='While You Wait'
           // unoptimized // Somehow setting unoptimized causes the mouse enter/leave to ony function on every other hover (And prevents the onLoad from working more than once)
           width='540'
@@ -121,8 +120,9 @@ export default function OfflineOverlay() {
             transition: 'width 0.5s, height 0.5s',
           }}
           onLoad={(e) => {
-            e.target.style.width = '80%';
-            e.target.style.height = '80%';
+            const targetElement = e.target as HTMLElement;
+            targetElement.style.width = '80%';
+            targetElement.style.height = '80%';
             setWaitImageState({ show: true, loading: false });
           }}
         />

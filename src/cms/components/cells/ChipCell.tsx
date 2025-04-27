@@ -6,7 +6,7 @@ interface ChipCellProps {
 
 const MAX_VISIBLE_CHIPS = 2;
 
-export default async function ChipCell({ cellData }: ChipCellProps) {
+export default function ChipCell({ cellData }: ChipCellProps) {
   if (!cellData || cellData.length === 0) {
     return <>- No Entries -</>;
   }

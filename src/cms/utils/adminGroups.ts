@@ -1,5 +1,5 @@
 export const AdminGroups = {
   CONTENT: 'Content',
-  SETTINGS: 'Settings',
+  SITE: 'Site',
   SYSTEM: 'System',
 };

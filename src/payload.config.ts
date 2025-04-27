@@ -12,10 +12,9 @@ import { Socials } from './cms/collections/Socials';
 import { Users } from './cms/collections/Users';
 import Footer from './cms/globals/Footer';
 import Header from './cms/globals/Header';
+import SiteSettings from './cms/globals/SiteSettings';
 import Theme from './cms/globals/Theme';
 import redirectsPluginConfig from './cms/plugins/redirectsPluginConfig';
-
-// storage-adapter-import-placeholder
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,12 +29,19 @@ export default buildConfig({
       url: `http://localhost:3000/next/preview?preview=true&previewSecret=${process.env.PREVIEW_SECRET}`,
       // Versions are currently broken on globals in Payload. Add them back when fixed.
       // https://github.com/payloadcms/payload/issues/11879
-      // globals: ['header', 'footer', 'theme'],
+      // globals: ['header', 'footer', 'site-settings', 'theme'],
       collections: ['colors', 'gradients', 'media', 'socials'],
     },
+    components: {
+      beforeDashboard: ['@/cms/components/dashboard/dashboardHeader.tsx'],
+      afterDashboard: [
+        '@/cms/components/dashboard/dashboardHookButtons.tsx',
+        '@/cms/components/dashboard/dashboardReadMe.tsx',
+      ],
+    },
   },
-  globals: [Header, Footer, Theme],
-  collections: [Users, Media, Socials, Colors, Gradients],
+  globals: [Header, Footer, SiteSettings, Theme],
+  collections: [Users, Colors, Gradients, Media, Socials],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET,
   typescript: {
@@ -47,9 +53,5 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [
-    // TODO: Probably want to extract this to a separate file
-    redirectsPlugin(redirectsPluginConfig),
-    // storage-adapter-placeholder
-  ],
+  plugins: [redirectsPlugin(redirectsPluginConfig)],
 });

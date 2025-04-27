@@ -36,15 +36,15 @@ export default function ThemeWrapper({ themeConfig, children }) {
           palette: {
             mode: 'dark',
             primary: {
-              main: themeConfig.colors.darkMode.primary.color,
+              main: themeConfig.colors.darkMode.primary?.color,
             },
             secondary: {
-              main: themeConfig.colors.darkMode.secondary.color,
+              main: themeConfig.colors.darkMode.secondary?.color,
             },
             link: baseTheme.palette.augmentColor({
               name: 'link',
               color: {
-                main: themeConfig.colors.darkMode.links.color || '#000',
+                main: themeConfig.colors.darkMode.links?.color || '#000',
               },
             }),
           },

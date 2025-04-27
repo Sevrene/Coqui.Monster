@@ -68,10 +68,10 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
-    media: Media;
-    socials: Social;
     colors: Color;
     gradients: Gradient;
+    media: Media;
+    socials: Social;
     redirects: Redirect;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,10 +80,10 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    socials: SocialsSelect<false> | SocialsSelect<true>;
     colors: ColorsSelect<false> | ColorsSelect<true>;
     gradients: GradientsSelect<false> | GradientsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    socials: SocialsSelect<false> | SocialsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -95,11 +95,13 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'site-settings': SiteSetting;
     theme: Theme;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     theme: ThemeSelect<false> | ThemeSelect<true>;
   };
   locale: null;
@@ -145,6 +147,47 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "colors".
+ */
+export interface Color {
+  id: number;
+  /**
+   * Color name
+   */
+  name: string;
+  /**
+   * Color value
+   */
+  color: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gradients".
+ */
+export interface Gradient {
+  id: number;
+  name: string;
+  angle?: number | null;
+  colors?:
+    | {
+        color: number | Color;
+        position: number;
+        /**
+         * Transparency value (0-100). Defaults to 100 (fully opaque).
+         */
+        transparency?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -194,47 +237,6 @@ export interface Social {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "colors".
- */
-export interface Color {
-  id: number;
-  /**
-   * Color name
-   */
-  name: string;
-  /**
-   * Color value
-   */
-  color: string;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gradients".
- */
-export interface Gradient {
-  id: number;
-  name: string;
-  angle?: number | null;
-  colors?:
-    | {
-        color: number | Color;
-        position: number;
-        /**
-         * Transparency value (0-100). Defaults to 100 (fully opaque).
-         */
-        transparency?: number | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -277,20 +279,20 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
-      } | null)
-    | ({
-        relationTo: 'socials';
-        value: number | Social;
-      } | null)
-    | ({
         relationTo: 'colors';
         value: number | Color;
       } | null)
     | ({
         relationTo: 'gradients';
         value: number | Gradient;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'socials';
+        value: number | Social;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -355,6 +357,36 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "colors_select".
+ */
+export interface ColorsSelect<T extends boolean = true> {
+  name?: T;
+  color?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gradients_select".
+ */
+export interface GradientsSelect<T extends boolean = true> {
+  name?: T;
+  angle?: T;
+  colors?:
+    | T
+    | {
+        color?: T;
+        position?: T;
+        transparency?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -386,36 +418,6 @@ export interface SocialsSelect<T extends boolean = true> {
         color?: T;
       };
   assignedTo?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "colors_select".
- */
-export interface ColorsSelect<T extends boolean = true> {
-  name?: T;
-  color?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gradients_select".
- */
-export interface GradientsSelect<T extends boolean = true> {
-  name?: T;
-  angle?: T;
-  colors?:
-    | T
-    | {
-        color?: T;
-        position?: T;
-        transparency?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -556,6 +558,29 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  twitchPlayer: {
+    /**
+     * The name of the Twitch channel to display in the player.
+     */
+    channelName: string;
+    /**
+     * Image to display under "Schedule" when the Twitch channel is offline.
+     */
+    scheduleImage: number | Media;
+    /**
+     * Image to display under "While You Wait" when the Twitch channel is offline. Meant for anything & everything.
+     */
+    extraImage: number | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "theme".
  */
 export interface Theme {
@@ -629,6 +654,22 @@ export interface FooterSelect<T extends boolean = true> {
         enabled?: T;
         devHandle?: T;
         devHandleLink?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  twitchPlayer?:
+    | T
+    | {
+        channelName?: T;
+        scheduleImage?: T;
+        extraImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

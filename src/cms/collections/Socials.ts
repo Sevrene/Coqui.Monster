@@ -70,7 +70,7 @@ export const Socials: CollectionConfig = {
             placeholder: 'Select an icon',
             components: {
               Description:
-                '@/cms/components/overrides/IconPickerDescription.tsx',
+                '@/cms/components/overrides/iconPickerDescription.tsx',
             },
           },
         }),
@@ -96,7 +96,7 @@ export const Socials: CollectionConfig = {
         position: 'sidebar',
         description: 'Where this social media link is used',
         components: {
-          Field: '@/cms/components/ChipField.tsx',
+          Field: '@/cms/components/chipField.tsx',
           Cell: '@/cms/components/cells/chipCell.tsx',
         },
       },

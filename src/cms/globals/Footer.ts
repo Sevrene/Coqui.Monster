@@ -1,20 +1,19 @@
 import { validateUrl } from '@payloadcms/richtext-lexical';
 import type { GlobalConfig } from 'payload';
 import resolveSocialUsage from '../hooks/resolveSocialUsage';
+import { AdminGroups } from '../utils/adminGroups';
 
 const Footer: GlobalConfig = {
   slug: 'footer',
   /* Versions are currently broken on globals in Payload. Uncomment when fixed.
   // https://github.com/payloadcms/payload/issues/11879
   versions: {
-    drafts: {
-      schedulePublish: true,
-    },
+    drafts: true,
     max: 5,
   },
   */
   admin: {
-    group: 'Content',
+    group: AdminGroups.CONTENT,
   },
   fields: [
     {

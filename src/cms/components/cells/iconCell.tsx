@@ -8,7 +8,7 @@ type IconCellProps = {
   };
 };
 
-export default async function IconCell({ cellData, rowData }: IconCellProps) {
+export default function IconCell({ cellData, rowData }: IconCellProps) {
   if (!cellData) {
     return <></>;
   }

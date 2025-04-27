@@ -1,11 +1,11 @@
 import { GlobalSlug, getPayload } from 'payload';
 
-import type { Config } from 'src/payload-types';
 import configPromise from '@payload-config';
-import { draftMode } from 'next/headers';
-import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { draftMode } from 'next/headers';
 import path from 'path';
+import type { Config } from 'src/payload-types';
+import { fileURLToPath } from 'url';
 
 type Global = keyof Config['globals'];
 const __filename = fileURLToPath(import.meta.url);
@@ -15,14 +15,14 @@ async function checkPreview(): Promise<boolean> {
   return (await draftMode()).isEnabled;
 }
 
-export async function getGlobal(slug: Global, depth = 0) {
+export async function getGlobal(slug: Global, depth = 0, selectClause = {}) {
   const isPreview = await checkPreview();
   const cacheFile = path.join(__dirname, 'cache', `${slug}Data.json`);
   const lockFile = `${cacheFile}.lock`;
   let data: any = {};
 
   if (process.env.NODE_ENV === 'development') {
-    return await getCMSData(slug, depth, isPreview, cacheFile);
+    return await getCMSData(slug, depth, isPreview, cacheFile, selectClause);
   }
 
   if (!isPreview && fs.existsSync(cacheFile)) {
@@ -42,7 +42,13 @@ export async function getGlobal(slug: Global, depth = 0) {
   try {
     //console.log('No active lock, proceeding to fetch data for:', slug);
     fs.writeFileSync(lockFile, 'fetching');
-    const data = await getCMSData(slug, depth, isPreview, cacheFile);
+    const data = await getCMSData(
+      slug,
+      depth,
+      isPreview,
+      cacheFile,
+      selectClause
+    );
 
     return data;
   } finally {
@@ -73,7 +79,8 @@ export const getCMSData = async (
   slug: GlobalSlug,
   depth: number,
   isPreview: boolean,
-  cacheFile: string
+  cacheFile: string,
+  selectClause: any = {}
 ) => {
   const payload = await getPayload({ config: configPromise });
 
@@ -81,6 +88,8 @@ export const getCMSData = async (
     slug,
     depth,
     ...(isPreview && { draft: true }),
+    ...(selectClause &&
+      Object.keys(selectClause).length > 0 && { select: selectClause }),
   });
 
   if (!globalData) {

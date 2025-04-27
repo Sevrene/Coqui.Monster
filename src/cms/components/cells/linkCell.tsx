@@ -5,7 +5,7 @@ type LinkCellProps = {
 };
 
 //
-export default async function LinkCell({ cellData }: LinkCellProps) {
+export default function LinkCell({ cellData }: LinkCellProps) {
   if (!cellData) {
     return <></>;
   }

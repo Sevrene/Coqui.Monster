@@ -1,5 +1,6 @@
-import { RedirectsPluginConfig } from 'node_modules/@payloadcms/plugin-redirects/dist/types';
 import { validateUrl } from '@payloadcms/richtext-lexical';
+import { RedirectsPluginConfig } from 'node_modules/@payloadcms/plugin-redirects/dist/types';
+import { AdminGroups } from '../utils/adminGroups';
 
 const redirectsPluginConfig: RedirectsPluginConfig = {
   collections: ['redirects'],
@@ -101,9 +102,9 @@ const redirectsPluginConfig: RedirectsPluginConfig = {
     },
     admin: {
       useAsTitle: 'from',
-      group: 'Site',
+      group: AdminGroups.SITE,
       hideAPIURL: process.env.NODE_ENV === 'production',
-      defaultColumns: ['from', 'to', 'hidden', 'createdAt', 'updatedAt'], // TODO: Add a custom cell for the destination field
+      defaultColumns: ['from', 'to', 'hidden', 'createdAt', 'updatedAt'],
     },
   },
   redirectTypes: ['301', '302'],

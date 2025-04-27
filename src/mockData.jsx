@@ -159,7 +159,7 @@ export const supportSection = [
     fullWidth: true,
     buttonProps: {
       variant: 'contained',
-      color: 'primary',
+      color: 'secondary',
     },
   },
   {
@@ -170,7 +170,7 @@ export const supportSection = [
     fullWidth: false,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -179,7 +179,7 @@ export const supportSection = [
     tooltip: 'Direct Support',
     icon: <IconGift />,
     fullWidth: false,
-    buttonProps: { variant: 'contained', color: 'secondary' },
+    buttonProps: { variant: 'contained', color: 'primary' },
   },
   {
     text: 'Gamer Supps',
@@ -189,7 +189,7 @@ export const supportSection = [
     fullWidth: false,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
 ];
@@ -202,7 +202,7 @@ export const communitySection = [
     icon: <ThreeAmLogo color='black' />,
     buttonProps: {
       variant: 'contained',
-      color: 'primary',
+      color: 'secondary',
     },
   },
   {
@@ -212,7 +212,7 @@ export const communitySection = [
     icon: <IconBrandDiscord />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -222,7 +222,7 @@ export const communitySection = [
     icon: <IconBrandDiscord />,
     buttonProps: {
       variant: 'contained',
-      color: 'primary',
+      color: 'secondary',
     },
   },
   {
@@ -232,7 +232,7 @@ export const communitySection = [
     icon: <IconBrandSteam />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -242,7 +242,7 @@ export const communitySection = [
     icon: <IconBrandMinecraft />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -252,7 +252,7 @@ export const communitySection = [
     icon: <IconBrandMinecraft />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -262,7 +262,7 @@ export const communitySection = [
     icon: <IconBook />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -272,7 +272,7 @@ export const communitySection = [
     icon: <IconBrush />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
   {
@@ -282,7 +282,7 @@ export const communitySection = [
     icon: <FolderSharedOutlined />,
     buttonProps: {
       variant: 'contained',
-      color: 'secondary',
+      color: 'primary',
     },
   },
 ];
