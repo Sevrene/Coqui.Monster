@@ -6,11 +6,6 @@ import { Button, CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import { useState } from 'react';
 
-/**
- * Renders the OfflineOverlay component.
- * This component displays buttons and images when the liveStatus is false.
- * @returns {JSX.Element} The OfflineOverlay component.
- */
 export default function OfflineOverlay({ scheduleImage, waitImage }) {
   const [scheduleState, setScheduleState] = useState({
     show: false,

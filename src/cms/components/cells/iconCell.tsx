@@ -1,4 +1,4 @@
-import SocialIcon from '@/components/socials/socialIcon';
+import SocialIcon from '@/components/sections/socials/socialIcon';
 import { Social } from '@/payload-types';
 
 type IconCellProps = {

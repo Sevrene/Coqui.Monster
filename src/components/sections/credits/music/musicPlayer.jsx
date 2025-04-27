@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
-import { MusicPlayerContext } from '@/components/providers/musicPlayerCtxProvider';
+import { MusicPlayerContext } from '@/providers/musicPlayerCtxProvider';
 import { constStyles } from '@/styles/constStyles';
 
 /**

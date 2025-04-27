@@ -1,8 +1,8 @@
 'use client';
 
 import { Button } from '@mui/material';
-import { DrawerContext } from './providers/drawerCtxProvider';
 import { useContext } from 'react';
+import { DrawerContext } from '../../providers/drawerCtxProvider';
 
 /**
  * A button component that toggles the drawer when clicked.

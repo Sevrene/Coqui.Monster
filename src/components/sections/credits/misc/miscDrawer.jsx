@@ -2,32 +2,31 @@
 
 import { Button, Drawer, Tooltip } from '@mui/material';
 
-import { DrawerContext } from '@/components/providers/drawerCtxProvider';
-import { IconMusic } from '@tabler/icons-react';
+import { DrawerContext } from '@/providers/drawerCtxProvider';
+import { Brush } from '@mui/icons-material';
 import { useContext } from 'react';
 
 /**
- * Renders a music drawer component.
+ * Renders a miscellaneous drawer component.
  *
- * @component
  * @param {Object} props - The component props.
  * @param {ReactNode} props.children - The content to be rendered inside the drawer.
- * @returns {JSX.Element} The rendered music drawer component.
+ * @returns {JSX.Element} The rendered miscellaneous drawer component.
  */
-export default function MusicDrawer({ children }) {
+export default function MiscDrawer({ children }) {
   const { openDrawer, toggleDrawer } = useContext(DrawerContext);
 
-  const isOpen = openDrawer === 'music';
+  const isOpen = openDrawer === 'misc';
 
   return (
     <>
-      <Tooltip title='Music Credits' placement='top-start'>
+      <Tooltip title='Misc Credits' placement='top-start'>
         <Button
-          onClick={() => toggleDrawer('music')}
+          onClick={() => toggleDrawer('misc')}
           variant='contained'
           size='large'
           color='links'
-          startIcon={<IconMusic />}
+          startIcon={<Brush />}
           sx={{
             border: '1px solid black',
             borderTopRightRadius: 0,

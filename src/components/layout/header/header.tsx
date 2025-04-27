@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import FreeCWordPass from '../../custom/freeCWordPass';
-import SocialIconStack from '../../socials/socailIconStack';
+import SocialIconStack from '../../sections/socials/socailIconStack';
 import AnnouncementBar from './announcementBar';
 import HeaderScrollIn from './headerScrollIn';
 

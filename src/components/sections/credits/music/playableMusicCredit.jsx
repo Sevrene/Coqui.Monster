@@ -1,9 +1,9 @@
 'use client';
 
-import { IconButton, useMediaQuery } from '@mui/material';
 import { Pause, PlayArrow } from '@mui/icons-material';
+import { IconButton, useMediaQuery } from '@mui/material';
 
-import { MusicPlayerContext } from '@/components/providers/musicPlayerCtxProvider';
+import { MusicPlayerContext } from '@/providers/musicPlayerCtxProvider';
 import { useContext } from 'react';
 
 /**

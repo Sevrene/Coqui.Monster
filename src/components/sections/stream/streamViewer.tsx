@@ -25,8 +25,6 @@ interface TwitchPlayer {
   pause(): void;
   setChannel(channel: string): void;
   getChannel(): string;
-  setMuted(muted: boolean): void;
-  isMuted(): boolean;
   addEventListener(event: string, callback: () => void): void;
   removeEventListener(event: string): void;
 }

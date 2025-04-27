@@ -12,8 +12,8 @@ import { IconCopy, IconMail } from '@tabler/icons-react';
 
 import { constStyles } from '@/styles/constStyles';
 import { JSX } from 'react';
-import { CopyButton } from '../../socials/copyButton';
-import SocialIconStack from '../../socials/socailIconStack';
+import { CopyButton } from '../../sections/socials/copyButton';
+import SocialIconStack from '../../sections/socials/socailIconStack';
 import DevHandle from './devHandle';
 
 export async function Footer(): Promise<JSX.Element> {

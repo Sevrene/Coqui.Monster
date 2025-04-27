@@ -2,14 +2,14 @@ import { ParsedTwitchData, getTwitchData } from '@/cms_data/twitchData';
 import { aboutSection, threeAmSection } from '@/mockData';
 import { Box, Divider, Stack } from '@mui/material';
 
-import ComedyWrapper from '@/components/comedy/comedyWrapper';
-import CommunitySection from '@/components/community/communitySection';
 import ContentSection from '@/components/contentSection';
-import Credits from '@/components/credits/credits';
-import MusicPlayer from '@/components/credits/music/musicPlayer';
-import StreamViewer from '@/components/stream/streamViewer';
-import SupportSection from '@/components/support/supportSection';
-import VoiceActing from '@/components/voice_acting/voiceActing';
+import ComedyWrapper from '@/components/sections/comedy/comedyWrapper';
+import CommunitySection from '@/components/sections/community/communitySection';
+import Credits from '@/components/sections/credits/credits';
+import MusicPlayer from '@/components/sections/credits/music/musicPlayer';
+import StreamViewer from '@/components/sections/stream/streamViewer';
+import SupportSection from '@/components/sections/support/supportSection';
+import VoiceActing from '@/components/sections/voice_acting/voiceActing';
 import { ReactNode } from 'react';
 
 export default async function Home(): Promise<ReactNode> {
