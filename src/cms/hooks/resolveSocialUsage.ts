@@ -2,7 +2,7 @@ import { FieldHook } from 'payload';
 
 const resolveSocialUsage =
   (globalName: string): FieldHook =>
-  async ({ req, value, data }) => {
+  async ({ req, value, data, siblingData }) => {
     if (data?._status !== 'published') {
       return;
     }
@@ -18,6 +18,14 @@ const resolveSocialUsage =
       limit: 999,
       draft: false,
     });
+
+    // If siblingData has both socials and socialsSecondary, combine them into value (They both utilize the same globalName)
+    if (siblingData?.socials && siblingData?.socialsSecondary) {
+      value = [
+        ...(siblingData.socials || []),
+        ...(siblingData.socialsSecondary || []),
+      ];
+    }
 
     const previousSocials = assignedSocials.docs.map((social) => social.id);
     const currentSocials = Array.isArray(value) ? value : [];
@@ -38,9 +46,10 @@ const resolveSocialUsage =
 
       if (socialRecord) {
         if (socialRecord.assignedTo?.includes(globalName)) {
-          console.error(
+          req.payload.logger.error(
             `Social ${socialRecord.name} is already assigned to ${globalName}`
           );
+
           continue;
         }
 
@@ -53,6 +62,7 @@ const resolveSocialUsage =
               assignedTo: [globalName],
             },
           });
+
           continue;
         }
 
@@ -61,7 +71,7 @@ const resolveSocialUsage =
           collection: 'socials',
           id: socialId,
           data: {
-            assignedTo: [...(socialRecord.assignedTo || []), globalName],
+            assignedTo: [...(socialRecord.assignedTo || []), globalName].sort(),
           },
         });
       }
@@ -75,7 +85,7 @@ const resolveSocialUsage =
 
       if (socialRecord) {
         if (!socialRecord.assignedTo?.includes(globalName)) {
-          console.error(
+          req.payload.logger.error(
             `Social ${socialRecord.name} is not assigned to ${globalName}`
           );
           continue;
@@ -86,6 +96,7 @@ const resolveSocialUsage =
         );
 
         // NOTE: This is technically unwanted, but it is otherwise impossible to remove the last assignedTo value.
+        // https://github.com/payloadcms/payload/issues/11127
         if (updatedAssignedTo.length === 0) {
           updatedAssignedTo.push('None');
         }
@@ -97,7 +108,6 @@ const resolveSocialUsage =
           data: {
             assignedTo: updatedAssignedTo,
           },
-          overrideAccess: true,
         });
       }
     }

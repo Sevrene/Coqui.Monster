@@ -10,9 +10,7 @@ export const Media: CollectionConfig = {
     },
   },
   versions: {
-    drafts: {
-      autosave: true,
-    },
+    drafts: true,
     maxPerDoc: 5,
   },
   admin: {

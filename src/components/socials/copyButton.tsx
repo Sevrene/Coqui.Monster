@@ -7,9 +7,14 @@ import { useState } from 'react';
 interface CopyButtonProps {
   icon: React.ReactNode;
   copyText: string;
+  color?: string;
 }
 
-export function CopyButton({ icon, copyText = '' }: CopyButtonProps) {
+export function CopyButton({
+  icon,
+  copyText = '',
+  color = 'white',
+}: CopyButtonProps) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -27,6 +32,7 @@ export function CopyButton({ icon, copyText = '' }: CopyButtonProps) {
       aria-label='Copy contact email to clipboard'
       onClick={handleClick}
       sx={{
+        color: color,
         '&:hover': {
           backgroundColor: 'transparent',
         },

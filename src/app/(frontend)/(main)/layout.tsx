@@ -1,14 +1,14 @@
 export const dynamic = 'force-static';
 
+import { ExitPreview } from '@/utils/exit-preview';
 import { Footer } from '@/components/layout/footer/footer';
+import { GlobalStyles } from '@mui/material';
 import { Header } from '@/components/layout/header/header';
 import { Providers } from '@/components/providers/providers';
-import { constStyles } from '@/styles/constStyles';
-import { ExitPreview } from '@/utils/exit-preview';
-import { GlobalStyles } from '@mui/material';
-import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
-import { RefreshRouteOnSave } from './RefreshRouteOnSave';
+import { RefreshRouteOnSave } from '../RefreshRouteOnSave';
+import { constStyles } from '@/styles/constStyles';
+import { draftMode } from 'next/headers';
 
 // TODO: Tie metadata and GlobalStyles to CMS data
 

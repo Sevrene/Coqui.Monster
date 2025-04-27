@@ -1,15 +1,33 @@
 import { colorPickerField } from '@innovixx/payload-color-picker-field';
 import { validateUrl } from '@payloadcms/richtext-lexical';
 import type { CollectionConfig } from 'payload';
+import { AdminGroups } from '../utils/adminGroups';
 import { IconPicker } from '../wrappers/IconPicker';
 
 export const Socials: CollectionConfig = {
   slug: 'socials',
+  versions: {
+    drafts: true,
+    maxPerDoc: 5,
+  },
   admin: {
     useAsTitle: 'name',
+    group: AdminGroups.SYSTEM,
+    hideAPIURL: process.env.NODE_ENV === 'production',
+    defaultColumns: [
+      'name',
+      'url',
+      'appearance',
+      'assignedTo',
+      'updatedAt',
+      'createdAt',
+    ],
   },
   access: {
-    read: () => true,
+    // TODO: Consider if this should be public or not
+    read: ({ req: { user } }) => {
+      return Boolean(user);
+    },
   },
   fields: [
     {
@@ -17,10 +35,7 @@ export const Socials: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        width: '30%',
-        style: {
-          width: 'var(--field-width)',
-        },
+        description: 'This name will be used for the tooltip',
       },
     },
     {
@@ -36,10 +51,8 @@ export const Socials: CollectionConfig = {
         return true;
       },
       admin: {
-        description: 'Social media URL',
-        width: '30%',
-        style: {
-          width: 'var(--field-width)',
+        components: {
+          Cell: '@/cms/components/cells/linkCell.tsx',
         },
       },
     },
@@ -51,37 +64,40 @@ export const Socials: CollectionConfig = {
         IconPicker({
           name: 'icon',
           required: true,
+          label: 'Icon',
           admin: {
-            description:
-              'Note: This is not a searchable field, only the opened menu is.',
-            width: '30%',
-            style: {
-              width: 'var(--field-width)',
+            // TODO: This currently does not work unless the PR gets merged. If the original dev is not available, will just need to fork the repo and recreate the component.
+            placeholder: 'Select an icon',
+            components: {
+              Description:
+                '@/cms/components/overrides/IconPickerDescription.tsx',
             },
           },
-          label: 'Icon',
         }),
         colorPickerField({
           name: 'color',
           required: true,
-          admin: {
-            width: '30%',
-            style: {
-              width: 'var(--field-width)',
-            },
-          },
+          label: 'Icon Color',
         }),
       ],
+      admin: {
+        components: {
+          Cell: '@/cms/components/cells/iconCell.tsx',
+        },
+      },
     },
     {
       name: 'assignedTo',
       type: 'text',
       hasMany: true,
-      label: 'Locations where this social is used',
+      label: 'Locations',
       defaultValue: ['None'],
       admin: {
+        position: 'sidebar',
+        description: 'Where this social media link is used',
         components: {
           Field: '@/cms/components/ChipField.tsx',
+          Cell: '@/cms/components/cells/chipCell.tsx',
         },
       },
     },

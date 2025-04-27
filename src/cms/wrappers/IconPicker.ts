@@ -1,6 +1,6 @@
-import { TextField } from 'payload';
-import { iconPickerField } from '@innovixx/payload-icon-picker-field';
 import tablerIconList from '@/cms_data/tabler-icons.json';
+import { iconPickerField } from '@innovixx/payload-icon-picker-field';
+import { TextField } from 'payload';
 
 const iconMap = (
   tablerIconList as Array<{ name: string; component: string }>

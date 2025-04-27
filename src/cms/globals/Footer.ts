@@ -1,19 +1,20 @@
+import { validateUrl } from '@payloadcms/richtext-lexical';
 import type { GlobalConfig } from 'payload';
 import resolveSocialUsage from '../hooks/resolveSocialUsage';
-import { validateUrl } from '@payloadcms/richtext-lexical';
 
 const Footer: GlobalConfig = {
   slug: 'footer',
+  /* Versions are currently broken on globals in Payload. Uncomment when fixed.
+  // https://github.com/payloadcms/payload/issues/11879
   versions: {
     drafts: {
-      autosave: true,
       schedulePublish: true,
     },
+    max: 5,
   },
+  */
   admin: {
     group: 'Content',
-    description:
-      'The footer is the bottom section of the website, containing social media links and contact information.',
   },
   fields: [
     {
@@ -87,7 +88,7 @@ const Footer: GlobalConfig = {
                   relationTo: 'colors',
                   label: 'Background Color',
                   admin: {
-                    description: 'Choose a background color for the header.',
+                    description: 'Choose a background color for the footer.',
                     condition: (_, siblingData) => siblingData.type === 'solid',
                   },
                   required: true,
@@ -98,7 +99,7 @@ const Footer: GlobalConfig = {
                   relationTo: 'gradients',
                   label: 'Background Gradient',
                   admin: {
-                    description: 'Choose a gradient for the header background.',
+                    description: 'Choose a gradient for the footer background.',
                     condition: (_, siblingData) =>
                       siblingData.type === 'gradient',
                   },
@@ -112,15 +113,16 @@ const Footer: GlobalConfig = {
           name: 'devHandle',
           type: 'group',
           label: 'Dev Handle',
+          admin: {
+            description: 'This will be displayed in the footer. Read-only.',
+            readOnly: true,
+          },
           fields: [
             {
               name: 'enabled',
               type: 'checkbox',
               label: 'Enable Dev Handle',
               defaultValue: true,
-              admin: {
-                readOnly: true,
-              },
             },
             {
               type: 'row',
@@ -130,10 +132,6 @@ const Footer: GlobalConfig = {
                   type: 'text',
                   label: 'Dev Handle',
                   defaultValue: 'Sevrene',
-                  admin: {
-                    readOnly: true,
-                    description: 'This will be displayed in the footer.',
-                  },
                 },
                 {
                   name: 'devHandleLink',
@@ -149,7 +147,6 @@ const Footer: GlobalConfig = {
                     return true;
                   },
                   admin: {
-                    readOnly: true,
                     description:
                       'Any link that the dev handle should point to.',
                   },

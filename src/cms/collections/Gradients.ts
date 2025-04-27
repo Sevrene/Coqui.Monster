@@ -4,9 +4,7 @@ import type { CollectionConfig } from 'payload';
 const Gradients: CollectionConfig = {
   slug: 'gradients',
   versions: {
-    drafts: {
-      autosave: true,
-    },
+    drafts: true,
     maxPerDoc: 5,
   },
   admin: {

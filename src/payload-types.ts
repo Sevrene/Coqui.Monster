@@ -73,7 +73,6 @@ export interface Config {
     colors: Color;
     gradients: Gradient;
     redirects: Redirect;
-    'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -86,7 +85,6 @@ export interface Config {
     colors: ColorsSelect<false> | ColorsSelect<true>;
     gradients: GradientsSelect<false> | GradientsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
-    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -109,13 +107,7 @@ export interface Config {
     collection: 'users';
   };
   jobs: {
-    tasks: {
-      schedulePublish: TaskSchedulePublish;
-      inline: {
-        input: unknown;
-        output: unknown;
-      };
-    };
+    tasks: unknown;
     workflows: unknown;
   };
 }
@@ -183,21 +175,22 @@ export interface Media {
  */
 export interface Social {
   id: number;
-  name: string;
   /**
-   * Social media URL
+   * This name will be used for the tooltip
    */
+  name: string;
   url: string;
   appearance: {
-    /**
-     * Note: This is not a searchable field, only the opened menu is.
-     */
     icon: string;
     color: string;
   };
+  /**
+   * Where this social media link is used
+   */
   assignedTo?: string[] | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -274,98 +267,6 @@ export interface Redirect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-jobs".
- */
-export interface PayloadJob {
-  id: number;
-  /**
-   * Input data provided to the job
-   */
-  input?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  taskStatus?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  completedAt?: string | null;
-  totalTried?: number | null;
-  /**
-   * If hasError is true this job will not be retried
-   */
-  hasError?: boolean | null;
-  /**
-   * If hasError is true, this is the error that caused it
-   */
-  error?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  /**
-   * Task execution log
-   */
-  log?:
-    | {
-        executedAt: string;
-        completedAt: string;
-        taskSlug: 'inline' | 'schedulePublish';
-        taskID: string;
-        input?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        output?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        state: 'failed' | 'succeeded';
-        error?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  taskSlug?: ('inline' | 'schedulePublish') | null;
-  queue?: string | null;
-  waitUntil?: string | null;
-  processing?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -394,10 +295,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'redirects';
         value: number | Redirect;
-      } | null)
-    | ({
-        relationTo: 'payload-jobs';
-        value: number | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -491,6 +388,7 @@ export interface SocialsSelect<T extends boolean = true> {
   assignedTo?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -542,37 +440,6 @@ export interface RedirectsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-jobs_select".
- */
-export interface PayloadJobsSelect<T extends boolean = true> {
-  input?: T;
-  taskStatus?: T;
-  completedAt?: T;
-  totalTried?: T;
-  hasError?: T;
-  error?: T;
-  log?:
-    | T
-    | {
-        executedAt?: T;
-        completedAt?: T;
-        taskSlug?: T;
-        taskID?: T;
-        input?: T;
-        output?: T;
-        state?: T;
-        error?: T;
-        id?: T;
-      };
-  taskSlug?: T;
-  queue?: T;
-  waitUntil?: T;
-  processing?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -604,8 +471,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
- * The header is the top section of the website, containing the logo, announcement bar, and navigation links.
- *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
@@ -624,7 +489,10 @@ export interface Header {
    */
   socials?: (number | Social)[] | null;
   behaviorSettings: {
-    mode: 'static' | 'fixed';
+    /**
+     * Fixed: Moves with the page. Static: Never moves.
+     */
+    mode: 'fixed' | 'static';
     background: {
       type: 'none' | 'solid' | 'gradient';
       /**
@@ -641,13 +509,10 @@ export interface Header {
       fadeIn?: boolean | null;
     };
   };
-  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
- * The footer is the bottom section of the website, containing social media links and contact information.
- *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
@@ -666,27 +531,26 @@ export interface Footer {
     background: {
       type: 'none' | 'solid' | 'gradient';
       /**
-       * Choose a background color for the header.
+       * Choose a background color for the footer.
        */
       color?: (number | null) | Color;
       /**
-       * Choose a gradient for the header background.
+       * Choose a gradient for the footer background.
        */
       gradient?: (number | null) | Gradient;
     };
   };
+  /**
+   * This will be displayed in the footer. Read-only.
+   */
   devHandle?: {
     enabled?: boolean | null;
-    /**
-     * This will be displayed in the footer.
-     */
     devHandle?: string | null;
     /**
      * Any link that the dev handle should point to.
      */
     devHandleLink?: string | null;
   };
-  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -736,7 +600,6 @@ export interface HeaderSelect<T extends boolean = true> {
               fadeIn?: T;
             };
       };
-  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -767,7 +630,6 @@ export interface FooterSelect<T extends boolean = true> {
         devHandle?: T;
         devHandleLink?: T;
       };
-  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -795,19 +657,6 @@ export interface ThemeSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TaskSchedulePublish".
- */
-export interface TaskSchedulePublish {
-  input: {
-    type?: ('publish' | 'unpublish') | null;
-    locale?: string | null;
-    global?: ('header' | 'footer') | null;
-    user?: (number | null) | User;
-  };
-  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

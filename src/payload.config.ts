@@ -1,19 +1,19 @@
-import { Colors } from './cms/collections/Colors';
-import Footer from './cms/globals/Footer';
-import Gradients from './cms/collections/Gradients';
-import Header from './cms/globals/Header';
-import { Media } from './cms/collections/Media';
-import { Socials } from './cms/collections/Socials';
-import Theme from './cms/globals/Theme';
-import { Users } from './cms/collections/Users';
-import { buildConfig } from 'payload';
-import { fileURLToPath } from 'url';
-import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import path from 'path';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
-import redirectsPluginConfig from './cms/plugins/redirectsPluginConfig';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import path from 'path';
+import { buildConfig } from 'payload';
 import sharp from 'sharp';
+import { fileURLToPath } from 'url';
+import { Colors } from './cms/collections/Colors';
+import Gradients from './cms/collections/Gradients';
+import { Media } from './cms/collections/Media';
+import { Socials } from './cms/collections/Socials';
+import { Users } from './cms/collections/Users';
+import Footer from './cms/globals/Footer';
+import Header from './cms/globals/Header';
+import Theme from './cms/globals/Theme';
+import redirectsPluginConfig from './cms/plugins/redirectsPluginConfig';
 
 // storage-adapter-import-placeholder
 
@@ -28,8 +28,10 @@ export default buildConfig({
     },
     livePreview: {
       url: `http://localhost:3000/next/preview?preview=true&previewSecret=${process.env.PREVIEW_SECRET}`,
-      globals: ['header', 'footer', 'theme'],
-      collections: ['colors', 'gradients', 'media', 'socials', 'users'],
+      // Versions are currently broken on globals in Payload. Add them back when fixed.
+      // https://github.com/payloadcms/payload/issues/11879
+      // globals: ['header', 'footer', 'theme'],
+      collections: ['colors', 'gradients', 'media', 'socials'],
     },
   },
   globals: [Header, Footer, Theme],

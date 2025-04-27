@@ -3,16 +3,17 @@ import resolveSocialUsage from '../hooks/resolveSocialUsage';
 
 const Header: GlobalConfig = {
   slug: 'header',
+  /* Versions are currently broken on globals in Payload. Uncomment when fixed.
+  // https://github.com/payloadcms/payload/issues/11879
   versions: {
     drafts: {
-      autosave: true,
       schedulePublish: true,
     },
+    max: 5,
   },
+  */
   admin: {
     group: 'Content',
-    description:
-      'The header is the top section of the website, containing the logo, announcement bar, and navigation links.',
   },
   fields: [
     {
@@ -73,9 +74,12 @@ const Header: GlobalConfig = {
               name: 'mode',
               type: 'radio',
               label: 'Header Mode',
+              admin: {
+                description: 'Fixed: Moves with the page. Static: Never moves.',
+              },
               options: [
-                { label: 'Static', value: 'static' },
                 { label: 'Fixed', value: 'fixed' },
+                { label: 'Static', value: 'static' },
               ],
               defaultValue: 'fixed',
               required: true,
