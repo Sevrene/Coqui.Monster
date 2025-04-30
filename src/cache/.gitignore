@@ -2,3 +2,6 @@
 *
 # Except this file
 !.gitignore
+
+# TODO: Get rid of this file if unstable_cache works out
+# (Otherwise, ensure this file sticks around after cache clearing)

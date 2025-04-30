@@ -1,9 +1,13 @@
 'use client';
 
+import { useRef, useState } from 'react';
+
+import AspectRatio from '@/components/utils/aspectRatio';
 import { Box } from '@mui/material';
-import Script from 'next/script';
-import { useState } from 'react';
+import NoStreamCard from './noStreamCard';
 import OfflineOverlay from './offlineOverlay';
+import Script from 'next/script';
+import { useTwitchPlayer } from '@/components/hooks/useTwitchPlayer';
 
 interface TwitchPlayerProps {
   channel: string;
@@ -11,97 +15,65 @@ interface TwitchPlayerProps {
   extraImage: string;
 }
 
-interface TwitchPlayerOptions {
-  width?: string | number;
-  height?: string | number;
-  channel?: string;
-  layout?: string;
-  muted?: boolean;
-  parent?: string[];
-}
-
-interface TwitchPlayer {
-  play(): void;
-  pause(): void;
-  setChannel(channel: string): void;
-  getChannel(): string;
-  addEventListener(event: string, callback: () => void): void;
-  removeEventListener(event: string): void;
-}
-
-interface TwitchEmbed {
-  Player: {
-    ONLINE: string;
-    OFFLINE: string;
-    new (elementId: string, options: TwitchPlayerOptions): TwitchPlayer;
-  };
-}
-
-declare global {
-  interface Window {
-    Twitch?: TwitchEmbed;
-  }
-}
+const PLAYER_ID = 'twitch-player';
 
 export default function StreamViewer({
   channel,
   scheduleImage,
   extraImage,
 }: TwitchPlayerProps) {
+  const playerRef = useRef(null);
+  const playerInitializedRef = useRef(null);
   const [isLive, setIsLive] = useState(null);
+  const [isTooSmall, setIsTooSmall] = useState(null);
 
-  /**
-   * Loads the Twitch player and sets up event listeners for online and offline events.
-   */
-  const loadTwitchPlayer = () => {
-    const hostname = new URL(process.env.NEXT_PUBLIC_BASE_URL as string)
-      .hostname;
-    var player: TwitchPlayer;
-
-    if (window.Twitch && window.Twitch.Player) {
-      player = new window.Twitch.Player('twitch-player', {
-        width: '100%',
-        height: '100%',
-        channel: channel,
-        layout: 'video',
-        muted: true,
-        parent: [hostname],
-      });
-    }
-
-    player.addEventListener(window.Twitch.Player.ONLINE, () => {
-      setIsLive(true);
-    });
-
-    player.addEventListener(window.Twitch.Player.OFFLINE, () => {
-      setIsLive(false);
-    });
-
-    return () => {
-      player.removeEventListener(window.Twitch.Player.ONLINE);
-      player.removeEventListener(window.Twitch.Player.OFFLINE);
-    };
-  };
+  useTwitchPlayer({
+    channel,
+    setIsLive,
+    setIsTooSmall,
+    playerRef,
+    playerInitializedRef,
+    playerId: PLAYER_ID,
+  });
 
   return (
     <>
       <Script
         src='https://player.twitch.tv/js/embed/v1.js'
-        onReady={loadTwitchPlayer}
+        strategy='lazyOnload'
       />
-      <Box style={{ position: 'relative', paddingBottom: '56.25%' }}>
+      <AspectRatio>
         <Box
-          id='twitch-player'
-          style={{ position: 'absolute', width: '100%', height: '100%' }}
-        />
-        {/* Strict Equality to only render when explicitly false (instead of null or undefined) */}
-        {isLive === false && (
+          id={PLAYER_ID}
+          ref={playerRef}
+          sx={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'black',
+          }}
+        >
+          {isTooSmall && (
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <NoStreamCard channel={channel} />
+            </Box>
+          )}
+        </Box>
+        {/* Render offline overlay when explicitly offline */}
+        {(isLive === false || isTooSmall) && (
           <OfflineOverlay
             scheduleImage={scheduleImage}
-            waitImage={extraImage}
+            waitImage={!isTooSmall ? extraImage : undefined}
           />
         )}
-      </Box>
+      </AspectRatio>
     </>
   );
 }

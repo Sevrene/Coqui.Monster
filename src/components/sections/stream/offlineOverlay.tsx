@@ -1,10 +1,13 @@
 'use client';
 
-import { Diamond, Today } from '@mui/icons-material';
 import { Button, CircularProgress } from '@mui/material';
+import { Diamond, Today } from '@mui/icons-material';
 
 import Image from 'next/image';
 import { useState } from 'react';
+
+// TODO: Attach the CMS image info (width/height) to the Image component too (With fallbacks)
+// Possibly create a wrapper component for this for simplicity?
 
 export default function OfflineOverlay({ scheduleImage, waitImage }) {
   const [scheduleState, setScheduleState] = useState({
@@ -19,60 +22,34 @@ export default function OfflineOverlay({ scheduleImage, waitImage }) {
   return (
     <>
       {/* Button for Schedule */}
-      <Button
-        variant='contained'
-        color='primary'
-        endIcon={
-          scheduleState.loading ? <CircularProgress size={20} /> : <Today />
-        }
-        sx={{
-          position: 'absolute',
-          top: '16px',
-          right: '16px',
-          padding: '8px',
-          borderRadius: '4px',
-          color: 'black',
-        }}
-        onMouseEnter={() => setScheduleState({ show: true, loading: true })}
-        onMouseLeave={() => setScheduleState({ show: false, loading: false })}
-        onClick={() => {
-          if (scheduleState.show && !scheduleState.loading) {
-            setScheduleState({ show: false, loading: false });
-          } else if (!scheduleState.show && !scheduleState.loading) {
-            setScheduleState({ show: true, loading: true });
+      {scheduleImage && (
+        <Button
+          variant='contained'
+          color='primary'
+          endIcon={
+            scheduleState.loading ? <CircularProgress size={20} /> : <Today />
           }
-        }}
-      >
-        Schedule
-      </Button>
-
-      {/* Button for While You Wait */}
-      <Button
-        variant='contained'
-        color='primary'
-        endIcon={
-          waitImageState.loading ? <CircularProgress size={20} /> : <Diamond />
-        }
-        sx={{
-          position: 'absolute',
-          bottom: '16px',
-          left: '16px',
-          padding: '8px',
-          borderRadius: '4px',
-          color: 'black',
-        }}
-        onMouseEnter={() => setWaitImageState({ show: true, loading: true })}
-        onMouseLeave={() => setWaitImageState({ show: false, loading: false })}
-        onClick={() => {
-          if (waitImageState.show && !waitImageState.loading) {
-            setWaitImageState({ show: false, loading: false });
-          } else if (!waitImageState.show && !waitImageState.loading) {
-            setWaitImageState({ show: true, loading: true });
-          }
-        }}
-      >
-        While You Wait
-      </Button>
+          sx={{
+            position: 'absolute',
+            top: '16px',
+            right: '16px',
+            padding: '8px',
+            borderRadius: '4px',
+            color: 'black',
+          }}
+          onMouseEnter={() => setScheduleState({ show: true, loading: true })}
+          onMouseLeave={() => setScheduleState({ show: false, loading: false })}
+          onClick={() => {
+            if (scheduleState.show && !scheduleState.loading) {
+              setScheduleState({ show: false, loading: false });
+            } else if (!scheduleState.show && !scheduleState.loading) {
+              setScheduleState({ show: true, loading: true });
+            }
+          }}
+        >
+          Schedule
+        </Button>
+      )}
 
       {/* Image for Schedule */}
       {scheduleState.show && (
@@ -96,6 +73,42 @@ export default function OfflineOverlay({ scheduleImage, waitImage }) {
             setScheduleState({ show: true, loading: false });
           }}
         />
+      )}
+
+      {/* Button for While You Wait */}
+      {waitImage && (
+        <Button
+          variant='contained'
+          color='primary'
+          endIcon={
+            waitImageState.loading ? (
+              <CircularProgress size={20} />
+            ) : (
+              <Diamond />
+            )
+          }
+          sx={{
+            position: 'absolute',
+            bottom: '16px',
+            left: '16px',
+            padding: '8px',
+            borderRadius: '4px',
+            color: 'black',
+          }}
+          onMouseEnter={() => setWaitImageState({ show: true, loading: true })}
+          onMouseLeave={() =>
+            setWaitImageState({ show: false, loading: false })
+          }
+          onClick={() => {
+            if (waitImageState.show && !waitImageState.loading) {
+              setWaitImageState({ show: false, loading: false });
+            } else if (!waitImageState.show && !waitImageState.loading) {
+              setWaitImageState({ show: true, loading: true });
+            }
+          }}
+        >
+          While You Wait
+        </Button>
       )}
 
       {/* Image for While You Wait */}
