@@ -25,7 +25,7 @@ export default function MiscDrawer({ children }) {
           onClick={() => toggleDrawer('misc')}
           variant='contained'
           size='large'
-          color='links'
+          color='link'
           startIcon={<Brush />}
           sx={{
             border: '1px solid black',

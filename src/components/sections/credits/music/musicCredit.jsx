@@ -54,10 +54,10 @@ export default function MusicCredit({ credit }) {
             disabled={!credit.songLink}
             target='_blank'
             endIcon={<LibraryMusic />}
+            color='link'
             sx={{
               width: '50%',
               borderRadius: 2,
-              color: 'links',
               whiteSpace: 'nowrap',
               fontSize: credit.songLink ? 'initial' : 'x-small',
             }}
@@ -71,10 +71,10 @@ export default function MusicCredit({ credit }) {
             disabled={!credit.artistSocials}
             target='_blank'
             endIcon={<RecentActors />}
+            color='link'
             sx={{
               width: '50%',
               borderRadius: 2,
-              color: 'links',
               whiteSpace: 'nowrap',
               fontSize: credit.artistSocials ? 'initial' : 'x-small',
             }}

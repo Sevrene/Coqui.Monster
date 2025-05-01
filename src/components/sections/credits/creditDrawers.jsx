@@ -23,7 +23,7 @@ export default function CreditDrawers() {
               display: 'flex',
               justifyContent: 'center',
               padding: '16px',
-              backgroundColor: 'links',
+              backgroundColor: 'link.main',
               border: '1px solid black',
             }}
           >
@@ -39,7 +39,7 @@ export default function CreditDrawers() {
               display: 'flex',
               justifyContent: 'center',
               padding: '16px',
-              backgroundColor: 'links',
+              backgroundColor: 'link.main',
               border: '1px solid black',
             }}
           >

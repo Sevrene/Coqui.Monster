@@ -53,7 +53,8 @@ export default function MiscCredit({ credit }) {
           disabled={!credit.link}
           target='_blank'
           endIcon={<RecentActors />}
-          sx={{ width: '100%', borderRadius: 2, color: 'links' }}
+          color='link'
+          sx={{ width: '100%', borderRadius: 2 }}
         >
           {credit.link ? 'Artist' : 'No Artist Link'}
         </Button>

@@ -7,6 +7,7 @@ import {
   ButtonGroup,
   IconButton,
   LinearProgress,
+  Link as MuiLink,
   Slide,
   Tooltip,
   Typography,
@@ -15,6 +16,7 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { MusicPlayerContext } from '@/providers/musicPlayerCtxProvider';
 import { constStyles } from '@/styles/constStyles';
+import Link from 'next/link';
 
 /**
  * Represents a music player component.
@@ -117,7 +119,7 @@ function MusicPlayer() {
               }
               placement='top'
             >
-              <ButtonGroup variant='text' size='small'>
+              <ButtonGroup color='black' variant='text' size='small'>
                 <Button
                   onClick={() =>
                     setVolume((prevVolume) =>
@@ -183,13 +185,14 @@ function MusicPlayer() {
                 }}
               >
                 {currentSong?.songLink ? (
-                  <a
+                  <MuiLink
+                    component={Link}
                     href={currentSong.songLink}
                     target='_blank'
                     rel='noopener noreferrer'
+                    color='link'
                     style={{
                       textDecoration: 'none',
-                      color: 'links',
                     }}
                   >
                     <Typography
@@ -201,7 +204,7 @@ function MusicPlayer() {
                     >
                       {currentSong?.songName}
                     </Typography>
-                  </a>
+                  </MuiLink>
                 ) : (
                   <Typography
                     variant='h6'
