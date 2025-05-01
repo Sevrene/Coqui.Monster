@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 
-import AspectRatio from '@/components/utils/aspectRatio';
+import AspectRatio from '@/utils/aspectRatio';
 import { Box } from '@mui/material';
 import NoStreamCard from './noStreamCard';
 import OfflineOverlay from './offlineOverlay';

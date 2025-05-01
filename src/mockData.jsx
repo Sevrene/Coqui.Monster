@@ -14,8 +14,8 @@ import {
 } from '@tabler/icons-react';
 
 import { FolderSharedOutlined } from '@mui/icons-material';
-import { constStyles } from './styles/constStyles';
 import ThreeAmLogo from './utils/customSvgComponents';
+import { constStyles } from './styles/constStyles';
 
 export const announcement = 'test';
 

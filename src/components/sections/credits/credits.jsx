@@ -70,11 +70,11 @@ export default function Credits() {
                   />
                   <Tooltip title={'Artist Socials'}>
                     <Button
+                      color='link'
                       disabled={!credit.link}
                       endIcon={<RecentActors />}
                       sx={{
                         borderRadius: 2,
-                        color: 'links',
                       }}
                     >
                       {credit.link ? 'Artist' : 'No Artist Link'}

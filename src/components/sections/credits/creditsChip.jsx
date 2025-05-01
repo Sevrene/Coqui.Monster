@@ -17,7 +17,9 @@ export default function CreditsChip({ link, children }) {
       style={{ width: '100%' }}
     >
       <Chip
+        variant='filled'
         sx={{
+          color: 'white',
           height: '56px', // TODO: This magic number is kind of janky. Setting to auto causes layout shift issues on hover though. Should see if I can get this to grow height in place instead of shifting everything down.
           width: '100%',
           '& .MuiChip-label': {

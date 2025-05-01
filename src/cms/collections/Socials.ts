@@ -1,8 +1,8 @@
+import { AdminGroups } from '../utils/adminGroups';
+import type { CollectionConfig } from 'payload';
+import { IconPicker } from '../wrappers/IconPicker';
 import { colorPickerField } from '@innovixx/payload-color-picker-field';
 import { validateUrl } from '@payloadcms/richtext-lexical';
-import type { CollectionConfig } from 'payload';
-import { AdminGroups } from '../utils/adminGroups';
-import { IconPicker } from '../wrappers/IconPicker';
 
 export const Socials: CollectionConfig = {
   slug: 'socials',
@@ -96,7 +96,7 @@ export const Socials: CollectionConfig = {
         position: 'sidebar',
         description: 'Where this social media link is used',
         components: {
-          Field: '@/cms/components/chipField.tsx',
+          Field: '@/cms/components/fields/chipField.tsx',
           Cell: '@/cms/components/cells/chipCell.tsx',
         },
       },
