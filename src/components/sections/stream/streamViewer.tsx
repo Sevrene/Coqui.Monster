@@ -27,6 +27,10 @@ export default function StreamViewer({
   const [isLive, setIsLive] = useState(null);
   const [isTooSmall, setIsTooSmall] = useState(null);
 
+  if (!channel) {
+    return null;
+  }
+
   useTwitchPlayer({
     channel,
     setIsLive,

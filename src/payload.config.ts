@@ -16,6 +16,7 @@ import Theme from '@/cms/globals/Theme';
 import { Users } from '@/cms/collections/Users';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
+import { keepAlive } from './cms/utils/keepAliveSchema';
 import path from 'path';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
@@ -68,6 +69,17 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    beforeSchemaInit: [
+      ({ schema }) => {
+        return {
+          ...schema,
+          tables: {
+            ...schema.tables,
+            keepAlive,
+          },
+        };
+      },
+    ],
   }),
   sharp,
   plugins: [redirectsPlugin(redirectsPluginConfig)],
