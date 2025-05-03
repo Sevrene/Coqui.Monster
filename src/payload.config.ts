@@ -22,6 +22,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import redirectsPluginConfig from '@/cms/plugins/redirectsPluginConfig';
 import { revalidatePath } from 'next/cache';
+import { s3Storage } from '@payloadcms/storage-s3';
 import sharp from 'sharp';
 
 const filename = fileURLToPath(import.meta.url);
@@ -82,7 +83,26 @@ export default buildConfig({
     ],
   }),
   sharp,
-  plugins: [redirectsPlugin(redirectsPluginConfig)],
+  plugins: [
+    redirectsPlugin(redirectsPluginConfig),
+    s3Storage({
+      collections: {
+        media: {
+          prefix: 'media',
+        },
+      },
+      bucket: process.env.S3_BUCKET,
+      config: {
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+        },
+        region: process.env.S3_REGION,
+        endpoint: process.env.S3_ENDPOINT,
+      },
+    }),
+  ],
   endpoints: [
     {
       path: '/revalidate',

@@ -177,17 +177,15 @@ export interface Gradient {
   id: number;
   name: string;
   angle?: number | null;
-  colors?:
-    | {
-        color: number | Color;
-        position: number;
-        /**
-         * Transparency value (0-100). Defaults to 100 (fully opaque).
-         */
-        transparency?: number | null;
-        id?: string | null;
-      }[]
-    | null;
+  colors: {
+    color: number | Color;
+    position: number;
+    /**
+     * Transparency value (0-100). Defaults to 100 (fully opaque).
+     */
+    transparency?: number | null;
+    id?: string | null;
+  }[];
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

@@ -36,6 +36,7 @@ const Gradients: CollectionConfig = {
       name: 'colors',
       type: 'array',
       label: 'Colors',
+      required: true,
       minRows: 2,
       admin: {
         position: 'sidebar',

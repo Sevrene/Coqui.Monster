@@ -128,7 +128,7 @@ export async function Footer({
           </Box>
         </Stack>
         <DevHandle devHandle={devHandle} />
-        {!hideRedirectsFab && redirectsData && (
+        {!hideRedirectsFab && redirectsData?.length !== 0 && (
           <RedirectsFab redirects={redirectsData} />
         )}
       </Box>
