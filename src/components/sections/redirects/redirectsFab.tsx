@@ -18,10 +18,10 @@ export default function RedirectsFab({ redirects }: RedirectsFabProps) {
   return (
     <Box
       sx={{
-        position: 'relative',
+        position: { sm: 'relative', lg: 'absolute' },
         display: 'flex',
         justifyContent: 'flex-end',
-        bottom: '32px',
+        bottom: '16px',
         right: '16px',
       }}
     >

@@ -28,7 +28,7 @@ export async function Footer({
     (await getFooterData()) as ParsedFooterData;
   const { background, socials, socialsSecondary, contact, devHandle } =
     footerData;
-  const redirectsData = getCachedRedirects() as unknown as Redirect[];
+  const redirectsData = (await getCachedRedirects()) as Redirect[];
 
   return (
     <Box
@@ -128,7 +128,13 @@ export async function Footer({
         </Stack>
         <DevHandle devHandle={devHandle} />
         {!hideRedirectsFab && redirectsData?.length !== 0 && (
-          <RedirectsFab redirects={redirectsData} />
+          <Box
+            sx={{
+              position: 'relative',
+            }}
+          >
+            <RedirectsFab redirects={redirectsData} />
+          </Box>
         )}
       </Box>
     </Box>

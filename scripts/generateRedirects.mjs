@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs';
-import { getCacheRedirects } from '@/cms/utils/getRedirects';
+import { getRedirects } from '@/cms/utils/getRedirects';
 import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,7 +10,7 @@ const outputJsonPath = path.resolve(__dirname, '../redirects/redirects.json');
 
 const generateRedirects = async () => {
   console.log('🚀 Generating redirects...');
-  const redirects = await getCacheRedirects();
+  const redirects = await getRedirects();
 
   const formattedRedirects = redirects
     .map(({ name, from, to, type, hidden }) => ({
