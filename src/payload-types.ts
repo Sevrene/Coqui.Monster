@@ -200,6 +200,7 @@ export interface Media {
    * Simple text description of the image.
    */
   alt: string;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -399,6 +400,7 @@ export interface GradientsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
