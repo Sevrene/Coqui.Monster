@@ -17,7 +17,7 @@ import { Redirect } from '@/payload-types';
 import RedirectsFab from '@/components/sections/redirects/redirectsFab';
 import SocialIconStack from '../../sections/socials/socailIconStack';
 import { constStyles } from '@/styles/constStyles';
-import redirects from '@/../redirects/redirects';
+import { getCachedRedirects } from '@/cms/utils/getRedirects';
 
 export async function Footer({
   hideRedirectsFab = false,
@@ -28,7 +28,7 @@ export async function Footer({
     (await getFooterData()) as ParsedFooterData;
   const { background, socials, socialsSecondary, contact, devHandle } =
     footerData;
-  const redirectsData = (await redirects()) as Redirect[];
+  const redirectsData = getCachedRedirects() as unknown as Redirect[];
 
   return (
     <Box

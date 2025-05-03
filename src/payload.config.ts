@@ -119,6 +119,7 @@ export default buildConfig({
         revalidateTag('global-footer');
         revalidateTag('global-site-settings');
         revalidateTag('global-theme');
+        // Redirects are not revalidated here as they rely on a rebuild hook
 
         return Response.json({
           revalidated: true,
