@@ -9,19 +9,7 @@ interface SupportButtonProps {
 }
 
 export default function ButtonGrid({ title, buttonGroup }: SupportButtonProps) {
-  // Items per row: xs: 1, sm: 2, md: 3
   const gap = '16px';
-  const defaultBasis = {
-    xs: `calc(100% / 1.33)`, // 1 item per row @ ~75% width
-    sm: `calc(100% / 2 - (${gap}/2))`, // 2 items per row
-    md: `calc(100% / 3 - (${gap}))`, // 3 items per row
-  };
-  // Define fullRowBasis for full-width buttons
-  const fullRowBasis = {
-    xs: defaultBasis.xs,
-    sm: `100%`,
-    md: `100%`,
-  };
 
   if (!buttonGroup || buttonGroup.length === 0) {
     return null;
@@ -61,12 +49,10 @@ export default function ButtonGrid({ title, buttonGroup }: SupportButtonProps) {
               link={url}
               tooltip={tooltip}
               icon={icon}
+              fullWidth={fullWidth}
+              gap={gap}
               buttonProps={{
                 ...buttonProps,
-                sx: {
-                  flexGrow: { xs: 0, md: 1 },
-                  flexBasis: fullWidth ? fullRowBasis : defaultBasis,
-                },
               }}
             />
           );

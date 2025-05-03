@@ -35,7 +35,7 @@ export default function RedirectsMenu({ redirects }: RedirectsMenuProps) {
       >
         <IconExternalLink color='black' />
       </Box>
-      <List style={{ width: '300px', padding: '0' }}>
+      <List style={{ width: '300px', padding: '0', overflowX: 'hidden' }}>
         {redirects.map((redirect) => {
           if (redirect.hidden) return null;
 
@@ -56,7 +56,6 @@ export default function RedirectsMenu({ redirects }: RedirectsMenuProps) {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 0.25,
-                px: 2,
                 py: 1.5,
                 color: 'inherit',
                 backgroundColor: 'background.paper',

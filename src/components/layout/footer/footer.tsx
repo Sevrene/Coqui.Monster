@@ -56,35 +56,34 @@ export async function Footer({
           }}
         >
           <Box sx={{ textAlign: 'center' }}>
-            {socials?.length !== 0 ||
-              (socialsSecondary?.length !== 0 && (
-                <>
-                  <Typography
-                    sx={{
-                      fontSize: 'lg',
-                      fontWeight: 'bold',
-                      marginBottom: '8px',
-                    }}
-                  >
-                    Socials
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <SocialIconStack socials={socials} />
-                    <Divider
-                      orientation='vertical'
-                      variant='middle'
-                      flexItem
-                      sx={{ borderWidth: '1px', borderColor: 'black' }}
-                    />
-                    <SocialIconStack socials={socialsSecondary} />
-                  </Box>
-                </>
-              ))}
+            {(socials?.length !== 0 || socialsSecondary?.length !== 0) && (
+              <>
+                <Typography
+                  sx={{
+                    fontSize: 'lg',
+                    fontWeight: 'bold',
+                    marginBottom: '8px',
+                  }}
+                >
+                  Socials
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <SocialIconStack socials={socials} />
+                  <Divider
+                    orientation='vertical'
+                    variant='middle'
+                    flexItem
+                    sx={{ borderWidth: '1px', borderColor: 'black' }}
+                  />
+                  <SocialIconStack socials={socialsSecondary} />
+                </Box>
+              </>
+            )}
           </Box>
           <Box sx={{ textAlign: 'center' }}>
             {contact && (

@@ -1,1 +1,192 @@
-[]
+[
+  {
+    "name": "3AM Merch",
+    "from": "/kawa",
+    "to": {
+      "type": "custom",
+      "url": "https://merch.kawaentertainment.com/en-ca/collections/3am"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "3AM Merch",
+    "from": "/store",
+    "to": {
+      "type": "custom",
+      "url": "https://store.3am.moe/"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "3AM Site",
+    "from": "/3am",
+    "to": {
+      "type": "custom",
+      "url": "https://3am.moe/"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "3D Model Info",
+    "from": "/3d-model",
+    "to": {
+      "type": "custom",
+      "url": "https://bsky.app/profile/coqui.bsky.social/post/3lf2geztg6k2p"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Bluesky",
+    "from": "/bsky",
+    "to": {
+      "type": "custom",
+      "url": "https://bsky.app/profile/coqui.bsky.social"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Cobblemon Server",
+    "from": "/cobblemon",
+    "to": {
+      "type": "custom",
+      "url": "https://discord.com/channels/786373342549770260/1180826995605647441/1326321954873147453"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Discord",
+    "from": "/discord",
+    "to": {
+      "type": "custom",
+      "url": "https://discord.gg/coqui"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Free Cword Pass",
+    "from": "/free-cword-pass",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "type": "302",
+    "hidden": true
+  },
+  {
+    "name": "Gamer Supps Referral",
+    "from": "/supps",
+    "to": {
+      "type": "custom",
+      "url": "https://gamersupps.gg/?ref=COQUI"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Marshmallow QA",
+    "from": "/questions",
+    "to": {
+      "type": "custom",
+      "url": "https://marshmallow-qa.com/coqui_monster"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Minecraft Server",
+    "from": "/minecraft",
+    "to": {
+      "type": "custom",
+      "url": "https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Reference Sheet",
+    "from": "/ref",
+    "to": {
+      "type": "custom",
+      "url": "https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Throne",
+    "from": "/throne",
+    "to": {
+      "type": "custom",
+      "url": "https://throne.com/coqui"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Twitch Channel",
+    "from": "/twitch",
+    "to": {
+      "type": "custom",
+      "url": "https://www.twitch.tv/COQUI"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "UWU Market Merch",
+    "from": "/uwu",
+    "to": {
+      "type": "custom",
+      "url": "https://uwumarket.us/collections/coqui"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "VA Profile",
+    "from": "/voice",
+    "to": {
+      "type": "custom",
+      "url": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "VOD Channel",
+    "from": "/vods",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/@CoquiArchives"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Youtube Channel",
+    "from": "/clips",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/@C0QUI"
+    },
+    "type": "302",
+    "hidden": false
+  },
+  {
+    "name": "Youtube Channel",
+    "from": "/youtube",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/@C0QUI"
+    },
+    "type": "302",
+    "hidden": false
+  }
+]
