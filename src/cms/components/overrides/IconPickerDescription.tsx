@@ -2,7 +2,7 @@ import { Box, Link as MUILink, Typography } from '@mui/material';
 
 import Link from 'next/link';
 
-export default async function IconPickerDescription() {
+export default function IconPickerDescription() {
   return (
     <Box
       sx={{
