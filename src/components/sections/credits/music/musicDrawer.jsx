@@ -1,9 +1,8 @@
 'use client';
 
-import { Button, Drawer, Tooltip } from '@mui/material';
+import { Drawer } from '@mui/material';
 
 import { DrawerContext } from '@/providers/drawerCtxProvider';
-import { IconMusic } from '@tabler/icons-react';
 import { useContext } from 'react';
 
 /**
@@ -21,6 +20,7 @@ export default function MusicDrawer({ children }) {
 
   return (
     <>
+      {/*
       <Tooltip title='Music Credits' placement='top-start'>
         <Button
           onClick={() => toggleDrawer('music')}
@@ -42,6 +42,7 @@ export default function MusicDrawer({ children }) {
           }}
         />
       </Tooltip>
+      */}
       <Drawer anchor='right' open={isOpen} onClose={() => toggleDrawer(null)}>
         {children}
       </Drawer>

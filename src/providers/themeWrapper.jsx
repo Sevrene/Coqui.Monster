@@ -13,14 +13,14 @@ export default function ThemeWrapper({ themeConfig, children }) {
       mode: 'dark',
       primary: {
         main:
-          themeConfig.colors.primary?.color || baseTheme.palette.primary.main,
+          themeConfig.colors?.primary?.color || baseTheme.palette.primary.main,
       },
       secondary: {
         main:
-          themeConfig.colors.secondary?.color ||
+          themeConfig.colors?.secondary?.color ||
           baseTheme.palette.secondary.main,
       },
-      ...(themeConfig.colors.links?.color && {
+      ...(themeConfig.colors?.links?.color && {
         link: baseTheme.palette.augmentColor({
           name: 'link',
           color: {

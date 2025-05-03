@@ -12,12 +12,15 @@ const generateRedirects = async () => {
   console.log('🚀 Generating redirects...');
   const redirects = await getRedirects();
 
-  // Map to Next.js redirect format
-  const formattedRedirects = redirects.map(({ from, to, type }) => ({
-    source: from,
-    destination: to.type === 'custom' ? to.url : to.reference,
-    permanent: type === '301' ? true : false,
-  }));
+  const formattedRedirects = redirects
+    .map(({ name, from, to, type, hidden }) => ({
+      name,
+      from,
+      to,
+      type,
+      hidden,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   fs.writeFileSync(outputJsonPath, JSON.stringify(formattedRedirects, null, 2));
 

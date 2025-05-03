@@ -1,97 +1,192 @@
 [
   {
-    "source": "/3d-model",
-    "destination": "https://bsky.app/profile/coqui.bsky.social/post/3lf2geztg6k2p",
-    "permanent": false
+    "name": "3AM Merch",
+    "from": "/kawa",
+    "to": {
+      "type": "custom",
+      "url": "https://merch.kawaentertainment.com/en-ca/collections/3am"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/free-cword-pass",
-    "destination": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "permanent": false
+    "name": "3AM Merch",
+    "from": "/store",
+    "to": {
+      "type": "custom",
+      "url": "https://store.3am.moe/"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/voice",
-    "destination": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362",
-    "permanent": false
+    "name": "3AM Site",
+    "from": "/3am",
+    "to": {
+      "type": "custom",
+      "url": "https://3am.moe/"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/ref",
-    "destination": "https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA",
-    "permanent": false
+    "name": "3D Model Info",
+    "from": "/3d-model",
+    "to": {
+      "type": "custom",
+      "url": "https://bsky.app/profile/coqui.bsky.social/post/3lf2geztg6k2p"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/cobblemon",
-    "destination": "https://discord.com/channels/786373342549770260/1180826995605647441/1326321954873147453",
-    "permanent": false
+    "name": "Bluesky",
+    "from": "/bsky",
+    "to": {
+      "type": "custom",
+      "url": "https://bsky.app/profile/coqui.bsky.social"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/minecraft",
-    "destination": "https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556",
-    "permanent": false
+    "name": "Cobblemon Server",
+    "from": "/cobblemon",
+    "to": {
+      "type": "custom",
+      "url": "https://discord.com/channels/786373342549770260/1180826995605647441/1326321954873147453"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/questions",
-    "destination": "https://marshmallow-qa.com/coqui_monster",
-    "permanent": false
+    "name": "Discord",
+    "from": "/discord",
+    "to": {
+      "type": "custom",
+      "url": "https://discord.gg/coqui"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/kawa",
-    "destination": "https://merch.kawaentertainment.com/en-ca/collections/3am",
-    "permanent": false
+    "name": "Free Cword Pass",
+    "from": "/free-cword-pass",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "type": "302",
+    "hidden": true
   },
   {
-    "source": "/supps",
-    "destination": "https://gamersupps.gg/?ref=COQUI",
-    "permanent": false
+    "name": "Gamer Supps Referral",
+    "from": "/supps",
+    "to": {
+      "type": "custom",
+      "url": "https://gamersupps.gg/?ref=COQUI"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/throne",
-    "destination": "https://throne.com/coqui",
-    "permanent": false
+    "name": "Marshmallow QA",
+    "from": "/questions",
+    "to": {
+      "type": "custom",
+      "url": "https://marshmallow-qa.com/coqui_monster"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/uwu",
-    "destination": "https://uwumarket.us/collections/coqui",
-    "permanent": false
+    "name": "Minecraft Server",
+    "from": "/minecraft",
+    "to": {
+      "type": "custom",
+      "url": "https://discord.com/channels/786373342549770260/1180826995605647441/1248480272488595556"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/vods",
-    "destination": "https://www.youtube.com/@CoquiArchives",
-    "permanent": false
+    "name": "Reference Sheet",
+    "from": "/ref",
+    "to": {
+      "type": "custom",
+      "url": "https://drive.google.com/drive/folders/14Iw_VApXjpfCAtxqy7s4HDZPlHvos1TA"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/clips",
-    "destination": "https://www.youtube.com/@C0QUI",
-    "permanent": false
+    "name": "Throne",
+    "from": "/throne",
+    "to": {
+      "type": "custom",
+      "url": "https://throne.com/coqui"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/discord",
-    "destination": "https://discord.gg/coqui",
-    "permanent": false
+    "name": "Twitch Channel",
+    "from": "/twitch",
+    "to": {
+      "type": "custom",
+      "url": "https://www.twitch.tv/COQUI"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/youtube",
-    "destination": "https://www.youtube.com/@C0QUI",
-    "permanent": false
+    "name": "UWU Market Merch",
+    "from": "/uwu",
+    "to": {
+      "type": "custom",
+      "url": "https://uwumarket.us/collections/coqui"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/twitch",
-    "destination": "https://www.twitch.tv/COQUI",
-    "permanent": false
+    "name": "VA Profile",
+    "from": "/voice",
+    "to": {
+      "type": "custom",
+      "url": "https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/store",
-    "destination": "https://store.3am.moe/",
-    "permanent": false
+    "name": "VOD Channel",
+    "from": "/vods",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/@CoquiArchives"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/3am",
-    "destination": "https://3am.moe/",
-    "permanent": false
+    "name": "Youtube Channel",
+    "from": "/clips",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/@C0QUI"
+    },
+    "type": "302",
+    "hidden": false
   },
   {
-    "source": "/bsky",
-    "destination": "https://bsky.app/profile/coqui.bsky.social",
-    "permanent": false
+    "name": "Youtube Channel",
+    "from": "/youtube",
+    "to": {
+      "type": "custom",
+      "url": "https://www.youtube.com/@C0QUI"
+    },
+    "type": "302",
+    "hidden": false
   }
 ]

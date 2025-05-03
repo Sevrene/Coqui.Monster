@@ -1,9 +1,8 @@
 'use client';
 
-import { Button, Drawer, Tooltip } from '@mui/material';
+import { Drawer } from '@mui/material';
 
 import { DrawerContext } from '@/providers/drawerCtxProvider';
-import { Brush } from '@mui/icons-material';
 import { useContext } from 'react';
 
 /**
@@ -20,6 +19,7 @@ export default function MiscDrawer({ children }) {
 
   return (
     <>
+      {/*
       <Tooltip title='Misc Credits' placement='top-start'>
         <Button
           onClick={() => toggleDrawer('misc')}
@@ -41,6 +41,7 @@ export default function MiscDrawer({ children }) {
           }}
         />
       </Tooltip>
+      */}
       <Drawer anchor='right' open={isOpen} onClose={() => toggleDrawer(null)}>
         {children}
       </Drawer>

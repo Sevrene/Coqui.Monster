@@ -30,7 +30,8 @@
     "**/*.ts",
     "**/*.tsx",
     "scripts/generateIconList.mjs",
-    "scripts/generateRedirects.mjss"
+    "scripts/generateRedirects.mjss",
+    "redirects/redirects.js"
   ],
   "exclude": ["node_modules"]
 }

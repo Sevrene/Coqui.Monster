@@ -1,4 +1,3 @@
-import { ParsedFooterData, getFooterData } from '@/cms_data/footerData';
 import {
   Box,
   Button,
@@ -9,18 +8,27 @@ import {
   Typography,
 } from '@mui/material';
 import { IconCopy, IconMail } from '@tabler/icons-react';
+import { ParsedFooterData, getFooterData } from '@/cms_data/footerData';
 
-import { constStyles } from '@/styles/constStyles';
-import { JSX } from 'react';
 import { CopyButton } from '../../sections/socials/copyButton';
-import SocialIconStack from '../../sections/socials/socailIconStack';
 import DevHandle from './devHandle';
+import { JSX } from 'react';
+import { Redirect } from '@/payload-types';
+import RedirectsFab from '@/components/sections/redirects/redirectsFab';
+import SocialIconStack from '../../sections/socials/socailIconStack';
+import { constStyles } from '@/styles/constStyles';
+import redirects from '@/../redirects/redirects';
 
-export async function Footer(): Promise<JSX.Element> {
+export async function Footer({
+  hideRedirectsFab = false,
+}: {
+  hideRedirectsFab?: boolean;
+} = {}): Promise<JSX.Element> {
   const footerData: ParsedFooterData =
     (await getFooterData()) as ParsedFooterData;
   const { background, socials, socialsSecondary, contact, devHandle } =
     footerData;
+  const redirectsData = (await redirects()) as Redirect[];
 
   return (
     <Box
@@ -111,6 +119,7 @@ export async function Footer(): Promise<JSX.Element> {
           </Box>
         </Stack>
         <DevHandle devHandle={devHandle} />
+        {!hideRedirectsFab && <RedirectsFab redirects={redirectsData} />}
       </Box>
     </Box>
   );

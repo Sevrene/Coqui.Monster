@@ -1,6 +1,8 @@
-import { NextResponse } from 'next/server';
 import fs from 'fs';
+import { NextResponse } from 'next/server';
 import path from 'path';
+
+// TODO: Redo
 
 /**
  * Handles the GET request for fetching a song.

@@ -1,6 +1,6 @@
-import { validateUrl } from '@payloadcms/richtext-lexical';
-import { RedirectsPluginConfig } from 'node_modules/@payloadcms/plugin-redirects/dist/types';
 import { AdminGroups } from '../utils/adminGroups';
+import { RedirectsPluginConfig } from 'node_modules/@payloadcms/plugin-redirects/dist/types';
+import { validateUrl } from '@payloadcms/richtext-lexical';
 
 const redirectsPluginConfig: RedirectsPluginConfig = {
   collections: ['redirects'],
@@ -87,6 +87,17 @@ const redirectsPluginConfig: RedirectsPluginConfig = {
       });
 
       return [
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Name',
+          admin: {
+            description:
+              'A name for this redirect. This is only used for the redirects menu and your reference.',
+          },
+          defaultValue: 'Redirect',
+          required: true,
+        },
         ...modifiedFields,
         {
           type: 'checkbox',
@@ -101,10 +112,12 @@ const redirectsPluginConfig: RedirectsPluginConfig = {
       ];
     },
     admin: {
-      useAsTitle: 'from',
+      useAsTitle: 'name',
       group: AdminGroups.SITE,
       hideAPIURL: process.env.NODE_ENV === 'production',
       defaultColumns: ['from', 'to', 'hidden', 'createdAt', 'updatedAt'],
+      description:
+        'Disclaimer: Redirects are not automatically updated upon deployment. They require a full rebuild to take effect.',
     },
   },
   redirectTypes: ['301', '302'],

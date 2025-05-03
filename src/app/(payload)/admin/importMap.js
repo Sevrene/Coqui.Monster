@@ -1,3 +1,4 @@
+import { default as default_a806f4b038277cd79328501d5ba0b9b4 } from '@/cms/components/fields/chipField.tsx'
 import { default as default_548aa961c8aa98bfa888857babb7af92 } from '@/cms/components/cells/colorPickerCell.tsx'
 import { ColorPickerFieldComponent as ColorPickerFieldComponent_95f860801d0381344387ae1d8e2f4d24 } from '@innovixx/payload-color-picker-field/components'
 import { default as default_2f3f8d89d1de83b5396991d7e7baca63 } from '@/cms/components/cells/angleCell.tsx'
@@ -7,7 +8,6 @@ import { default as default_6c4b5d2653bff25e9a455d25e9841c3e } from '@/cms/compo
 import { IconPickerFieldComponent as IconPickerFieldComponent_d9823501c0742f88e9fd2fbf482c1246 } from '@innovixx/payload-icon-picker-field/components'
 import { default as default_9d790de2f8d41433e7e761dbcbe09fd1 } from '@/cms/components/cells/iconCell.tsx'
 import { default as default_ce488ed34ba256ff2e8ced5e54def1a1 } from '@/cms/components/cells/chipCell.tsx'
-import { default as default_a806f4b038277cd79328501d5ba0b9b4 } from '@/cms/components/fields/chipField.tsx'
 import { default as default_cc9b32a42d576d7898a826adb0a3ba6d } from '@/cms/components/cells/redirectCell.tsx'
 import { default as default_fb4019219d5e8506ee87d8262399c549 } from '@/cms/components/overrides/rowLabelTitle.tsx'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -32,11 +32,12 @@ import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997e
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { default as default_9d9b72c8911c3bd8cf66561f610797b4 } from '@/cms/components/fields/rerouteField.tsx'
-import { default as default_eb2694f2f944802ecf458b064363e39e } from '@/cms/components/dashboard/dashboardHookButtons.tsx'
-import { default as default_94d4518057e9468c8353277d879ec1c9 } from '@/cms/components/dashboard/dashboardReadMe.tsx'
+import { default as default_dce46257438b09365ae2a65ef1ef14b7 } from '@/cms/components/overrides/adminAvatar.tsx'
+import { default as default_36d1f6a0955a5ef822fbe026dafe9f17 } from '@/cms/components/dashboard/dashboardOverviewPanel.tsx'
 import { default as default_ef6872e7af0bd3c31191510edfeae372 } from '@/cms/components/dashboard/dashboardHeader.tsx'
 
 export const importMap = {
+  "@/cms/components/fields/chipField.tsx#default": default_a806f4b038277cd79328501d5ba0b9b4,
   "@/cms/components/cells/colorPickerCell.tsx#default": default_548aa961c8aa98bfa888857babb7af92,
   "@innovixx/payload-color-picker-field/components#ColorPickerFieldComponent": ColorPickerFieldComponent_95f860801d0381344387ae1d8e2f4d24,
   "@/cms/components/cells/angleCell.tsx#default": default_2f3f8d89d1de83b5396991d7e7baca63,
@@ -46,7 +47,6 @@ export const importMap = {
   "@innovixx/payload-icon-picker-field/components#IconPickerFieldComponent": IconPickerFieldComponent_d9823501c0742f88e9fd2fbf482c1246,
   "@/cms/components/cells/iconCell.tsx#default": default_9d790de2f8d41433e7e761dbcbe09fd1,
   "@/cms/components/cells/chipCell.tsx#default": default_ce488ed34ba256ff2e8ced5e54def1a1,
-  "@/cms/components/fields/chipField.tsx#default": default_a806f4b038277cd79328501d5ba0b9b4,
   "@/cms/components/cells/redirectCell.tsx#default": default_cc9b32a42d576d7898a826adb0a3ba6d,
   "@/cms/components/overrides/rowLabelTitle.tsx#default": default_fb4019219d5e8506ee87d8262399c549,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -71,7 +71,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/cms/components/fields/rerouteField.tsx#default": default_9d9b72c8911c3bd8cf66561f610797b4,
-  "@/cms/components/dashboard/dashboardHookButtons.tsx#default": default_eb2694f2f944802ecf458b064363e39e,
-  "@/cms/components/dashboard/dashboardReadMe.tsx#default": default_94d4518057e9468c8353277d879ec1c9,
+  "@/cms/components/overrides/adminAvatar.tsx#default": default_dce46257438b09365ae2a65ef1ef14b7,
+  "@/cms/components/dashboard/dashboardOverviewPanel.tsx#default": default_36d1f6a0955a5ef822fbe026dafe9f17,
   "@/cms/components/dashboard/dashboardHeader.tsx#default": default_ef6872e7af0bd3c31191510edfeae372
 }

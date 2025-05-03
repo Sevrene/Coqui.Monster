@@ -139,6 +139,7 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  roles?: ('admin' | 'editor' | 'user')[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -238,11 +239,17 @@ export interface Social {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Disclaimer: Redirects are not automatically updated upon deployment. They require a full rebuild to take effect.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
   id: number;
+  /**
+   * A name for this redirect. This is only used for the redirects menu and your reference.
+   */
+  name: string;
   /**
    * The path you want to redirect from. Must start with a "/"
    */
@@ -347,6 +354,7 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -429,6 +437,7 @@ export interface SocialsSelect<T extends boolean = true> {
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
+  name?: T;
   from?: T;
   to?:
     | T

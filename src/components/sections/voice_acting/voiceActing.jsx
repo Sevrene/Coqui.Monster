@@ -105,7 +105,7 @@ export default function VoiceActing() {
         </Typography>
         <Button
           variant='contained'
-          color='secondary'
+          color='primary'
           endIcon={<Mic />}
           href={
             'https://www.animenewsnetwork.com/encyclopedia/people.php?id=241362'

@@ -1,5 +1,8 @@
 import type { CollectionConfig } from 'payload';
+import { checkRole } from './access/checkRole';
 
+// NOTE: If users are ever intended to grow beyond a single admin user
+// This should be updated to use a more robust access control system and editing capabilities
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
@@ -8,13 +11,37 @@ export const Users: CollectionConfig = {
     hideAPIURL: process.env.NODE_ENV === 'production',
   },
   access: {
-    read: () => true,
-    create: () => false, // TODO: Check if this causes issues with the initial user creation
+    read: ({ req: { user } }) => checkRole(['admin'], user),
+    create: () => false,
     update: () => false,
     delete: () => false,
   },
   auth: true,
   fields: [
-    // Email added by default
+    {
+      name: 'roles',
+      type: 'select',
+      hasMany: true,
+      saveToJWT: true,
+      options: [
+        {
+          label: 'Admin',
+          value: 'admin',
+        },
+        {
+          label: 'Editor',
+          value: 'editor',
+        },
+        {
+          label: 'User',
+          value: 'user',
+        },
+      ],
+      admin: {
+        components: {
+          Field: '@/cms/components/fields/chipField.tsx',
+        },
+      },
+    },
   ],
 };

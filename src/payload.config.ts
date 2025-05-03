@@ -4,23 +4,24 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical';
 
+import { Colors } from '@/cms/collections/Colors';
+import Footer from '@/cms/globals/Footer';
+import Gradients from '@/cms/collections/Gradients';
+import Header from '@/cms/globals/Header';
+import Homepage from '@/cms/globals/Homepage';
+import { Media } from '@/cms/collections/Media';
+import SiteSettings from '@/cms/globals/SiteSettings';
+import { Socials } from '@/cms/collections/Socials';
+import Theme from '@/cms/globals/Theme';
+import { Users } from '@/cms/collections/Users';
+import { buildConfig } from 'payload';
+import { fileURLToPath } from 'url';
+import path from 'path';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
-import path from 'path';
-import { buildConfig } from 'payload';
+import redirectsPluginConfig from '@/cms/plugins/redirectsPluginConfig';
+import { revalidatePath } from 'next/cache';
 import sharp from 'sharp';
-import { fileURLToPath } from 'url';
-import { Colors } from './cms/collections/Colors';
-import Gradients from './cms/collections/Gradients';
-import { Media } from './cms/collections/Media';
-import { Socials } from './cms/collections/Socials';
-import { Users } from './cms/collections/Users';
-import Footer from './cms/globals/Footer';
-import Header from './cms/globals/Header';
-import Homepage from './cms/globals/Homepage';
-import SiteSettings from './cms/globals/SiteSettings';
-import Theme from './cms/globals/Theme';
-import redirectsPluginConfig from './cms/plugins/redirectsPluginConfig';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,6 +30,7 @@ const excludedRichTextFeatures = ['relationship', 'upload', 'inlineCode'];
 export default buildConfig({
   admin: {
     user: Users.slug,
+    avatar: { Component: '@/cms/components/overrides/adminAvatar.tsx' },
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -41,10 +43,7 @@ export default buildConfig({
     },
     components: {
       beforeDashboard: ['@/cms/components/dashboard/dashboardHeader.tsx'],
-      afterDashboard: [
-        '@/cms/components/dashboard/dashboardHookButtons.tsx',
-        '@/cms/components/dashboard/dashboardReadMe.tsx',
-      ],
+      afterDashboard: ['@/cms/components/dashboard/dashboardOverviewPanel.tsx'],
     },
   },
   globals: [Header, Homepage, Footer, SiteSettings, Theme],
@@ -72,4 +71,43 @@ export default buildConfig({
   }),
   sharp,
   plugins: [redirectsPlugin(redirectsPluginConfig)],
+  endpoints: [
+    {
+      path: '/revalidate',
+      method: 'post',
+      handler: async (req) => {
+        if (!req.user || !req.user.roles.includes('admin')) {
+          return Response.json({ error: 'forbidden' }, { status: 403 });
+        }
+
+        // Revalidates the homepage
+        // TODO: This should be revisted in the future to allow for more granular revalidation
+        revalidatePath('/');
+
+        return Response.json({
+          revalidated: true,
+          now: Date.now(),
+        });
+      },
+    },
+    {
+      path: '/rebuild',
+      method: 'post',
+      handler: async (req) => {
+        if (!req.user || !req.user.roles.includes('admin')) {
+          return Response.json({ error: 'forbidden' }, { status: 403 });
+        }
+
+        const response = await fetch(
+          `https://api.netlify.com/build_hooks/${[process.env.NETLIFY_REBUILD_HOOK]}`,
+          { method: 'POST' }
+        );
+
+        return Response.json({
+          rebuilt: response.ok,
+          now: Date.now(),
+        });
+      },
+    },
+  ],
 });

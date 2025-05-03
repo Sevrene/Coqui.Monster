@@ -78,7 +78,7 @@ export default async function NotFound(): Promise<ReactNode> {
             {messages[Math.floor(Math.random() * messages.length)]}
           </Typography>
         </main>
-        <Footer />
+        <Footer hideRedirectsFab />
       </body>
     </html>
   );

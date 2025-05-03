@@ -1,16 +1,16 @@
+import { Box, Divider, Icon, Stack } from '@mui/material';
 import { ParsedHomepageData, getHomepageData } from '@/cms_data/homepageData';
 import { ParsedTwitchData, getTwitchData } from '@/cms_data/twitchData';
-import { Box, Divider, Icon, Stack } from '@mui/material';
 
 import ButtonGrid from '@/components/sections/button_grid/buttonGrid';
 import ComedyWrapper from '@/components/sections/comedy/comedyWrapper';
 import ContentBlock from '@/components/sections/contentBlock';
 import Credits from '@/components/sections/credits/credits';
+import { IconBolt } from '@tabler/icons-react';
 import MusicPlayer from '@/components/sections/credits/music/musicPlayer';
+import { ReactNode } from 'react';
 import StreamViewer from '@/components/sections/stream/streamViewer';
 import VoiceActing from '@/components/sections/voice_acting/voiceActing';
-import { IconBolt } from '@tabler/icons-react';
-import { ReactNode } from 'react';
 
 export default async function Home(): Promise<ReactNode> {
   const twitchData: ParsedTwitchData = await getTwitchData();
@@ -72,22 +72,24 @@ export default async function Home(): Promise<ReactNode> {
             />
           </Box>
         </Stack>
-        <Stack
-          direction={{ xs: 'column', lg: 'row' }}
-          flexWrap='wrap'
-          sx={{
-            justifyContent: 'space-evenly',
-            padding: '16px',
-            rowGap: { xs: 2, lg: 6 },
-            columnGap: 0,
-          }}
-        >
-          {pageData.aboutSections.map((section, index) => (
-            <Box key={index} sx={{ flex: '0 1 40%', padding: '16px 0' }}>
-              <ContentBlock {...section} />
-            </Box>
-          ))}
-        </Stack>
+        {pageData.aboutSections?.length > 0 && (
+          <Stack
+            direction={{ xs: 'column', lg: 'row' }}
+            flexWrap='wrap'
+            sx={{
+              justifyContent: 'space-evenly',
+              padding: '16px',
+              rowGap: { xs: 2, lg: 6 },
+              columnGap: 0,
+            }}
+          >
+            {pageData.aboutSections.map((section, index) => (
+              <Box key={index} sx={{ flex: '0 1 40%', padding: '16px 0' }}>
+                <ContentBlock {...section} />
+              </Box>
+            ))}
+          </Stack>
+        )}
         <Divider
           sx={{
             margin: '48px 0',

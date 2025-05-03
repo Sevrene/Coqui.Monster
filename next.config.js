@@ -1,5 +1,15 @@
-import redirects from './redirects/redirects.js';
+import { default as getRedirects } from './redirects/redirects.js';
 import { withPayload } from '@payloadcms/next/withPayload';
+
+const redirects = async () => {
+  const all = await getRedirects();
+
+  return all.map(({ from, to, type }) => ({
+    source: from,
+    destination: to.type === 'custom' ? to.url : to.reference,
+    permanent: type === '301' ? true : false,
+  }));
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
