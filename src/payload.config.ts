@@ -21,7 +21,7 @@ import path from 'path';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import redirectsPluginConfig from '@/cms/plugins/redirectsPluginConfig';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { s3Storage } from '@payloadcms/storage-s3';
 import sharp from 'sharp';
 
@@ -114,7 +114,11 @@ export default buildConfig({
 
         // Revalidates the homepage
         // TODO: This should be revisted in the future to allow for more granular revalidation
-        revalidatePath('/');
+        revalidateTag('global-homepage');
+        revalidateTag('global-header');
+        revalidateTag('global-footer');
+        revalidateTag('global-site-settings');
+        revalidateTag('global-theme');
 
         return Response.json({
           revalidated: true,
