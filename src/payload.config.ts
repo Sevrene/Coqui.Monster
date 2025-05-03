@@ -36,7 +36,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     livePreview: {
-      url: `http://localhost:3000/next/preview?preview=true&previewSecret=${process.env.PREVIEW_SECRET}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/next/preview?preview=true&previewSecret=${process.env.PREVIEW_SECRET}`,
       // Versions are currently broken on globals in Payload. Add them back when fixed.
       // https://github.com/payloadcms/payload/issues/11879
       // globals: ['header', 'homepage', 'footer', 'site-settings', 'theme'],
