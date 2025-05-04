@@ -89,6 +89,11 @@ export default buildConfig({
       collections: {
         media: {
           prefix: 'media',
+          generateFileURL: ({ filename, prefix }) => {
+            const base = `https://${process.env.DATABASE_ID}.supabase.co/storage/v1/object/public/${process.env.S3_BUCKET}`;
+            const path = prefix ? `${prefix}/${filename}` : filename;
+            return `${base}/${path}`;
+          },
         },
       },
       bucket: process.env.S3_BUCKET,
