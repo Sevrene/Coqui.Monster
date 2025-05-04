@@ -34,9 +34,12 @@ export default function ActionButtons() {
     setLoading((prev) => ({ ...prev, [key]: false }));
     setSuccess((prev) => ({ ...prev, [key]: response.ok }));
 
-    setTimeout(() => {
-      setSuccess((prev) => ({ ...prev, [key]: null }));
-    }, 3000);
+    setTimeout(
+      () => {
+        setSuccess((prev) => ({ ...prev, [key]: null }));
+      },
+      key === 'build' ? 5 * 60 * 1000 : 3000
+    );
   };
 
   return (
