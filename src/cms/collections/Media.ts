@@ -3,6 +3,9 @@ import type { CollectionConfig } from 'payload';
 // This collection is used to store media files for use throughout the site
 export const Media: CollectionConfig = {
   slug: 'media',
+  access: {
+    read: () => true,
+  },
   versions: {
     drafts: true,
     maxPerDoc: 5,
