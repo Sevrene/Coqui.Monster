@@ -52,6 +52,9 @@ interface Metadata {
   description: string;
   keywords: string[];
   metadataBase: string;
+  alternates: {
+    canonical: string;
+  };
   author: string;
   creator: string;
   openGraph: IMetaOpenGraph;
@@ -69,6 +72,9 @@ export const metadata: Metadata = {
     'coqui, vtuber, 3AM, southside, south side, twitch, streamer, frog, coqui monster, c0qui',
   ],
   metadataBase: baseURL,
+  alternates: {
+    canonical: '/',
+  },
   author: 'Sevrene, sevrene.dev@outlook.com',
   creator: 'Sevrene, sevrene.dev@outlook.com',
   openGraph: {
