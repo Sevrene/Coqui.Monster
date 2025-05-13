@@ -23,6 +23,7 @@ import path from 'path';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
+import { keepAlive } from './cms/utils/keepAliveSchema';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -71,17 +72,12 @@ export default buildConfig({
     },
     beforeSchemaInit: [
       ({ schema }) => {
-        // Enable RLS for all tables in the schema
-        const tablesWithRLS = { ...schema.tables };
-        for (const tableName in tablesWithRLS) {
-          if (Object.prototype.hasOwnProperty.call(tablesWithRLS, tableName)) {
-            tablesWithRLS[tableName].enableRLS();
-          }
-        }
-
         return {
           ...schema,
-          tables: tablesWithRLS,
+          tables: {
+            ...schema.tables,
+            keepAlive,
+          },
         };
       },
     ],
