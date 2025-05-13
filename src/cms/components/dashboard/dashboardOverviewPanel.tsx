@@ -28,10 +28,6 @@ export default function DashboardActionsPanel() {
         <Typography variant='h3' gutterBottom>
           Payload CMS Dashboard Overview
         </Typography>
-        <Typography sx={{ marginBottom: 2 }}>
-          Manage the content and settings of{' '}
-          {` ${process.env.NEXT_PUBLIC_BASE_URL}`} from this dashboard.
-        </Typography>
         <ReadMeSection />
       </Box>
       <Box

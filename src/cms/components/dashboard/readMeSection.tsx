@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from '@mui/material';
+import { Alert, Box, List, ListItem, Typography } from '@mui/material';
 
 export default function ReadMeSection() {
   return (
@@ -20,14 +13,15 @@ export default function ReadMeSection() {
           <List sx={{ pl: 3 }}>
             <ListItem>
               <Typography>
-                Manage site content and settings from this dashboard
+                Manage site content and settings from this dashboard. This
+                includes editing text, images, and other media.
               </Typography>
             </ListItem>
           </List>
         </Box>
         <Box my={3} pl={3}>
           <Typography variant='h5' gutterBottom>
-            Versioning
+            Versioning [Alpha]
           </Typography>
           <List sx={{ pl: 3 }}>
             <ListItem
@@ -42,15 +36,16 @@ export default function ReadMeSection() {
                 reduce storage and improve performance.
               </Typography>
               <Alert severity='warning'>
-                Versioning is not available for some sections due to a known
-                Payload bug.
+                Versioning may be removed after further testing. Versioning is
+                not available for some sections due to a known Payload bug.
+                Highly recommended to not utilize at this time.
               </Alert>
             </ListItem>
           </List>
         </Box>
         <Box my={3} pl={3}>
           <Typography variant='h5' gutterBottom>
-            Live Preview
+            Live Preview [Alpha]
           </Typography>
           <List sx={{ pl: 3 }}>
             <ListItem
@@ -62,8 +57,9 @@ export default function ReadMeSection() {
                 instantly as you edit.
               </Typography>
               <Alert severity='warning'>
-                Live Preview is currently in testing stages, only available for
-                some collections, and may not be viable to keep long-term.
+                Live Preview may be removed after further testing. Live Preview
+                is only available for some sections. Highly recommended to not
+                utilize at this time.
               </Alert>
             </ListItem>
           </List>
@@ -84,22 +80,22 @@ export default function ReadMeSection() {
             </Typography>
             <List sx={{ pl: 3 }}>
               <ListItem>
-                <ListItemText
-                  primary='System'
-                  secondary='Supporting collections that affect other areas of the site but are not direct content.'
-                />
+                <Typography>
+                  <b>System:</b> Supporting collections that affect other areas
+                  of the site but are not direct content.
+                </Typography>
               </ListItem>
               <ListItem>
-                <ListItemText
-                  primary='Site'
-                  secondary='Collections that configure site-wide features but are not direct user-facing content.'
-                />
+                <Typography>
+                  <b>Site:</b> Collections that configure site-wide features but
+                  are not direct user-facing content.
+                </Typography>
               </ListItem>
               <ListItem>
-                <ListItemText
-                  primary='Content'
-                  secondary='These are the collections you’ll interact with most. They contain all the main editable content.'
-                />
+                <Typography>
+                  <b>Content:</b> These are the collections you’ll interact with
+                  most. They contain all the main editable content.
+                </Typography>
               </ListItem>
             </List>
           </Box>
@@ -107,32 +103,12 @@ export default function ReadMeSection() {
             <Typography variant='h5' gutterBottom>
               Publishing Changes
             </Typography>
-            <Typography>
-              After making changes, you may preview them in the live preview
-              feature (*Please see the disclaimer in the Live Preview overview).
-              This exact preview functionality may change in the future.
-              <br />
-              Publishing your changes is simple, but may be presented in a few
-              ways:
+            <Typography gutterBottom>
+              After making changes, click the <b>Save</b> or{' '}
+              <b>Publish Changes</b> button in the top right corner of the
+              screen. This will save your changes as the live data and publish
+              them to the site.
             </Typography>
-            <List sx={{ pl: 3 }}>
-              <ListItem>
-                <ListItemText
-                  primary='1. Save Draft'
-                  secondary='Click the <b>Save Draft</b> button in the top right corner of the
-              screen. This will save your changes as a draft version for later
-              review or editing.'
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary='2. Publish Changes'
-                  secondary=' Click the <b>Publish Changes</b> button in the top right corner of
-              the screen. This will save your changes as the live data and
-              publish them to the site.'
-                />
-              </ListItem>
-            </List>
             <Alert severity='info'>
               Changes will not be immediately reflected on the main site until
               the <b>Deploy Changes</b> button is clicked in this dashboard.

@@ -46,6 +46,7 @@ export default buildConfig({
     components: {
       beforeDashboard: ['@/cms/components/dashboard/dashboardHeader.tsx'],
       afterDashboard: ['@/cms/components/dashboard/dashboardOverviewPanel.tsx'],
+      beforeNavLinks: ['@/cms/components/dashboard/returnHomeNav.tsx'],
     },
   },
   globals: [Header, Homepage, Footer, SiteSettings, Theme],
