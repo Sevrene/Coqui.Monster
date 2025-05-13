@@ -42,8 +42,7 @@ export default async function Home(): Promise<ReactNode> {
             padding: { xs: '0', lg: '16px' },
           }}
         >
-          {/* TODO: Test out different widths */}
-          <Box sx={{ width: { xs: '100%', lg: '75%' } }}>
+          <Box sx={{ width: { xs: '100%', lg: '66.6667%' } }}>
             <StreamViewer
               channel={twitchData.channelName}
               scheduleImage={twitchData.scheduleImage}

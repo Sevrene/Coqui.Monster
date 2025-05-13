@@ -36,6 +36,8 @@ export const Media: CollectionConfig = {
       name: 'prefix',
       type: 'text',
       label: 'Prefix',
+      hidden: true,
+      defaultValue: 'media',
     },
   ],
   upload: true,
