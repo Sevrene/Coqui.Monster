@@ -1,13 +1,10 @@
 'use client';
 
-import { Button, CircularProgress } from '@mui/material';
 import { Diamond, Today } from '@mui/icons-material';
+import { Button, CircularProgress } from '@mui/material';
 
 import Image from 'next/image';
 import { useState } from 'react';
-
-// TODO: Attach the CMS image info (width/height) to the Image component too (With fallbacks)
-// Possibly create a wrapper component for this for simplicity?
 
 export default function OfflineOverlay({ scheduleImage, waitImage }) {
   const [scheduleState, setScheduleState] = useState({
@@ -54,10 +51,10 @@ export default function OfflineOverlay({ scheduleImage, waitImage }) {
       {/* Image for Schedule */}
       {scheduleState.show && (
         <Image
-          src={scheduleImage}
+          src={scheduleImage.url}
           alt='Schedule'
-          width='1200'
-          height='675'
+          width={Math.min(1200, scheduleImage.width)}
+          height={Math.min(675, scheduleImage.height)}
           style={{
             position: 'absolute',
             top: '60px',
@@ -114,11 +111,11 @@ export default function OfflineOverlay({ scheduleImage, waitImage }) {
       {/* Image for While You Wait */}
       {waitImageState.show && (
         <Image
-          src={waitImage}
+          src={waitImage.url}
           alt='While You Wait'
           // unoptimized // Somehow setting unoptimized causes the mouse enter/leave to ony function on every other hover (And prevents the onLoad from working more than once)
-          width='540'
-          height='360'
+          width={Math.min(540, waitImage.width)}
+          height={Math.min(360, waitImage.height)}
           style={{
             position: 'absolute',
             bottom: '60px',

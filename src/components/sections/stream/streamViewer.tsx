@@ -4,8 +4,16 @@ import StreamViewerClient from './streamViewerClient';
 
 interface TwitchPlayerProps {
   channel: string;
-  scheduleImage: string;
-  extraImage: string;
+  scheduleImage: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  extraImage: {
+    url: string;
+    width: number;
+    height: number;
+  };
 }
 
 export default function StreamViewer({

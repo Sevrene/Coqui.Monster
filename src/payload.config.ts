@@ -92,28 +92,32 @@ export default buildConfig({
   sharp,
   plugins: [
     redirectsPlugin(redirectsPluginConfig),
-    s3Storage({
-      collections: {
-        media: {
-          prefix: 'media',
-          generateFileURL: ({ filename, prefix }) => {
-            const base = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${process.env.S3_BUCKET}`;
-            const path = prefix ? `${prefix}/${filename}` : filename;
-            return `${base}/${path}`;
-          },
-        },
-      },
-      bucket: process.env.S3_BUCKET,
-      config: {
-        forcePathStyle: true,
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-        },
-        region: process.env.S3_REGION,
-        endpoint: process.env.S3_ENDPOINT,
-      },
-    }),
+    ...(process.env.NODE_ENV === 'production'
+      ? [
+          s3Storage({
+            collections: {
+              media: {
+                prefix: 'media',
+                generateFileURL: ({ filename, prefix }) => {
+                  const base = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${process.env.S3_BUCKET}`;
+                  const path = prefix ? `${prefix}/${filename}` : filename;
+                  return `${base}/${path}`;
+                },
+              },
+            },
+            bucket: process.env.S3_BUCKET,
+            config: {
+              forcePathStyle: true,
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID,
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+              },
+              region: process.env.S3_REGION,
+              endpoint: process.env.S3_ENDPOINT,
+            },
+          }),
+        ]
+      : []),
   ],
   endpoints: [
     {

@@ -9,8 +9,16 @@ import OfflineOverlay from './offlineOverlay';
 
 interface TwitchPlayerClientProps {
   channel: string;
-  scheduleImage: string;
-  extraImage: string;
+  scheduleImage: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  extraImage: {
+    url: string;
+    width: number;
+    height: number;
+  };
 }
 
 const PLAYER_ID = 'twitch-player';

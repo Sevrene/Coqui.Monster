@@ -1,5 +1,5 @@
-import { default as getRedirects } from './redirects/redirects.js';
 import { withPayload } from '@payloadcms/next/withPayload';
+import { default as getRedirects } from './redirects/redirects.js';
 
 const redirects = async () => {
   const all = await getRedirects();
@@ -14,7 +14,14 @@ const redirects = async () => {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['hqmqovtzjmsxrlztthgf.supabase.co'],
+    remotePatterns: [
+      {
+        hostname: 'hqmqovtzjmsxrlztthgf.supabase.co',
+      },
+      {
+        hostname: 'localhost',
+      },
+    ],
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
