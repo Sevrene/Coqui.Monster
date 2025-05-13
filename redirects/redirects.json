@@ -1,20 +1,20 @@
 [
   {
     "name": "3AM Merch",
-    "from": "/kawa",
+    "from": "/store",
     "to": {
       "type": "custom",
-      "url": "https://merch.kawaentertainment.com/en-ca/collections/3am"
+      "url": "https://store.3am.moe/"
     },
     "type": "302",
     "hidden": false
   },
   {
     "name": "3AM Merch",
-    "from": "/store",
+    "from": "/kawa",
     "to": {
       "type": "custom",
-      "url": "https://store.3am.moe/"
+      "url": "https://merch.kawaentertainment.com/en-ca/collections/3am"
     },
     "type": "302",
     "hidden": false
@@ -171,7 +171,7 @@
   },
   {
     "name": "Youtube Channel",
-    "from": "/clips",
+    "from": "/youtube",
     "to": {
       "type": "custom",
       "url": "https://www.youtube.com/@C0QUI"
@@ -181,7 +181,7 @@
   },
   {
     "name": "Youtube Channel",
-    "from": "/youtube",
+    "from": "/clips",
     "to": {
       "type": "custom",
       "url": "https://www.youtube.com/@C0QUI"

@@ -35,6 +35,7 @@ import { default as default_9d9b72c8911c3bd8cf66561f610797b4 } from '@/cms/compo
 import { default as default_dce46257438b09365ae2a65ef1ef14b7 } from '@/cms/components/overrides/adminAvatar.tsx'
 import { default as default_36d1f6a0955a5ef822fbe026dafe9f17 } from '@/cms/components/dashboard/dashboardOverviewPanel.tsx'
 import { default as default_ef6872e7af0bd3c31191510edfeae372 } from '@/cms/components/dashboard/dashboardHeader.tsx'
+import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
 export const importMap = {
   "@/cms/components/fields/chipField.tsx#default": default_a806f4b038277cd79328501d5ba0b9b4,
@@ -73,5 +74,6 @@ export const importMap = {
   "@/cms/components/fields/rerouteField.tsx#default": default_9d9b72c8911c3bd8cf66561f610797b4,
   "@/cms/components/overrides/adminAvatar.tsx#default": default_dce46257438b09365ae2a65ef1ef14b7,
   "@/cms/components/dashboard/dashboardOverviewPanel.tsx#default": default_36d1f6a0955a5ef822fbe026dafe9f17,
-  "@/cms/components/dashboard/dashboardHeader.tsx#default": default_ef6872e7af0bd3c31191510edfeae372
+  "@/cms/components/dashboard/dashboardHeader.tsx#default": default_ef6872e7af0bd3c31191510edfeae372,
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }
