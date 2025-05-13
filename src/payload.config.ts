@@ -5,25 +5,24 @@ import {
 } from '@payloadcms/richtext-lexical';
 
 import { Colors } from '@/cms/collections/Colors';
-import Footer from '@/cms/globals/Footer';
 import Gradients from '@/cms/collections/Gradients';
+import { Media } from '@/cms/collections/Media';
+import { Socials } from '@/cms/collections/Socials';
+import { Users } from '@/cms/collections/Users';
+import Footer from '@/cms/globals/Footer';
 import Header from '@/cms/globals/Header';
 import Homepage from '@/cms/globals/Homepage';
-import { Media } from '@/cms/collections/Media';
 import SiteSettings from '@/cms/globals/SiteSettings';
-import { Socials } from '@/cms/collections/Socials';
 import Theme from '@/cms/globals/Theme';
-import { Users } from '@/cms/collections/Users';
-import { buildConfig } from 'payload';
-import { fileURLToPath } from 'url';
-import { keepAlive } from './cms/utils/keepAliveSchema';
-import path from 'path';
+import redirectsPluginConfig from '@/cms/plugins/redirectsPluginConfig';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
-import redirectsPluginConfig from '@/cms/plugins/redirectsPluginConfig';
-import { revalidateTag } from 'next/cache';
 import { s3Storage } from '@payloadcms/storage-s3';
+import { revalidateTag } from 'next/cache';
+import path from 'path';
+import { buildConfig } from 'payload';
 import sharp from 'sharp';
+import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -72,12 +71,17 @@ export default buildConfig({
     },
     beforeSchemaInit: [
       ({ schema }) => {
+        // Enable RLS for all tables in the schema
+        const tablesWithRLS = { ...schema.tables };
+        for (const tableName in tablesWithRLS) {
+          if (Object.prototype.hasOwnProperty.call(tablesWithRLS, tableName)) {
+            tablesWithRLS[tableName].enableRLS();
+          }
+        }
+
         return {
           ...schema,
-          tables: {
-            ...schema.tables,
-            keepAlive,
-          },
+          tables: tablesWithRLS,
         };
       },
     ],
@@ -85,28 +89,32 @@ export default buildConfig({
   sharp,
   plugins: [
     redirectsPlugin(redirectsPluginConfig),
-    s3Storage({
-      collections: {
-        media: {
-          prefix: 'media',
-          generateFileURL: ({ filename, prefix }) => {
-            const base = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${process.env.S3_BUCKET}`;
-            const path = prefix ? `${prefix}/${filename}` : filename;
-            return `${base}/${path}`;
-          },
-        },
-      },
-      bucket: process.env.S3_BUCKET,
-      config: {
-        forcePathStyle: true,
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID,
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-        },
-        region: process.env.S3_REGION,
-        endpoint: process.env.S3_ENDPOINT,
-      },
-    }),
+    ...(process.env.DEV_S3_BUCKET_ENABLED !== 'false'
+      ? [
+          s3Storage({
+            collections: {
+              media: {
+                prefix: 'media',
+                generateFileURL: ({ filename, prefix }) => {
+                  const base = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${process.env.S3_BUCKET}`;
+                  const path = prefix ? `${prefix}/${filename}` : filename;
+                  return `${base}/${path}`;
+                },
+              },
+            },
+            bucket: process.env.S3_BUCKET,
+            config: {
+              forcePathStyle: true,
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID,
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+              },
+              region: process.env.S3_REGION,
+              endpoint: process.env.S3_ENDPOINT,
+            },
+          }),
+        ]
+      : []),
   ],
   endpoints: [
     {

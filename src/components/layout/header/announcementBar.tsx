@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import { ReactNode } from 'react';
 
+import { RichText } from '@/components/rich_text/richText';
 import { Header } from '@/payload-types';
+import { ReactNode } from 'react';
 
 interface AnnouncementBarProps {
   announcement?: Header['announcement'];
@@ -34,14 +35,21 @@ export default function AnnouncementBar({
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          height: '32px',
           backgroundColor: color.color || 'link.main',
           borderBottom: '2px solid black',
           zIndex: 2,
         }}
       >
-        <Typography variant='h5' color='black'>
-          {announcement.text}
+        <Typography
+          variant='h5'
+          color='black'
+          sx={{
+            textAlign: 'center',
+            '& p': { margin: 0 },
+            '& a': { color: announcement.linkColorOverride || 'default' },
+          }}
+        >
+          <RichText lexicalData={announcement.text} />
         </Typography>
       </Box>
     );

@@ -200,7 +200,6 @@ export interface Media {
    * Simple text description of the image.
    */
   alt: string;
-  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -400,7 +399,6 @@ export interface GradientsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -490,11 +488,29 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: number;
   announcement?: {
-    text?: string | null;
+    text?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
     /**
      * The color of the announcement bar. Defaults to the link theme color.
      */
     color?: (number | null) | Color;
+    /**
+     * Overrides the link color in the announcement text. Defaults to the link theme color.
+     */
+    linkColorOverride?: (number | null) | Color;
   };
   logo: number | Media;
   /**
@@ -503,9 +519,9 @@ export interface Header {
   socials?: (number | Social)[] | null;
   behaviorSettings: {
     /**
-     * Fixed: Moves with the page. Static: Never moves.
+     * Sticky: Moves with the page. Static: Never moves.
      */
-    mode: 'fixed' | 'static';
+    mode: 'sticky' | 'static';
     background: {
       type: 'none' | 'solid' | 'gradient';
       /**
@@ -670,6 +686,7 @@ export interface HeaderSelect<T extends boolean = true> {
     | {
         text?: T;
         color?: T;
+        linkColorOverride?: T;
       };
   logo?: T;
   socials?: T;

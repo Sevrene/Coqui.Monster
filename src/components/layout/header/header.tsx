@@ -25,19 +25,6 @@ export async function Header(): Promise<ReactNode> {
       }}
     >
       <AnnouncementBar announcement={announcement} />
-      {fadeIn ? (
-        <HeaderScrollIn background={background} />
-      ) : (
-        <Box
-          sx={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            boxShadow:
-              background == 'transparent' ? '' : '0px 5px 15px #000000',
-          }}
-        />
-      )}
       <FreeCWordPass />
       <Box
         sx={{
@@ -46,13 +33,26 @@ export async function Header(): Promise<ReactNode> {
           height: '64px',
         }}
       >
+        {fadeIn ? (
+          <HeaderScrollIn background={background} />
+        ) : (
+          <Box
+            sx={{
+              position: 'absolute',
+              height: '64px',
+              width: '100%',
+              boxShadow:
+                background == 'transparent' ? '' : '0px 5px 15px #000000',
+            }}
+          />
+        )}
         <Toolbar
           style={{
             flexGrow: 1,
             maxWidth: '1920px',
           }}
         >
-          <Box position='relative' width='114px' height='100%'>
+          <Box width='114px' height='100%'>
             {logo && (
               <Link href='/'>
                 <Image

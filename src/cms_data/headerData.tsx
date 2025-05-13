@@ -19,19 +19,7 @@ function parseHeaderData(headerData: Header) {
   const fadeIn = headerData.behaviorSettings.background.fadeIn;
   const logo = headerData.logo as Media;
   const socials = headerData.socials;
-
-  let headerMode: HeaderMode;
-  switch (headerData.behaviorSettings.mode) {
-    case 'static':
-      headerMode = 'relative';
-      break;
-    case 'fixed':
-      headerMode = 'fixed';
-      break;
-    default:
-      console.error('Invalid header mode');
-      headerMode = 'fixed';
-  }
+  const headerMode = headerData.behaviorSettings.mode;
 
   let background: string;
   switch (headerData.behaviorSettings.background.type) {

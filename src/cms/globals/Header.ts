@@ -1,3 +1,13 @@
+import {
+  BoldFeature,
+  FixedToolbarFeature,
+  ItalicFeature,
+  LinkFeature,
+  ParagraphFeature,
+  UnderlineFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical';
+
 import type { GlobalConfig } from 'payload';
 import resolveSocialUsage from '../hooks/resolveSocialUsage';
 import { AdminGroups } from '../utils/adminGroups';
@@ -21,8 +31,21 @@ const Header: GlobalConfig = {
       fields: [
         {
           name: 'text',
-          type: 'text',
+          type: 'richText',
           label: 'Announcement Text',
+          editor: lexicalEditor({
+            features: [
+              FixedToolbarFeature(),
+              ParagraphFeature(),
+              BoldFeature(),
+              ItalicFeature(),
+              UnderlineFeature(),
+              LinkFeature({
+                enabledCollections: ['redirects'],
+                fields: ({ defaultFields }) => [...defaultFields],
+              }),
+            ],
+          }),
         },
         {
           name: 'color',
@@ -32,6 +55,16 @@ const Header: GlobalConfig = {
           admin: {
             description:
               'The color of the announcement bar. Defaults to the link theme color.',
+          },
+        },
+        {
+          name: 'linkColorOverride',
+          type: 'relationship',
+          relationTo: 'colors',
+          label: 'Link Color Override',
+          admin: {
+            description:
+              'Overrides the link color in the announcement text. Defaults to the link theme color.',
           },
         },
       ],
@@ -74,13 +107,14 @@ const Header: GlobalConfig = {
               type: 'radio',
               label: 'Header Mode',
               admin: {
-                description: 'Fixed: Moves with the page. Static: Never moves.',
+                description:
+                  'Sticky: Moves with the page. Static: Never moves.',
               },
               options: [
-                { label: 'Fixed', value: 'fixed' },
+                { label: 'Sticky', value: 'sticky' },
                 { label: 'Static', value: 'static' },
               ],
-              defaultValue: 'fixed',
+              defaultValue: 'sticky',
               required: true,
             },
             {
@@ -131,7 +165,7 @@ const Header: GlobalConfig = {
                     condition: (data, siblingData) => {
                       const conditionMet =
                         siblingData.type !== 'none' &&
-                        data.behaviorSettings.mode === 'fixed';
+                        data.behaviorSettings.mode === 'sticky';
                       if (!conditionMet) {
                         siblingData.fadeIn = false; // Reset to false if condition fails
                       }

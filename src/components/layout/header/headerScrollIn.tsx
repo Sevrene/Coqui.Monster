@@ -32,8 +32,8 @@ export default function HeaderScrollIn({
     <Box
       sx={{
         position: 'absolute',
+        height: '64px',
         width: '100%',
-        height: '100%',
         background: isScrolled ? background : 'transparent',
         boxShadow: isScrolled ? '0px 5px 15px #000000' : 'none',
         transition: 'opacity 0.5s ease-in-out',
