@@ -20,7 +20,11 @@ const generateRedirects = async () => {
       type,
       hidden,
     }))
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => {
+      const nameCompare = a.name.localeCompare(b.name);
+      if (nameCompare !== 0) return nameCompare;
+      return a.from.localeCompare(b.from);
+    });
 
   fs.writeFileSync(outputJsonPath, JSON.stringify(formattedRedirects, null, 2));
 

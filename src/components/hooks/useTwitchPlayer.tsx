@@ -19,7 +19,6 @@ interface TwitchPlayerOptions {
   width?: string | number;
   height?: string | number;
   channel?: string;
-  layout?: string;
   muted?: boolean;
   parent?: string[];
 }
@@ -133,7 +132,6 @@ export const useTwitchPlayer = ({
         width: '100%',
         height: '100%',
         channel: channel,
-        layout: 'video',
         muted: true,
         parent: [hostname],
       });

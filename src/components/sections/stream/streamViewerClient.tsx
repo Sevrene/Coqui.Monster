@@ -2,10 +2,10 @@
 
 import { useRef, useState } from 'react';
 
-import { useTwitchPlayer } from '@/components/hooks/useTwitchPlayer';
 import { Box } from '@mui/material';
 import NoStreamCard from './noStreamCard';
 import OfflineOverlay from './offlineOverlay';
+import { useTwitchPlayer } from '@/components/hooks/useTwitchPlayer';
 
 interface TwitchPlayerClientProps {
   channel: string;
