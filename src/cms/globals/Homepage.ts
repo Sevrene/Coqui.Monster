@@ -1,5 +1,5 @@
-import type { GlobalConfig } from 'payload';
 import { AdminGroups } from '../utils/adminGroups';
+import type { GlobalConfig } from 'payload';
 import { IconPicker } from '../wrappers/IconPicker';
 
 const Homepage: GlobalConfig = {
@@ -175,11 +175,14 @@ const Homepage: GlobalConfig = {
         },
         {
           label: 'Credits',
-          description: 'Credits sections',
+          description:
+            'This section is still being built. Please check back later.',
           fields: [],
         },
         {
           label: 'Voice Acting',
+          description:
+            'This section is still being built. Please check back later.',
           fields: [],
         },
       ],

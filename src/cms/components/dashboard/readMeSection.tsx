@@ -15,6 +15,11 @@ export default function ReadMeSection() {
               <Typography>
                 Manage site content and settings from this dashboard. This
                 includes editing text, images, and other media.
+                <br />
+                <u>
+                  <b>Note:</b> Some sections are still being built. [Credits,
+                  Voice, Metadata]
+                </u>
               </Typography>
             </ListItem>
           </List>
