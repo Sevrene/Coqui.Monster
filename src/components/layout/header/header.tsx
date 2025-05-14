@@ -1,11 +1,11 @@
 import { ParsedHeaderData, getHeaderData } from '@/cms_data/headerData';
 import { AppBar, Box, Toolbar } from '@mui/material';
 
+import SocialIconStackMenu from '@/components/sections/socials/socailIconStackMenu';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import FreeCWordPass from '../../custom/freeCWordPass';
-import SocialIconStack from '../../sections/socials/socailIconStack';
 import AnnouncementBar from './announcementBar';
 import HeaderScrollIn from './headerScrollIn';
 
@@ -22,6 +22,7 @@ export async function Header(): Promise<ReactNode> {
         elevation: '0',
         background: fadeIn ? 'none' : background,
         boxShadow: 'none',
+        paddingRight: 0,
       }}
     >
       <AnnouncementBar announcement={announcement} />
@@ -72,7 +73,7 @@ export async function Header(): Promise<ReactNode> {
               justifyContent: 'flex-end',
             }}
           >
-            <SocialIconStack socials={socials} />
+            <SocialIconStackMenu socials={socials} />
           </Box>
         </Toolbar>
       </Box>

@@ -1,7 +1,18 @@
-import type { Header, Media } from '@/payload-types';
+import type { Header, Media, Social } from '@/payload-types';
 
+import { DynamicIcon } from '@/utils/dynamicIcon';
 import { getGlobal } from '@/utils/getGlobals';
 import { formatBackgroundStyle } from '@/utils/styleUtils';
+import { JSX } from 'react';
+
+export type SocialWithIcon = {
+  name: string;
+  url: string;
+  appearance: {
+    color: string;
+    icon: JSX.Element;
+  };
+};
 
 export interface ParsedHeaderData {
   announcement: Header['announcement'];
@@ -9,17 +20,29 @@ export interface ParsedHeaderData {
   logo: Media;
   headerMode: string;
   background: string;
-  socials: Header['socials'];
+  socials: SocialWithIcon[];
 }
-
-type HeaderMode = 'relative' | 'fixed';
 
 function parseHeaderData(headerData: Header) {
   const announcement = headerData.announcement;
   const fadeIn = headerData.behaviorSettings.background.fadeIn;
   const logo = headerData.logo as Media;
-  const socials = headerData.socials;
   const headerMode = headerData.behaviorSettings.mode;
+
+  // Dynamic Icon is built on the server here to prevent possible reading of DynamicIcon on the client
+  let socials: SocialWithIcon[] = [];
+  for (const social of headerData.socials as Social[]) {
+    if (social.appearance.icon) {
+      socials.push({
+        name: social.name,
+        url: social.url,
+        appearance: {
+          color: social.appearance.color,
+          icon: <DynamicIcon name={social.appearance.icon} />,
+        },
+      });
+    }
+  }
 
   let background: string;
   switch (headerData.behaviorSettings.background.type) {

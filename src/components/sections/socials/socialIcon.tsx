@@ -1,6 +1,7 @@
 import { IconButton, Tooltip } from '@mui/material';
 
 import { DynamicIcon } from '@/utils/dynamicIcon';
+import { JSX } from 'react';
 
 interface SocialIconProps {
   social: {
@@ -8,19 +9,20 @@ interface SocialIconProps {
     url: string;
     appearance: {
       color: string;
-      icon: string;
+      icon: JSX.Element | string;
     };
   };
+  asLink?: boolean;
 }
 
-export default function SocialIcon({ social }: SocialIconProps) {
+export default function SocialIcon({ social, asLink = true }: SocialIconProps) {
   return (
     <Tooltip title={social.name} key={social.name} placement='top'>
       <IconButton
         aria-label={social.name}
-        href={social.url}
-        target='_blank'
-        rel='noopener noreferrer'
+        href={asLink ? social.url : undefined}
+        target={asLink ? '_blank' : undefined}
+        rel={asLink ? 'noopener noreferrer' : undefined}
         sx={{
           color: social.appearance.color,
           '&:hover': {
@@ -29,7 +31,11 @@ export default function SocialIcon({ social }: SocialIconProps) {
           },
         }}
       >
-        <DynamicIcon name={social.appearance.icon} />
+        {typeof social.appearance.icon === 'string' ? (
+          <DynamicIcon name={social.appearance.icon} />
+        ) : (
+          social.appearance.icon
+        )}
       </IconButton>
     </Tooltip>
   );
