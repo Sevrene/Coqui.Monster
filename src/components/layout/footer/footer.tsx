@@ -16,7 +16,6 @@ import { JSX } from 'react';
 import { Redirect } from '@/payload-types';
 import RedirectsFab from '@/components/sections/redirects/redirectsFab';
 import SocialIconStack from '../../sections/socials/socailIconStack';
-import { constStyles } from '@/styles/constStyles';
 import { getCachedRedirects } from '@/cms/utils/getRedirects';
 
 export async function Footer({
@@ -100,21 +99,23 @@ export async function Footer({
                   <IconMail style={{ marginLeft: '6px' }} />
                 </Typography>
                 <Typography sx={{ whiteSpace: 'nowrap' }}>
-                  <Tooltip title='Business Inquiries' arrow>
-                    <Button
-                      aria-label={`Email ${contact}`}
-                      component={Link}
-                      href={`mailto:${contact}`}
-                      sx={{
-                        color: 'white',
-                        textDecoration: 'none',
-                        '&:hover': {
-                          background: `${constStyles.brandAccent}50`,
-                        },
-                      }}
-                    >
-                      {contact}
-                    </Button>
+                  <Tooltip title='Business Inquiries' arrow placement='top'>
+                    <span>
+                      <Button
+                        aria-label={`Email ${contact}`}
+                        component={Link}
+                        href={`mailto:${contact}`}
+                        sx={{
+                          color: 'white',
+                          textDecoration: 'none',
+                          '&:hover': {
+                            backgroundColor: 'primary.main50',
+                          },
+                        }}
+                      >
+                        {contact}
+                      </Button>
+                    </span>
                   </Tooltip>
                   <Tooltip title='Copy to Clipboard' arrow placement='top'>
                     <span>

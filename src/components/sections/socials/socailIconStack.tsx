@@ -1,11 +1,11 @@
 import { Social } from '@/payload-types';
-
-import type { StackProps } from '@mui/material';
-import { Stack } from '@mui/material';
 import SocialIcon from './socialIcon';
+import { SocialWithIcon } from '@/cms_data/headerData';
+import { Stack } from '@mui/material';
+import type { StackProps } from '@mui/material';
 
 type SocialIconStackProps = {
-  socials: Social[];
+  socials: SocialWithIcon[] | Social[];
   direction?: StackProps['direction'];
   sx?: StackProps['sx'];
 };

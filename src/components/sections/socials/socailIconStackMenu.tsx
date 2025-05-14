@@ -12,11 +12,12 @@ import {
 import { MouseEvent, useState } from 'react';
 
 import { IconMenu2 } from '@tabler/icons-react';
+import { Social } from '@/payload-types';
 import SocialIcon from './socialIcon';
 import { SocialWithIcon } from '@/cms_data/headerData';
 
 type SocialIconStackMenuProps = {
-  socials: SocialWithIcon[];
+  socials: SocialWithIcon[] | Social[];
   direction?: StackProps['direction'];
   sx?: StackProps['sx'];
 };
@@ -41,12 +42,10 @@ export default function SocialIconStackMenu({
   }
 
   const handleOpen = (event: MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event) => {
-    event.stopPropagation();
+  const handleClose = () => {
     setAnchorEl(null);
   };
 

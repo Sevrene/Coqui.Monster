@@ -1,18 +1,19 @@
-import type { Footer } from '@/payload-types';
-import { getGlobal } from '@/utils/getGlobals';
+import type { Footer, Social } from '@/payload-types';
+
 import { formatBackgroundStyle } from '@/utils/styleUtils';
+import { getGlobal } from '@/utils/getGlobals';
 
 export interface ParsedFooterData {
   background: string;
-  socials: Footer['socials'];
-  socialsSecondary: Footer['socials'];
+  socials: Social[];
+  socialsSecondary: Social[];
   contact: string;
   devHandle: Footer['devHandle'];
 }
 
 function parseFooterData(footerData: Footer) {
-  const socials = footerData.socials;
-  const socialsSecondary = footerData.socialsSecondary;
+  const socials = footerData.socials as Social[];
+  const socialsSecondary = footerData.socialsSecondary as Social[];
   const contact = footerData.contact;
   const devHandle = footerData.devHandle;
 
