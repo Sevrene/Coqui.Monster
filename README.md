@@ -1,14 +1,14 @@
 # Coqui.Monster
 
-Coqui.Monster is primarily a React app with custom components utilizing the [Material UI Library](https://mui.com/material-ui/) and built on the [NextJS Framework](https://nextjs.org/) and (will be) managed by [Sanity.io](https://www.sanity.io/).
+Coqui.Monster is primarily a React app with custom components utilizing the [Material UI Library](https://mui.com/material-ui/) and built on the [NextJS Framework](https://nextjs.org/) and managed by [Payload CMS](https://payloadcms.com/).
 
 All code within this project are intended for use by [Coqui](https://www.twitch.tv/coqui) for her website [Coqui.Monster](https://coqui.monster/)
 
 ## Hosting
 
 Coqui.Monster is currently hosted on Netlify and is built and deployed through GitHub Actions.
-The project will hopefully be moved to [Cloudflare Pages](https://pages.cloudflare.com/) in the future for better performance and to take advantage of the unlimited bandwidth.
-This is dependent on whether or not the project can be made to work with server-side rendering on Cloudflare.
+The project will hopefully be moved to Cloudflare in the future for better performance and to take advantage of the more generous usage limits.
+This is dependent on OpenNext's upcomding functionality with Cloudflare to allow both Next and Payload to function within Cloudflare's ecosystem.
 
 ## Running Locally
 
