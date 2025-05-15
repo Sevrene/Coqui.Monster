@@ -1,6 +1,6 @@
 import configPromise from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_cache } from 'next/cache';
+import { getPayload } from 'payload';
 
 export async function getRedirects(depth = 1) {
   const payload = await getPayload({ config: configPromise });
@@ -9,6 +9,7 @@ export async function getRedirects(depth = 1) {
     collection: 'redirects',
     depth,
     pagination: false,
+    sort: ['name', 'from'],
   });
 
   return redirects;

@@ -1,3 +1,4 @@
+import { ParsedFooterData, getFooterData } from '@/cms_data/footerData';
 import {
   Box,
   Button,
@@ -8,15 +9,14 @@ import {
   Typography,
 } from '@mui/material';
 import { IconCopy, IconMail } from '@tabler/icons-react';
-import { ParsedFooterData, getFooterData } from '@/cms_data/footerData';
 
-import { CopyButton } from '../../sections/socials/copyButton';
-import DevHandle from './devHandle';
-import { JSX } from 'react';
-import { Redirect } from '@/payload-types';
-import RedirectsFab from '@/components/sections/redirects/redirectsFab';
-import SocialIconStack from '../../sections/socials/socailIconStack';
 import { getCachedRedirects } from '@/cms/utils/getRedirects';
+import RedirectsFab from '@/components/sections/redirects/redirectsFab';
+import { Redirect } from '@/payload-types';
+import { JSX } from 'react';
+import { CopyButton } from '../../sections/socials/copyButton';
+import SocialIconStack from '../../sections/socials/socailIconStack';
+import DevHandle from './devHandle';
 
 export async function Footer({
   hideRedirectsFab = false,
