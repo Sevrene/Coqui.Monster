@@ -6,10 +6,12 @@ import { IconPicker } from '../wrappers/IconPicker';
 
 export const Socials: CollectionConfig = {
   slug: 'socials',
+  /* Disabled for now until possibly working
   versions: {
     drafts: true,
     maxPerDoc: 5,
   },
+  */
   admin: {
     useAsTitle: 'name',
     group: AdminGroups.SYSTEM,

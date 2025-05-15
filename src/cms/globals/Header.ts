@@ -8,9 +8,9 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical';
 
+import { AdminGroups } from '../utils/adminGroups';
 import type { GlobalConfig } from 'payload';
 import resolveSocialUsage from '../hooks/resolveSocialUsage';
-import { AdminGroups } from '../utils/adminGroups';
 
 const Header: GlobalConfig = {
   slug: 'header',
@@ -33,6 +33,10 @@ const Header: GlobalConfig = {
           name: 'text',
           type: 'richText',
           label: 'Announcement Text',
+          admin: {
+            description:
+              'Try to keep the announcement text as concise as possible. Longer text is allowed, but may not look good on smaller screens.',
+          },
           editor: lexicalEditor({
             features: [
               FixedToolbarFeature(),

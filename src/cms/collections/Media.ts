@@ -4,10 +4,6 @@ import { checkRole } from './access/checkRole';
 // This collection is used to store media files for use throughout the site
 export const Media: CollectionConfig = {
   slug: 'media',
-  versions: {
-    drafts: true,
-    maxPerDoc: 5,
-  },
   admin: {
     useAsTitle: 'alt',
     group: 'System',

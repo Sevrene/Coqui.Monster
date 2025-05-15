@@ -5,10 +5,12 @@ import { AdminGroups } from '../utils/adminGroups';
 // This collection is used to store colors for use throughout the site
 export const Colors: CollectionConfig = {
   slug: 'colors',
+  /* Disabled for now until possibly working
   versions: {
     drafts: true,
     maxPerDoc: 5,
   },
+  */
   admin: {
     useAsTitle: 'name',
     group: AdminGroups.SYSTEM,

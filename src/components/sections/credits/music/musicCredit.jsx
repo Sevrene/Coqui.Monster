@@ -50,7 +50,7 @@ export default function MusicCredit({ credit }) {
       <Stack direction='row' spacing='8px'>
         <Tooltip title='Original Song'>
           <Button
-            href={credit.songLink}
+            href={credit.songLink ? credit.songLink : undefined}
             disabled={!credit.songLink}
             target='_blank'
             endIcon={<LibraryMusic />}

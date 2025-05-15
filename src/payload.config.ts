@@ -36,6 +36,7 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    /* Disabled for now until possibly working
     livePreview: {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/next/preview?preview=true&previewSecret=${process.env.PREVIEW_SECRET}`,
       // Versions are currently broken on globals in Payload. Add them back when fixed.
@@ -43,6 +44,7 @@ export default buildConfig({
       // globals: ['header', 'homepage', 'footer', 'site-settings', 'theme'],
       collections: ['colors', 'gradients', 'media', 'socials'],
     },
+    */
     components: {
       beforeDashboard: ['@/cms/components/dashboard/dashboardHeader.tsx'],
       afterDashboard: ['@/cms/components/dashboard/dashboardOverviewPanel.tsx'],
@@ -93,8 +95,9 @@ export default buildConfig({
   sharp,
   plugins: [
     redirectsPlugin(redirectsPluginConfig),
-    ...(process.env.NODE_ENV === 'production'
-      ? [
+    ...(process.env.NODE_ENV === 'development'
+      ? []
+      : [
           s3Storage({
             collections: {
               media: {
@@ -117,8 +120,7 @@ export default buildConfig({
               endpoint: process.env.S3_ENDPOINT,
             },
           }),
-        ]
-      : []),
+        ]),
   ],
   endpoints: [
     {

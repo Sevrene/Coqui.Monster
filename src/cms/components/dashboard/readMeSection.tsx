@@ -41,9 +41,9 @@ export default function ReadMeSection() {
                 reduce storage and improve performance.
               </Typography>
               <Alert severity='warning'>
-                Versioning may be removed after further testing. Versioning is
-                not available for some sections due to a known Payload bug.
-                Highly recommended to not utilize at this time.
+                Versioning is currently unavailable on live site whilst fixing
+                and testing. Highly recommended to not utilize at this time if
+                present anywhere.
               </Alert>
             </ListItem>
           </List>
@@ -62,9 +62,9 @@ export default function ReadMeSection() {
                 instantly as you edit.
               </Typography>
               <Alert severity='warning'>
-                Live Preview may be removed after further testing. Live Preview
-                is only available for some sections. Highly recommended to not
-                utilize at this time.
+                Live Preview is currently unavailable on live site whilst fixing
+                and testing. Highly recommended to not utilize at this time if
+                present anywhere.
               </Alert>
             </ListItem>
           </List>

@@ -3,7 +3,7 @@ import {
   Avatar,
   Box,
   Button,
-  Grid,
+  GridLegacy,
   ListItemAvatar,
   ListItemText,
   Tooltip,
@@ -41,9 +41,9 @@ export default function Credits() {
         >
           🔪🐸 CREDITS 🐸🔪
         </Typography>
-        <Grid container spacing={2} columns={2} maxWidth='80%'>
+        <GridLegacy container spacing={2} columns={2} maxWidth='80%'>
           {mainCredits.map((credit) => (
-            <Grid item key={credit.title} xs={2} sm={1}>
+            <GridLegacy item key={credit.title} xs={2} sm={1}>
               <CreditsChip link={credit.link}>
                 <Box
                   sx={{
@@ -82,9 +82,9 @@ export default function Credits() {
                   </Tooltip>
                 </Box>
               </CreditsChip>
-            </Grid>
+            </GridLegacy>
           ))}
-        </Grid>
+        </GridLegacy>
         <Box
           sx={{
             display: 'flex',

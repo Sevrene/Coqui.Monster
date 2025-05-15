@@ -3,10 +3,12 @@ import type { CollectionConfig } from 'payload';
 // This collection is used to store gradients for use throughout the site
 const Gradients: CollectionConfig = {
   slug: 'gradients',
+  /* Disabled for now until possibly working
   versions: {
     drafts: true,
     maxPerDoc: 5,
   },
+  */
   admin: {
     useAsTitle: 'name',
     group: 'System',

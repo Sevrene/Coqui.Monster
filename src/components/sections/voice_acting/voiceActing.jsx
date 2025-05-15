@@ -2,7 +2,7 @@ import {
   Avatar,
   Box,
   Button,
-  Grid,
+  GridLegacy,
   ListItemAvatar,
   ListItemText,
   Tooltip,
@@ -42,7 +42,7 @@ export default function VoiceActing() {
       >
         🔪🐸 VOICE ACTING 🐸🔪
       </Typography>
-      <Grid container spacing={2} columns={2} maxWidth='80%'>
+      <GridLegacy container spacing={2} columns={2} maxWidth='80%'>
         {voiceActingRoles.map((role) => (
           <Tooltip
             key={role.title}
@@ -50,7 +50,7 @@ export default function VoiceActing() {
             arrow
             placement='top'
           >
-            <Grid item xs={2} sm={1}>
+            <GridLegacy item xs={2} sm={1}>
               <CreditsChip link={role.link}>
                 <Box
                   sx={{
@@ -87,10 +87,10 @@ export default function VoiceActing() {
                   />
                 </Box>
               </CreditsChip>
-            </Grid>
+            </GridLegacy>
           </Tooltip>
         ))}
-      </Grid>
+      </GridLegacy>
       <Box sx={{ paddingTop: '16px' }}>
         <Typography
           variant='h5'

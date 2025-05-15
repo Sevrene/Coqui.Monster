@@ -49,7 +49,7 @@ export default function MiscCredit({ credit }) {
       </Box>
       <Tooltip title={'Artist Socials'}>
         <Button
-          href={credit.link}
+          href={credit.link ? credit.link : undefined}
           disabled={!credit.link}
           target='_blank'
           endIcon={<RecentActors />}

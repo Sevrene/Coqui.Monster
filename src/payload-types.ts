@@ -167,7 +167,6 @@ export interface Color {
   color: string;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -188,7 +187,6 @@ export interface Gradient {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -203,7 +201,6 @@ export interface Media {
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
   url?: string | null;
   thumbnailURL?: string | null;
   filename?: string | null;
@@ -235,7 +232,6 @@ export interface Social {
   assignedTo?: string[] | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
 }
 /**
  * Disclaimer: Redirects are not automatically updated upon deployment. They require a full rebuild to take effect.
@@ -373,7 +369,6 @@ export interface ColorsSelect<T extends boolean = true> {
   color?: T;
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -392,7 +387,6 @@ export interface GradientsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -403,7 +397,6 @@ export interface MediaSelect<T extends boolean = true> {
   prefix?: T;
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
   url?: T;
   thumbnailURL?: T;
   filename?: T;
@@ -430,7 +423,6 @@ export interface SocialsSelect<T extends boolean = true> {
   assignedTo?: T;
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -490,6 +482,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: number;
   announcement?: {
+    /**
+     * Try to keep the announcement text as concise as possible. Longer text is allowed, but may not look good on smaller screens.
+     */
     text?: {
       root: {
         type: string;
