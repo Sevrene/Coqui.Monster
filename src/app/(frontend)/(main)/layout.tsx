@@ -78,8 +78,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'BERRY',
     description,
-    url: 'https://www.google.com',
-    siteName: 'Google',
+    url: 'https://test-branch--coqui-monster.netlify.app/',
+    siteName: 'test-branch',
     images: [
       {
         url: `${baseURL}/images/brand/shareImage.jpg`,

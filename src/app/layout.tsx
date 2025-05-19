@@ -5,8 +5,6 @@ interface RootLayoutProps {
 }
 
 // This layout only exists for the custom 404 page, but is applied to all pages so is kept minimal
-export default async function RootLayout({
-  children,
-}: RootLayoutProps): Promise<ReactNode> {
+export default function RootLayout({ children }: RootLayoutProps) {
   return <>{children}</>;
 }
