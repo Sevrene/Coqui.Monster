@@ -4,9 +4,7 @@ import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 import { Providers } from '@/providers/providers';
 import { constStyles } from '@/styles/constStyles';
-import { ExitPreview } from '@/utils/exit-preview';
 import { GlobalStyles } from '@mui/material';
-import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 import { RefreshRouteOnSave } from '../RefreshRouteOnSave';
 
@@ -123,11 +121,7 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default async function RootLayout({
-  children,
-}: RootLayoutProps): Promise<ReactNode> {
-  const draft = await draftMode();
-
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
       <body>
@@ -164,7 +158,6 @@ export default async function RootLayout({
           Skip to main content
         </a>
         <RefreshRouteOnSave />
-        {draft.isEnabled && <ExitPreview />}
         <Providers>
           <Header />
           {children}
