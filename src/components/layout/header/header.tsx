@@ -5,7 +5,6 @@ import SocialIconStackMenu from '@/components/sections/socials/socailIconStackMe
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import FreeCWordPass from '../../custom/freeCWordPass';
 import AnnouncementBar from './announcementBar';
 import HeaderScrollIn from './headerScrollIn';
 
@@ -26,7 +25,6 @@ export async function Header(): Promise<ReactNode> {
       }}
     >
       <AnnouncementBar announcement={announcement} />
-      <FreeCWordPass />
       <Box
         sx={{
           display: 'flex',
