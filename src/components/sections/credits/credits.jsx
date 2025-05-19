@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 
 import { mainCredits } from '@/mockData';
-import { IconMusic } from '@tabler/icons-react';
 import Image from 'next/image';
 import DrawerToggleButton from '../drawerToggleButton';
 import CreditDrawers from './creditDrawers';
@@ -94,32 +93,6 @@ export default function Credits() {
             paddingTop: '16px',
           }}
         >
-          <Box>
-            <Typography
-              variant='h5'
-              sx={{
-                '@media (max-width:400px)': {
-                  fontSize: '1.6rem',
-                },
-                margin: '16px 0',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              MUSIC CREDITS
-            </Typography>
-            <DrawerToggleButton
-              toggleName='music'
-              variant='contained'
-              color='primary'
-              target='_blank'
-              rel='noopener noreferrer'
-              endIcon={<IconMusic />}
-            >
-              Open Full List
-            </DrawerToggleButton>
-          </Box>
           <Box>
             <Typography
               variant='h5'
