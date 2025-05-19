@@ -15,7 +15,7 @@ import { RefreshRouteOnSave } from '../RefreshRouteOnSave';
 const baseURL: string =
   process.env.NEXT_PUBLIC_BASE_URL || 'https://coqui.monster';
 const description: string =
-  'Coqui Saporana is a frog vtuber who streams on Twitch. She is also a member of the 3AM VTuber group.';
+  'Berry Crepe is an octopus vtuber who streams on Twitch. She is also stinky.';
 const themeColor: string = constStyles.brandPurple;
 
 interface IMetaImage {
@@ -63,14 +63,12 @@ interface Metadata {
 
 export const metadata: Metadata = {
   title: {
-    template: 'COQUI',
-    default: 'COQUI',
+    template: 'BERRY',
+    default: 'BERRY',
   },
-  applicationName: 'coqui.monster',
+  applicationName: 'berry.crepe',
   description,
-  keywords: [
-    'coqui, vtuber, 3AM, southside, south side, twitch, streamer, frog, coqui monster, c0qui',
-  ],
+  keywords: ['berry, vtuber, twitch, streamer, octopus'],
   metadataBase: baseURL,
   alternates: {
     canonical: '/',
@@ -78,29 +76,29 @@ export const metadata: Metadata = {
   author: 'Sevrene, sevrene.dev@outlook.com',
   creator: 'Sevrene, sevrene.dev@outlook.com',
   openGraph: {
-    title: 'COQUI',
+    title: 'BERRY',
     description,
-    url: 'https://coqui.monster',
-    siteName: 'coqui.monster',
+    url: 'https://www.google.com',
+    siteName: 'Google',
     images: [
       {
         url: `${baseURL}/images/brand/shareImage.jpg`,
         width: 800,
         height: 600,
-        alt: 'COQUI Thumbnail',
+        alt: 'Berry Thumbnail',
       },
     ],
     type: 'website',
     color: themeColor,
   },
   twitter: {
-    title: 'COQUI',
+    title: 'BERRY',
     description,
     image: {
       url: `${baseURL}/images/brand/shareImage.jpg`,
       width: 800,
       height: 600,
-      alt: 'COQUI Thumbnail',
+      alt: 'Berry Thumbnail',
     },
     card: 'summary_large_image',
     color: themeColor,
@@ -146,7 +144,7 @@ export default async function RootLayout({
               flexDirection: 'column',
               minHeight: '100vh',
               margin: 0,
-              background: 'linear-gradient(180deg, #6600CC 0%, #000000 100%)',
+              background: 'linear-gradient(180deg, #C84854 0%, #000000 100%)',
             },
           }}
         />

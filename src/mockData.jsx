@@ -30,22 +30,16 @@ export const voiceActingRoles = [
 
 export const mainCredits = [
   {
-    link: 'https://twitter.com/tsulala',
-    title: 'Rem',
-    body: 'Artist',
-    image: '/images/credits_art/Rem.jpg',
+    link: 'https://x.com/KenKenMo6',
+    title: 'KenKenMo6',
+    body: 'Model & Rig',
+    image: '/images/brand/generic.png',
   },
   {
-    link: 'https://twitter.com/Calavera_vt',
-    title: 'Calavera',
-    body: 'Rigger',
-    image: '/images/credits_art/Calavera.jpg',
-  },
-  {
-    link: 'https://twitter.com/JustBiddy_',
-    title: 'Vicky',
-    body: 'Intro',
-    image: '/images/credits_art/Vicky.jpg',
+    link: '',
+    title: 'Pixomancer',
+    body: '3D Model',
+    image: '/images/brand/generic.png',
   },
 ];
 

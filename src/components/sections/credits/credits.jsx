@@ -39,7 +39,7 @@ export default function Credits() {
             marginBottom: '12px',
           }}
         >
-          🔪🐸 CREDITS 🐸🔪
+          🍮🐙 CREDITS 🍮🐙
         </Typography>
         <GridLegacy container spacing={2} columns={2} maxWidth='80%'>
           {mainCredits.map((credit) => (
@@ -169,7 +169,7 @@ export default function Credits() {
           >
             Sevrene
           </Box>{' '}
-          or Coqui with details
+          or Berry with details
         </Typography>
       </Box>
       <CreditDrawers />

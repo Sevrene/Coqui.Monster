@@ -1,6 +1,7 @@
 import { ParsedHomepageData, getHomepageData } from '@/cms_data/homepageData';
 import { ParsedTwitchData, getTwitchData } from '@/cms_data/twitchData';
 import { Box, Divider, Icon, Stack } from '@mui/material';
+import { IconFidgetSpinner } from '@tabler/icons-react';
 
 import ButtonGrid from '@/components/sections/button_grid/buttonGrid';
 import ComedyWrapper from '@/components/sections/comedy/comedyWrapper';
@@ -8,8 +9,6 @@ import ContentBlock from '@/components/sections/contentBlock';
 import Credits from '@/components/sections/credits/credits';
 import MusicPlayer from '@/components/sections/credits/music/musicPlayer';
 import StreamViewer from '@/components/sections/stream/streamViewer';
-import VoiceActing from '@/components/sections/voice_acting/voiceActing';
-import { IconBolt } from '@tabler/icons-react';
 import { ReactNode } from 'react';
 
 export default async function Home(): Promise<ReactNode> {
@@ -102,7 +101,7 @@ export default async function Home(): Promise<ReactNode> {
             // @ts-expect-error - This is a valid type but is custom
             color='link'
           >
-            <IconBolt />
+            <IconFidgetSpinner />
           </Icon>
         </Divider>
         <Stack
@@ -116,9 +115,7 @@ export default async function Home(): Promise<ReactNode> {
           <Box sx={{ flex: 1 }}>
             <Credits />
           </Box>
-          <Box sx={{ flex: 1 }}>
-            <VoiceActing />
-          </Box>
+          <Box sx={{ flex: 1 }}></Box>
         </Stack>
       </Box>
       <MusicPlayer />
