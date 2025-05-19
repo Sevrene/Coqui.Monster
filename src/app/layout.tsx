@@ -69,6 +69,12 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
+export function headers() {
+  return {
+    'X-Prerender': 'false',
+  };
+}
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
