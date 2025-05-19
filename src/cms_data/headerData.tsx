@@ -31,7 +31,10 @@ function parseHeaderData(headerData: Header) {
 
   // Dynamic Icon is built on the server here to prevent possible reading of DynamicIcon on the client
   let socials: SocialWithIcon[] = [];
-  for (const social of headerData?.socials as Social[]) {
+  const socialsArray = Array.isArray(headerData?.socials)
+    ? (headerData.socials as Social[])
+    : [];
+  for (const social of socialsArray) {
     if (social.appearance.icon) {
       socials.push({
         name: social.name,
