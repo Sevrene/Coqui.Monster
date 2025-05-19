@@ -9,7 +9,7 @@ import { GlobalStyles } from '@mui/material';
 import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
-import { RefreshRouteOnSave } from '../RefreshRouteOnSave';
+import { RefreshRouteOnSave } from './(frontend)/RefreshRouteOnSave';
 
 // TODO: Tie metadata and GlobalStyles to CMS data
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   description,
   keywords: ['berry, vtuber, twitch, streamer, octopus'],
   alternates: {
-    canonical: baseURL,
+    canonical: '/',
   },
   creator: 'Sevrene, sevrene.dev@outlook.com',
   openGraph: {
