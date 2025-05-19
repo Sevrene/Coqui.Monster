@@ -55,4 +55,5 @@ const nextConfig = {
 export default withPayload({
   ...nextConfig,
   redirects,
+  trailingSlash: false,
 });

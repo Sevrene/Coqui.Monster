@@ -27,9 +27,6 @@ export const metadata: Metadata = {
   applicationName: 'berry.crepe',
   description,
   keywords: ['berry, vtuber, twitch, streamer, octopus'],
-  alternates: {
-    canonical: '/',
-  },
   creator: 'Sevrene, sevrene.dev@outlook.com',
   openGraph: {
     title: 'BERRY',
