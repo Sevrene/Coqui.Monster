@@ -39,7 +39,7 @@ export default function Credits() {
             marginBottom: '12px',
           }}
         >
-          🍮🐙 CREDITS 🍮🐙
+          🍮🐙 CREDITS 🍮🐙 [WIP SECTION]
         </Typography>
         <GridLegacy container spacing={2} columns={2} maxWidth='80%'>
           {mainCredits.map((credit) => (
