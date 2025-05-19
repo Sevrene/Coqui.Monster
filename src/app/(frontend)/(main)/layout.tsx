@@ -4,7 +4,10 @@ import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 import { Providers } from '@/providers/providers';
 import { constStyles } from '@/styles/constStyles';
+import { ExitPreview } from '@/utils/exit-preview';
 import { GlobalStyles } from '@mui/material';
+import type { Metadata } from 'next';
+import { draftMode } from 'next/headers';
 import { ReactNode } from 'react';
 import { RefreshRouteOnSave } from '../RefreshRouteOnSave';
 
@@ -16,50 +19,8 @@ const description: string =
   'Berry Crepe is an octopus vtuber who streams on Twitch. She is also stinky.';
 const themeColor: string = constStyles.brandPurple;
 
-interface IMetaImage {
-  url: string;
-  width: number;
-  height: number;
-  alt: string;
-}
-
-interface IMetaOpenGraph {
-  title: string;
-  description: string;
-  url: string;
-  siteName: string;
-  images: IMetaImage[];
-  type: string;
-  color: string;
-}
-
-interface IMetaTwitter {
-  title: string;
-  description: string;
-  image: IMetaImage;
-  card: string;
-  color: string;
-}
-
-interface Metadata {
-  title: {
-    template: string;
-    default: string;
-  };
-  applicationName: string;
-  description: string;
-  keywords: string[];
-  metadataBase: string;
-  alternates: {
-    canonical: string;
-  };
-  author: string;
-  creator: string;
-  openGraph: IMetaOpenGraph;
-  twitter: IMetaTwitter;
-}
-
 export const metadata: Metadata = {
+  metadataBase: new URL(baseURL),
   title: {
     template: 'BERRY',
     default: 'BERRY',
@@ -67,11 +28,9 @@ export const metadata: Metadata = {
   applicationName: 'berry.crepe',
   description,
   keywords: ['berry, vtuber, twitch, streamer, octopus'],
-  metadataBase: baseURL,
   alternates: {
-    canonical: '/',
+    canonical: baseURL,
   },
-  author: 'Sevrene, sevrene.dev@outlook.com',
   creator: 'Sevrene, sevrene.dev@outlook.com',
   openGraph: {
     title: 'BERRY',
@@ -80,26 +39,26 @@ export const metadata: Metadata = {
     siteName: 'test-branch',
     images: [
       {
-        url: `${baseURL}/images/brand/shareImage.jpg`,
+        url: '/images/brand/shareImage.jpg',
         width: 800,
         height: 600,
         alt: 'Berry Thumbnail',
       },
     ],
     type: 'website',
-    color: themeColor,
   },
   twitter: {
     title: 'BERRY',
     description,
-    image: {
-      url: `${baseURL}/images/brand/shareImage.jpg`,
-      width: 800,
-      height: 600,
-      alt: 'Berry Thumbnail',
-    },
+    images: [
+      {
+        url: '/images/brand/shareImage.jpg',
+        width: 800,
+        height: 600,
+        alt: 'Berry Thumbnail',
+      },
+    ],
     card: 'summary_large_image',
-    color: themeColor,
   },
 };
 
@@ -121,7 +80,11 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({
+  children,
+}: RootLayoutProps): Promise<ReactNode> {
+  const draft = await draftMode();
+
   return (
     <html lang='en'>
       <body>
@@ -158,6 +121,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           Skip to main content
         </a>
         <RefreshRouteOnSave />
+        {draft.isEnabled && <ExitPreview />}
         <Providers>
           <Header />
           {children}
